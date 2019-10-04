@@ -1,0 +1,88 @@
+/**
+*
+* Backend CSS Settings
+*
+* @By Zekinah Joy Lecaros
+*
+**/
+
+.hello-section__content .card {
+  margin: 20px auto 0;
+  width: 50%;
+}
+
+.hello-section__content .card label {
+  float: left !important;
+}
+
+.btn {
+  font-size: 13px;
+  line-height: 26px;
+  height: 28px;
+  margin: 0;
+  padding: 0 10px 1px;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.toggle .toggle-group label.btn:hover {
+  color: #000 !important;
+}
+
+button.btn-show,
+button.btn-save-settings {
+  background: #0085ba;
+  border-color: #0073aa #006799 #006799;
+  box-shadow: 0 1px 0 #006799;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+}
+
+button.btn-close {
+  background: #BA0028;
+  border-color: #AA001E #99001A #99001A;
+  box-shadow: 0 1px 0 #99001A;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #99001A, 1px 0 1px #99001A, 0 1px 1px #99001A, -1px 0 1px #99001A;
+}
+
+/* Style the tab */
+.tab-content .tab-pane {
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tab-content .tab-pane.active {
+  background: #fff;
+  padding-bottom: 15px;
+}
+
+a:focus {
+  box-shadow: none;
+}
+
+textarea.form-control {
+  height: 175px;
+}
+
+.card {
+  padding: .7em 2em 1em !important;
+  max-width: 100% !important;
+}
+
+div#actionbutton {
+  text-align: right;
+}
+
+input[type=color] {
+  height: 40px;
+}
+
+iframe#terms_wp_content_ifr {
+    height: 450px !important;
+}
