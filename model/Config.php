@@ -82,9 +82,9 @@ class Zone_Gdpr_Model_Config
 			CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "zn_gdpr_content` (
             `Gdpr_Content_ID` int(11) NOT NULL AUTO_INCREMENT,
             `Gdpr_Page_Content` TEXT NOT NULL,
-			`Privacy_Policy_Link` TEXT NOT NULL,
-            `Cookie_Policy_Link` TEXT NOT NULL,
-            `Terms_and_Condition_Link` TEXT NOT NULL,
+			`Privacy_Policy_Link` TEXT,
+            `Cookie_Policy_Link` TEXT,
+            `Terms_and_Condition_Link` TEXT,
 			`Message` TEXT NOT NULL,
 			`Allow_Button` TEXT NOT NULL,
 			`Deny_Button` TEXT NOT NULL,
@@ -136,11 +136,10 @@ class Zone_Gdpr_Model_Config
             <p><strong>How does the GDPR affect policy surrounding data breaches?</strong></p>
             <p>Proposed regulations surrounding data breaches primarily relate to the notification policies of companies that have been breached. Data breaches which may pose a risk to individuals must be notified to the DPA within 72 hours and to affected individuals without undue delay.</p>
             ";
-        
         /** Insert GDPR Content */
         $queryI2 = "
 			INSERT INTO `" . $wpdb->prefix . "zn_gdpr_content` (`Gdpr_Page_Content`, `Privacy_Policy_Link`, `Cookie_Policy_Link`, `Terms_and_Condition_Link`, `Message`, `Allow_Button`, `Deny_Button`) VALUES
-			('".$page_content."', 'privacy-policy', 'cookie-policy', 'terms-and-conditions', 'This website uses cookies to ensure you get the best experience on our website.', 'Allow cookies', 'Decline')
+			('".$page_content."', '', '', '', 'This website uses cookies to ensure you get the best experience on our website.', 'Allow cookies', 'Decline')
             ";
 
         /** Insert GDPR Layout */

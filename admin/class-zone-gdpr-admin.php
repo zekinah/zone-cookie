@@ -122,8 +122,11 @@ class Zone_Gdpr_Admin {
 	}
 	
 	public function deployZone() {
-		add_action( 'admin_init', array(&$this, 'gdpr_save_settings_post'));
 		add_action('admin_menu',array(&$this, 'zoneOptions'));
+
+		add_action('wp_ajax_save_page_content',  array(&$this, 'save_page_content'));
+		add_action('wp_ajax_restore_page_content',  array(&$this, 'restore_page_content'));
+		add_action('wp_ajax_save_gdpr_content',  array(&$this, 'save_gdpr_content'));
 	}
 
 	/**
@@ -151,28 +154,67 @@ class Zone_Gdpr_Admin {
 		require_once('view/zone-main-display.php');
 		wp_enqueue_script( $this->plugin_name.'-function', plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-function.js', array( 'jquery' ), '1.0.0', false );
 	}
-	public function gdpr_save_settings_post(){
-		add_option( 'zn_position', 'default' );
-		add_option( 'zn_layout', 'default' );
-		add_option( 'zn_color_banner', '#0D9D96' );
-		add_option( 'zn_color_banner_text', '#FFFFFF' );
-		add_option( 'zn_color_button', '#FFFFFF' );
-		add_option( 'zn_color_button_text', '#0D9D96' );
-		add_option( 'zn_compliance', 'default' );
-		
-		/** Options */
-		register_setting( 'option-group', 'zn_privacy_policy' );
-		register_setting( 'option-group', 'zn_cookie_policy' );
-		register_setting( 'option-group', 'zn_terms_conditions' );
-		register_setting( 'option-group', 'zn_description' );
-		register_setting( 'option-group', 'zn_allow_cookies' );
-		register_setting( 'option-group', 'zn_refuse_cookies' );
-		register_setting( 'option-group', 'zn_position' );
-		register_setting( 'option-group', 'zn_layout' );
-		register_setting( 'option-group', 'zn_color_banner' );
-		register_setting( 'option-group', 'zn_color_banner_text' );
-		register_setting( 'option-group', 'zn_color_button' );
-		register_setting( 'option-group', 'zn_color_button_text' );
-		register_setting( 'option-group', 'zn_compliance' );
+
+	public function save_page_content() {
+		extract($_POST);
+		if(isset($zn_page_content)) {
+			$tbl_content = $this->update->setPageContent($zn_page_content);
+			if($tbl_content) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function restore_page_content() {
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$restore_content = "<h2><strong>GDPR Compliance</strong></h2> 
+            <p><strong>What is GDPR?</strong></p>
+            <p>The GDPR was approved and adopted by the EU Parliament in April 2016. The regulation will take effect after a two-year transition period and, unlike a Directive it does not require any enabling legislation to be passed by government; meaning it will be in force May 2018.</p>
+            <p><strong>In light of a uncertain `Brexit` -  I represent a data controller in the UK and want to know if I should still continue with GDPR planning and preparation?</strong></p>
+            <p>If you process data about individuals in the context of selling goods or services to citizens in other EU countries then you will need to comply with the GDPR, irrespective as to whether or not you the UK retains the GDPR post-Brexit. If your activities are limited to the UK, then the position (after the initial exit period) is much less clear. The UK Government has indicated it will implement an equivalent or alternative legal mechanisms. Our expectation is that any such legislation will largely follow the GDPR, given the support previously provided to the GDPR by the ICO and UK Government as an effective privacy standard, together with the fact that the GDPR provides a clear baseline against which UK business can seek continued access to the EU digital market. \(Ref: http://www.lexology.com/library/detail.aspx?g=07a6d19f-19ae-4648-9f69-44ea289726a0)</p>
+            <p><strong>Who does the GDPR affect?</strong></p>
+            <p>The GDPR not only applies to organisations located within the EU but it will also apply to organisations located outside of the EU if they offer goods or services to, or monitor the behaviour of, EU data subjects. It applies to all companies processing and holding the personal data of data subjects residing in the European Union, regardless of the company’s location.</p>
+            <p>What constitutes personal data?</p>
+            <p>Any information related to a natural person or ‘Data Subject’, that can be used to directly or indirectly identify the person. It can be anything from a name, a photo, an email address, bank details, posts on social networking websites, medical information, or a computer IP address.</p>
+            <p><strong>What is the difference between a data processor and a data controller?</strong></p>
+            <p>A controller is the entity that determines the purposes, conditions and means of the processing of personal data, while the processor is an entity which processes personal data on behalf of the controller.</p>
+            <p><strong>Do data processors need `explicit` or `unambiguous` data subject consent - and what is the difference?</strong></p>
+            <p>The conditions for consent have been strengthened, as companies will no longer be able to utilise long illegible terms and conditions full of legalese, as the request for consent must be given in an intelligible and easily accessible form, with the purpose for data processing attached to that consent - meaning it must be unambiguous. Consent must be clear and distinguishable from other matters and provided in an intelligible and easily accessible form, using clear and plain language. It must be as easy to withdraw consent as it is to give it.​  Explicit consent is required only for processing sensitive personal data - in this context, nothing short of “opt in” will suffice. However, for non-sensitive data, “unambiguous” consent will suffice.</p>
+            <p><strong>What about Data Subjects under the age of 16?</strong></p>
+            <p>Parental consent will be required to process the personal data of children under the age of 16 for online services; member states may legislate for a lower age of consent but this will not be below the age of 13.</p>
+            <p><strong>What is the difference between a regulation and a directive?</strong></p>
+            <p>A regulation is a binding legislative act. It must be applied in its entirety across the EU, while a directive is a legislative act that sets out a goal that all EU countries must achieve. However, it is up to the individual countries to decide how. It is important to note that the GDPR is a regulation, in contrast the the previous legislation, which is a directive.</p>
+            <p><strong>How does the GDPR affect policy surrounding data breaches?</strong></p>
+            <p>Proposed regulations surrounding data breaches primarily relate to the notification policies of companies that have been breached. Data breaches which may pose a risk to individuals must be notified to the DPA within 72 hours and to affected individuals without undue delay.</p>
+            ";
+			
+			$tbl_content = $this->update->setPageContent($restore_content);
+			if ($tbl_content) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function save_gdpr_content(){
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$tbl_content = $this->update->setNewGDPRContent($zn_privacy_policy, $zn_cookie_policy, $zn_terms_conditions, $zn_description, $zn_allow_cookies, $zn_refuse_cookies);
+			if ($tbl_content) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
 	}
 }

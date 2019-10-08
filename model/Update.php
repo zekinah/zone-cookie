@@ -36,10 +36,10 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
         $this->gdpr_layout = "`" . $wpdb->prefix . "zn_gdpr_layout`";
     }
 
-     public function setPageContent($zn_page_content) {
+    public function setPageContent($zn_page_content) {
         $db = $this->db_connect();
         $query = "
-            UPDATE " . $this->gdpr_content . " SET Gdpr_Page_Content = ". $zn_page_content." WHERE Gdpr_Content_ID = '1'";
+            UPDATE " . $this->gdpr_content . " SET Gdpr_Page_Content = '". $zn_page_content."' WHERE Gdpr_Content_ID = '1'";
         $result = $db->query($query);
         if ($result) {
             return true;
@@ -52,13 +52,13 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
         $db = $this->db_connect();
         $query = "
             UPDATE " . $this->gdpr_content . " SET
-                Privacy_Policy_Link = ". $zn_policy. ",
-                Cookie_Policy_Link = " . $zn_cookie . ",
-                Terms_and_Condition_Link = " . $zn_terms . ",
-                Message = " . $zn_message . ",
-                Allow_Button = " . $zn_accept . ",
-                Deny_Button = " . $zn_deny . "
-            WHERE Gdpr_Content_ID = '1'";
+                `Privacy_Policy_Link` = '". $zn_policy. "',
+                `Cookie_Policy_Link` = '" . $zn_cookie . "',
+                `Terms_and_Condition_Link` = '" . $zn_terms . "',
+                `Message` = '" . $zn_message . "',
+                `Allow_Button` = '" . $zn_accept . "',
+                `Deny_Button` = '" . $zn_deny . "'
+            WHERE `Gdpr_Content_ID` = '1'";
         $result = $db->query($query);
         if ($result) {
             return true;
@@ -71,13 +71,13 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
         $db = $this->db_connect();
         $query = "
             UPDATE " . $this->gdpr_layout . " SET
-                Position = ". $zn_position. ",
-                Layout = " . $zn_layout . ",
-                Color_Banner = " . $zn_banner . ",
-                Color_Banner_Text = " . $zn_banner_text . ",
-                Color_Button = " . $zn_button . ",
-                Color_Button_Text = " . $zn_button_text . ",
-                Compliance = " . $zn_compliance . "
+                Position = '". $zn_position. "',
+                Layout = '" . $zn_layout . "',
+                Color_Banner = '" . $zn_banner . "',
+                Color_Banner_Text = '" . $zn_banner_text . "',
+                Color_Button = '" . $zn_button . ",
+                Color_Button_Text = '" . $zn_button_text . "',
+                Compliance = '" . $zn_compliance . "'
             WHERE Gdpr_Layout_ID = '1'";
         $result = $db->query($query);
         if ($result) {

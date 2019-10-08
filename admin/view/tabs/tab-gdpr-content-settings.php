@@ -18,11 +18,12 @@ $zn_terms = $tbl_content[0]['Terms_and_Condition_Link'];
 $zn_message = $tbl_content[0]['Message'];
 $zn_allow = $tbl_content[0]['Allow_Button'];
 $zn_deny = $tbl_content[0]['Deny_Button'];
+$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 ?>
 <div class="row">
     <div class="col-md-6">
-        <div class="form">
-            <div class="card">
+        <div class="card">
+            <div class="form">
                 <div class="form-group">
                     <label><strong>Privacy Policy pagelink</strong></label>
                     <input class="form-control" placeholder="/privacy-policy/" type="text" name="zn_privacy_policy" required value="<?= $zn_privacy ?>">
@@ -47,7 +48,7 @@ $zn_deny = $tbl_content[0]['Deny_Button'];
                     <label><strong>Deny button text</strong></label>
                     <input class="form-control" placeholder="Refuse cookies" type="text" name="zn_refuse_cookies" required value="<?= $zn_deny ?>">
                 </div>
-                <button id="btn-save-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
+                <button id="btn-gdpr-content" type="button" data-zn_nonce="<?= $zn_form_nonce?>" class="btn btn-save-settings  mb-3">Save Changes</button>
             </div>
         </div>
     </div>
