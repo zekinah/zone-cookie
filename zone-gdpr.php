@@ -16,7 +16,7 @@
  * Plugin Name:       Zone - GDPR
  * Plugin URI:        https://github.com/zekinah/Zone-GDPR.git
  * Description:       Addon for GDPR Compliance.
- * Version:           1.0.0
+ * Version:           2.0.0
  * Author:            Zekinah Lecaros
  * Author URI:        https://github.com/zekinah/
  * License:           GPL-2.0+
@@ -35,13 +35,14 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ZONE_GDPR_VERSION', '1.0.0' );
+define( 'ZONE_GDPR_VERSION', '2.0.0' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-zone-gdpr-activator.php
  */
 function activate_zone_gdpr() {
+	require_once plugin_dir_path(__FILE__) . 'model/Config.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-gdpr-activator.php';
 	Zone_Gdpr_Activator::activate();
 }

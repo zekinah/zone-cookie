@@ -27,6 +27,10 @@
   color: #fff;
 }
 
+button#btn-restore-content:hover {
+  color: #000;
+}
+
 .toggle .toggle-group label.btn:hover {
   color: #000 !important;
 }

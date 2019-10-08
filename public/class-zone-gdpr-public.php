@@ -20,6 +20,9 @@
  * @subpackage Zone_Gdpr/public
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
+
+require_once(plugin_dir_path(__FILE__) . '../model/model.php');
+
 class Zone_Gdpr_Public {
 
 	/**
@@ -51,7 +54,10 @@ class Zone_Gdpr_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->outputZone();
+		$this->insert = new Zone_Gdpr_Model_Insert();
+		$this->display = new Zone_Gdpr_Model_Display();
+		$this->update = new Zone_Gdpr_Model_Update();
+		$this->deployPublicZone();
 
 	}
 
@@ -108,8 +114,15 @@ class Zone_Gdpr_Public {
 	/**
 	 * Outputs the GDPR Zone on the frontend
 	 */
-	public function outputZone() {
+	public function deployPublicZone() {
+		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
 		add_action( 'wp_head',array(&$this, 'outputGDPR')); 
+	}
+
+	function zoneGdprContent() {
+		$tbl_content = $this->display->getGDPRContent();
+		$tbl_layout = $this->display->getGDPRLayout();
+		return require_once('view/templates/gdpr-content.php');
 	}
 
 	public function outputGDPR(){

@@ -13,8 +13,6 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
-<h3>I. Request</h3>
-
 <table id="tbl-request" class="display nowrap" style="width:100%">
     <thead>
         <tr>

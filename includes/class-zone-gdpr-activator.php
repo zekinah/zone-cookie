@@ -30,7 +30,8 @@ class Zone_Gdpr_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		$db = new Zone_Gdpr_Model_Config();
+		$db->createTable();	
 	}
 
 }

@@ -20,6 +20,9 @@
  * @subpackage Zone_Gdpr/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
+
+require_once(plugin_dir_path(__FILE__) . '../model/model.php');
+
 class Zone_Gdpr_Admin {
 
 	/**
@@ -45,12 +48,15 @@ class Zone_Gdpr_Admin {
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string    $version    The version of this plugin.w
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->insert = new Zone_Gdpr_Model_Insert();
+		$this->display = new Zone_Gdpr_Model_Display();
+		$this->update = new Zone_Gdpr_Model_Update();
 		$this->deployZone();
 
 	}
@@ -139,17 +145,13 @@ class Zone_Gdpr_Admin {
 	 * Theme Options Page
 	 */
 	public function zoneOptionsPage(){
+		$tbl_request = $this->display->getAllRequest();
+		$tbl_content = $this->display->getGDPRContent();
+		$tbl_layout = $this->display->getGDPRLayout();
 		require_once('view/zone-main-display.php');
 		wp_enqueue_script( $this->plugin_name.'-function', plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-function.js', array( 'jquery' ), '1.0.0', false );
 	}
 	public function gdpr_save_settings_post(){
-		/** Default Values */
-		add_option( 'zn_privacy_policy', 'privacy-policy' );
-		add_option( 'zn_cookie_policy', 'cookie-policy' );
-		add_option( 'zn_terms_conditions', 'terms-and-conditions' );
-		add_option( 'zn_description', 'This website uses cookies to ensure you get the best experience on our website.' );
-		add_option( 'zn_allow_cookies', 'Allow cookies' );
-		add_option( 'zn_refuse_cookies', 'Decline' );
 		add_option( 'zn_position', 'default' );
 		add_option( 'zn_layout', 'default' );
 		add_option( 'zn_color_banner', '#0D9D96' );

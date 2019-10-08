@@ -19,7 +19,7 @@
     </div>
     <div class="container-fluid">
         <?php
-        $tab_option = array('Home', 'Requests', 'Content', 'General', 'GDPR Layout');
+        $tab_option = array('Home', 'Requests', 'Page Content', 'GDPR Content', 'GDPR Layout');
         echo '<ul class="nav nav-tabs" role="tablist">';
         foreach ($tab_option as $key => $option_setting) {
             if ($key == 0) {
@@ -48,7 +48,7 @@
             </div>
             <!-- GENERAL SETTING -->
             <div id="tab-3" class="container-fluid tab-pane fade"><br>
-                <?php require_once('tabs/tab-general-settings.php'); ?>
+                <?php require_once('tabs/tab-gdpr-content-settings.php'); ?>
             </div>
             <!-- GDPR SETTING -->
             <div id="tab-4" class="container-fluid tab-pane fade"><br>

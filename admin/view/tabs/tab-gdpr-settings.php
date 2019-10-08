@@ -12,9 +12,17 @@
  * @subpackage Zone_Gdpr/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
+$zn_position = $tbl_layout[0]['Position'];
+$zn_layout = $tbl_layout[0]['Layout'];
+$zn_color_banner = $tbl_layout[0]['Color_Banner'];
+$zn_banner_text = $tbl_layout[0]['Color_Banner_Text'];
+$zn_color_button = $tbl_layout[0]['Color_Button'];
+$zn_button_text = $tbl_layout[0]['Color_Button_Text'];
+$zn_compliance = $tbl_layout[0]['Compliance'];
+
 ?>
-<h3>IV. Display Settings</h3>
 <div id="actionbutton">
+    <button id="btn-layout-save" type="button" class="btn btn-save-settings">Save</button>
     <button id="openpopup" type="button" class="btn btn-show">Show</button>
     <button id="closepopup" type="button" class="btn btn-close">Close</button>
 </div>

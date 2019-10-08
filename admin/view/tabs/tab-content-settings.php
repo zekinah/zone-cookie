@@ -12,13 +12,12 @@
  * @subpackage Zone_Gdpr/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
+$zn_description = $tbl_content[0]['Gdpr_Page_Content'];
 ?>
-<h3>II. Short Code Content Settings</h3>
-
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9">
         <div class="card mb-3">
-            <h2>Main Content</h2>
+            <h2>Page Content</h2>
             <div class="card-body">
                 <?php
                 $settings = array(
@@ -26,15 +25,21 @@
                     'textarea_rows' => 14,
                     'tabindex' => 1
                 );
-                wp_editor(esc_html(__(get_option('zn_description', ''))), 'terms_wp_content', $settings);
+                wp_editor($zn_description, 'zn_de', $settings);
                 ?>
-                <button id="btn btn-save-content mt-3" class="btn btn-save-settings">Save Changes</button>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="card mb-3">
-            <h2>Drop Down Content</h2>
+            <form>
+                <div class="form-group">
+                    <label><strong>GDPR Context Shortcode</strong></label>
+                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-content]" readonly>
+                </div>
+            </form>
+            <button id="btn-save-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
+            <button id="btn-restore-content" type="button" class="btn btn-default  mb-3">Restore Content</button>
         </div>
     </div>
 </div>
