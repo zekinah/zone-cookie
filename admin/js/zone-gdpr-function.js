@@ -5,7 +5,7 @@
     /** Generate Popup */
     function generatePopup(obj_Pop) {
         $('.cc-window').remove();
-        // console.table(obj_Pop);
+        console.table(obj_Pop);
         console.log('onPopupOpen() called');
         if (obj_Pop.zn_position == 'default' || obj_Pop.zn_theme == 'default') {
             window.cookieconsent.initialise({

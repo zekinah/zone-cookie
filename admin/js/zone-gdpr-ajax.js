@@ -57,7 +57,7 @@
                     'zn_privacy_policy': $("input[name='zn_privacy_policy']").val(),
                     'zn_cookie_policy': $("input[name='zn_cookie_policy']").val(),
                     'zn_terms_conditions': $("input[name='zn_terms_conditions']").val(),
-                    'zn_description': $("input[name='zn_description']").val(),
+                    'zn_description': $("#zn_description").val(),
                     'zn_allow_cookies': $("input[name='zn_allow_cookies']").val(),
                     'zn_refuse_cookies': $("input[name='zn_refuse_cookies']").val(),
                     'zn_nonce': $(this).data('zn_nonce')
@@ -67,6 +67,55 @@
                         successNotif('The GDPR content is successfully updated');
                     } else {
                         errorNotif('There is an Error occured while saving the data');
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
+
+        $("#btn-gdpr-layout").on("click", function (event) {
+            $.ajax({
+                url: gdprsettingsAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    'action': 'save_gdpr_layout',
+                    'zn_position': $("input[name='zn_position']:checked").val(),
+                    'zn_layout': $("input[name='zn_layout']:checked").val(),
+                    'zn_color_banner': $("input[name='zn_color_banner']").val(),
+                    'zn_color_banner_text': $("input[name='zn_color_banner_text']").val(),
+                    'zn_color_button': $("input[name='zn_color_button']").val(),
+                    'zn_color_button_text': $("input[name='zn_color_button_text']").val(),
+                    'zn_compliance': $("input[name='zn_compliance']:checked").val(),
+                    'zn_nonce': $(this).data('zn_nonce')
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        successNotif('The GDPR content is successfully updated');
+                    } else {
+                        errorNotif('There is an Error occured while saving the data');
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
+
+        $("#tbl-type-request").on("change", ".zn_on_request" ,function (event) {
+            $.ajax({
+                url: gdprsettingsAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    'action': 'change_type_request',
+                    'zn_reqid_stat': $(this).data('zn_reqid_stat')
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        successNotif('The Request type is now visible on the site.');
+                    } else {
+                        successNotif('The Request type is not visible on the site.');
                     }
                 },
                 error: function (errorThrown) {

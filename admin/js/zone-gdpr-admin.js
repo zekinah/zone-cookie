@@ -6,5 +6,6 @@
 				[0, "desc"]
 			]
 		});
+		$('#tbl-type-request').DataTable();
 	 });
 })( jQuery );

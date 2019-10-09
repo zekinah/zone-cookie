@@ -19,10 +19,11 @@ $zn_banner_text = $tbl_layout[0]['Color_Banner_Text'];
 $zn_color_button = $tbl_layout[0]['Color_Button'];
 $zn_button_text = $tbl_layout[0]['Color_Button_Text'];
 $zn_compliance = $tbl_layout[0]['Compliance'];
+$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 
 ?>
 <div id="actionbutton">
-    <button id="btn-gdpr-layout" type="button" class="btn btn-save-settings">Save Changes</button>
+    <button id="btn-gdpr-layout" data-zn_nonce="zn_form_nonce" type="button" class="btn btn-save-settings">Save Changes</button>
     <button id="openpopup" type="button" class="btn btn-show">Show</button>
     <button id="closepopup" type="button" class="btn btn-close">Close</button>
 </div>

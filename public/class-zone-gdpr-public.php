@@ -116,29 +116,38 @@ class Zone_Gdpr_Public {
 	 */
 	public function deployPublicZone() {
 		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
+		add_shortcode('zone-gdpr-request', array(&$this, 'zoneGdprFormRequest'));
 		add_action( 'wp_head',array(&$this, 'outputGDPR')); 
 	}
 
-	function zoneGdprContent() {
+	public function zoneGdprContent() {
 		$tbl_content = $this->display->getGDPRContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 		return require_once('view/templates/gdpr-content.php');
 	}
 
+	public function zoneGdprFormRequest() {
+		$tbl_request_type = $this->display->getRequestType();
+		return require_once('view/templates/gdpr-request-form.php');
+	}
+
 	public function outputGDPR(){
-		$zn_privacy_policy = !empty(get_option('zn_privacy_policy')) ?  get_option('zn_privacy_policy') : '/privacy-policy';
-		$zn_cookie_policy = !empty(get_option('zn_cookie_policy')) ?  get_option('zn_cookie_policy') : '/cookie-policy';
-		$zn_terms_conditions = !empty(get_option('zn_terms_conditions')) ?  get_option('zn_terms_conditions') : '/terms-and-conditions';	
-		$zn_description = get_option('zn_description');
-		$zn_position = get_option('zn_position');
-		$zn_layout = get_option('zn_layout');
-		$zn_color_banner = get_option('zn_color_banner');
-		$zn_color_banner_text = get_option('zn_color_banner_text');
-		$zn_color_button = get_option('zn_color_button');
-		$zn_color_button_text = get_option('zn_color_button_text');
-		$zn_compliance = get_option('zn_compliance');
-		$zn_allow_cookies = get_option('zn_allow_cookies');
-		$zn_refuse_cookies = get_option('zn_refuse_cookies');
+		$tbl_content = $this->display->getGDPRContent();
+		$tbl_layout = $this->display->getGDPRLayout();
+
+		$zn_privacy_policy = $tbl_content[0]['Privacy_Policy_Link'];
+		$zn_cookie_policy = $tbl_content[0]['Cookie_Policy_Link'];
+		$zn_terms_conditions = $tbl_content[0]['Terms_and_Condition_Link'];	
+		$zn_description =  $tbl_content[0]['Message'];
+		$zn_position = $tbl_layout[0]['Position'];
+		$zn_layout = $tbl_layout[0]['Layout'];
+		$zn_color_banner = $tbl_layout[0]['Color_Banner'];
+		$zn_color_banner_text = $tbl_layout[0]['Color_Banner_Text'];
+		$zn_color_button = $tbl_layout[0]['Color_Button'];
+		$zn_color_button_text = $tbl_layout[0]['Color_Button_Text'];
+		$zn_compliance = $tbl_layout[0]['Compliance'];
+		$zn_allow_cookies = $tbl_content[0]['Allow_Button'];
+		$zn_refuse_cookies = $tbl_content[0]['Deny_Button'];
 
 		// echo '<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>';
 		if ($zn_position == 'default' || $zn_layout == 'default') {

@@ -45,3 +45,46 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-9">
+        <div class="card">
+            <h2>Request Types</h2>
+            <table id="tbl-type-request" class="display">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Type of Request</th>
+                        <th>Visibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $inc = 1;
+                    while ($row = $tbl_request_type->fetch_assoc()) {
+                        ?>
+                        <tr>
+                            <td><?= $inc ?></td>
+                            <td><?= $row['Type_of_Request'] ?></td>
+                            <td>
+                                <input class="form-check-input zn_on_request" data-zn_reqid_stat="<?= $row['TypeofRequest_ID'] ?>" type="checkbox" name="zn_on_request" <?php echo ($row['Status'] == '1' ? 'checked' : ''); ?> data-toggle="toggle">
+                            </td>
+                        </tr>
+                    <?php
+                        $inc++;
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card mb-3">
+            <div class="form">
+                <div class="form-group">
+                    <label><strong>Request Type Shortcode</strong></label>
+                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-request]" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

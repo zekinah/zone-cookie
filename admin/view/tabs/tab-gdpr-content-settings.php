@@ -38,7 +38,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                 </div>
                 <div class="form-group">
                     <label><strong>Message</strong></label>
-                    <textarea class="form-control" type="text" name="zn_description"><?= $zn_message ?></textarea>
+                    <textarea class="form-control" type="text" id="zn_description" name="zn_description"><?= $zn_message ?></textarea>
                 </div>
                 <div class="form-group">
                     <label><strong>Accept button text</strong></label>
@@ -48,7 +48,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                     <label><strong>Deny button text</strong></label>
                     <input class="form-control" placeholder="Refuse cookies" type="text" name="zn_refuse_cookies" required value="<?= $zn_deny ?>">
                 </div>
-                <button id="btn-gdpr-content" type="button" data-zn_nonce="<?= $zn_form_nonce?>" class="btn btn-save-settings  mb-3">Save Changes</button>
+                <button id="btn-gdpr-content" type="button" data-zn_nonce="<?= $zn_form_nonce ?>" class="btn btn-save-settings  mb-3">Save Changes</button>
             </div>
         </div>
     </div>

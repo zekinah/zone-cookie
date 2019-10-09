@@ -114,6 +114,7 @@ class Zone_Gdpr_Admin {
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>';
 		wp_enqueue_script( $this->plugin_name.'-script', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/script.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-cookieconsentjs', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/cookieconsent.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script('zone-toggle', '//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', array('jquery'), $this->version);
 		wp_enqueue_script( $this->plugin_name.'-fontawesome', '//kit.fontawesome.com/38c326fd94.js', array( 'jquery' ), '5.9.0', false );
 		wp_enqueue_script('zone-pnotify', plugin_dir_url(__FILE__) . 'js/pnotify/pnotify.js', array('jquery'), $this->version);
 		wp_enqueue_script('zone-datatable-js', '//cdn.datatables.net/1.10.19/js/jquery.dataTables.js', array('jquery'), $this->version);
@@ -127,6 +128,8 @@ class Zone_Gdpr_Admin {
 		add_action('wp_ajax_save_page_content',  array(&$this, 'save_page_content'));
 		add_action('wp_ajax_restore_page_content',  array(&$this, 'restore_page_content'));
 		add_action('wp_ajax_save_gdpr_content',  array(&$this, 'save_gdpr_content'));
+		add_action('wp_ajax_save_gdpr_layout',  array(&$this, 'save_gdpr_layout'));
+		add_action('wp_ajax_change_type_request',  array(&$this, 'change_type_request'));
 	}
 
 	/**
@@ -149,6 +152,7 @@ class Zone_Gdpr_Admin {
 	 */
 	public function zoneOptionsPage(){
 		$tbl_request = $this->display->getAllRequest();
+		$tbl_request_type = $this->display->getRequestType();
 		$tbl_content = $this->display->getGDPRContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 		require_once('view/zone-main-display.php');
@@ -212,6 +216,38 @@ class Zone_Gdpr_Admin {
 				$data = 1;
 			} else {
 				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function save_gdpr_layout(){
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$tbl_layout = $this->update->setNewGDPRLayout($zn_position, $zn_layout, $zn_color_banner, $zn_color_banner_text, $zn_color_button, $zn_color_button_text, $zn_compliance);
+			if ($tbl_layout) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function change_type_request() {
+		extract($_POST);
+		if (isset($zn_reqid_stat)) {
+			$tbl_content = $this->display->checkRequestTypeStat($zn_reqid_stat);
+			if ($tbl_content) {
+				/** Off the Type of Request */
+				$tbl_content = $this->update->offTypeRequest($zn_reqid_stat);
+				$data = 0;
+			} else {
+				/** On the Type of Request */
+				$tbl_content = $this->update->onTypeRequest($zn_reqid_stat);
+				$data = 1;
 			}
 		}
 		echo $data;

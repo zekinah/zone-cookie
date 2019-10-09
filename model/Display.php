@@ -35,64 +35,91 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
     }
 
     public function getAllRequest() {
-		$db = $this->db_connect();
-		$sql="
-			SELECT * FROM ".$this->gdpr_request. " WHERE `Status` = 1 && Trash = 0
-			";
-		$result = $db->query($sql);
-		if($result){
-			return $result;
-		}else{
-			die("MYSQL Error : ".mysqli_error($db));
-		}
+      $db = $this->db_connect();
+      $sql="
+        SELECT * FROM ".$this->gdpr_request. " WHERE `Status` = 1 && Trash = 0
+        ";
+      $result = $db->query($sql);
+      if($result){
+        return $result;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
     }
 
     public function getGDPRContent() {
-		$db = $this->db_connect();
-		$sql="
-			SELECT * FROM ".$this->gdpr_content. " WHERE `Gdpr_Content_ID` = 1
-			";
-		$result = $db->query($sql);
-		if($result){
-            $clone = array();
-            while ($row = $result->fetch_assoc()) {
-                $array['Gdpr_Page_Content'] = $row['Gdpr_Page_Content'];
-                $array['Privacy_Policy_Link'] = $row['Privacy_Policy_Link'];
-                $array['Cookie_Policy_Link'] = $row['Cookie_Policy_Link'];
-                $array['Terms_and_Condition_Link'] = $row['Terms_and_Condition_Link'];
-                $array['Message'] = $row['Message'];
-                $array['Allow_Button'] = $row['Allow_Button'];
-                $array['Deny_Button'] = $row['Deny_Button'];
-                $clone[] = $array;
-            }
-            return $clone;
-		}else{
-			die("MYSQL Error : ".mysqli_error($db));
-		}
+      $db = $this->db_connect();
+      $sql="
+        SELECT * FROM ".$this->gdpr_content. " WHERE `Gdpr_Content_ID` = 1
+        ";
+      $result = $db->query($sql);
+      if($result){
+              $clone = array();
+              while ($row = $result->fetch_assoc()) {
+                  $array['Gdpr_Page_Content'] = $row['Gdpr_Page_Content'];
+                  $array['Privacy_Policy_Link'] = $row['Privacy_Policy_Link'];
+                  $array['Cookie_Policy_Link'] = $row['Cookie_Policy_Link'];
+                  $array['Terms_and_Condition_Link'] = $row['Terms_and_Condition_Link'];
+                  $array['Message'] = $row['Message'];
+                  $array['Allow_Button'] = $row['Allow_Button'];
+                  $array['Deny_Button'] = $row['Deny_Button'];
+                  $clone[] = $array;
+              }
+              return $clone;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
     }
 
     public function getGDPRLayout() {
-		$db = $this->db_connect();
-		$sql="
-			SELECT * FROM ".$this->gdpr_layout. " WHERE `Gdpr_Layout_ID` = 1
-			";
-		$result = $db->query($sql);
-		if($result){
-            $clone = array();
-            while ($row = $result->fetch_assoc()) {
-                $array['Position'] = $row['Position'];
-                $array['Layout'] = $row['Layout'];
-                $array['Color_Banner'] = $row['Color_Banner'];
-                $array['Color_Banner_Text'] = $row['Color_Banner_Text'];
-                $array['Color_Button'] = $row['Color_Button'];
-                $array['Color_Button_Text'] = $row['Color_Button_Text'];
-                $array['Compliance'] = $row['Compliance'];
-                $clone[] = $array;
-            }
-            return $clone;
-		}else{
-			die("MYSQL Error : ".mysqli_error($db));
-		}
+      $db = $this->db_connect();
+      $sql="
+        SELECT * FROM ".$this->gdpr_layout. " WHERE `Gdpr_Layout_ID` = 1
+        ";
+      $result = $db->query($sql);
+      if($result){
+              $clone = array();
+              while ($row = $result->fetch_assoc()) {
+                  $array['Position'] = $row['Position'];
+                  $array['Layout'] = $row['Layout'];
+                  $array['Color_Banner'] = $row['Color_Banner'];
+                  $array['Color_Banner_Text'] = $row['Color_Banner_Text'];
+                  $array['Color_Button'] = $row['Color_Button'];
+                  $array['Color_Button_Text'] = $row['Color_Button_Text'];
+                  $array['Compliance'] = $row['Compliance'];
+                  $clone[] = $array;
+              }
+              return $clone;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
+    }
+
+    public function getRequestType(){
+      $db = $this->db_connect();
+      $sql="
+        SELECT * FROM ".$this->type_request. " WHERE Trash = 0
+        ";
+      $result = $db->query($sql);
+      if($result){
+        return $result;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
+    }
+
+    public function checkRequestTypeStat($zn_stat){
+      $db = $this->db_connect();
+      $sql="
+        SELECT `Status` FROM ".$this->type_request. " WHERE Trash = 0 && TypeofRequest_ID = ". $zn_stat."
+        ";
+      $result = $db->query($sql);
+      if($result){
+        $row = $result->fetch_assoc();
+        return $row['Status'];
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
     }
 
 
