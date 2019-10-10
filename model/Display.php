@@ -122,5 +122,32 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
       }
     }
 
+    public function getAvailableRequestType(){
+      $db = $this->db_connect();
+      $sql="
+        SELECT * FROM ".$this->type_request. " WHERE Trash = 0 && Status = 1
+        ";
+      $result = $db->query($sql);
+      if($result){
+        return $result;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
+    }
+
+    public function getLastRequester(){
+      $db = $this->db_connect();
+      $sql = "
+        SELECT RequesterID FROM " . $this->requester . " ORDER BY RequesterID DESC LIMIT 1
+        ";
+      $result = $db->query($sql);
+      if ($result) {
+        $row = $result->fetch_assoc();
+        return $row['RequesterID'];
+      } else {
+        die("MYSQL Error : " . mysqli_error($db));
+      }
+    }
+
 
 }

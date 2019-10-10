@@ -11,5 +11,48 @@
  * @package    Zone_GDPR
  * @subpackage Zone_GDPR/public/view/templates
  */
-
- return "This is Request Form.";
+$zn_nonce = wp_create_nonce('zn_nonce');
+$datahtml = '';
+$datahtml .= '
+        <div id="zn-request-form">
+            <h2>Request Form</h2>
+            <div class="req-col-main">
+                <div class="req-col-6">
+                    <input type="text" name="req_fname" placeholder="First Name">
+                </div>
+                <div class="req-col-6">
+                    <input type="text" name="req_lname"  placeholder="Last Name">
+                </div>
+            </div>
+            <div class="req-col-main">
+                <div class="req-col-6">
+                <input type="text" name="req_phone"  placeholder="Phone">
+                </div>
+                <div class="req-col-6">
+                    <input type="text" name="req_email"  placeholder="Email">
+                </div>
+            </div>
+            <div class="dpr-form">
+                <select class="custom-select" id="gdpr-request">
+                    <option selected disabled>--CHOOSE ACTION--</option>';
+                    $temp_id = 1;
+                    while ($row = $tbl_request_type->fetch_assoc()) {
+                        $datahtml .= '<option value="' . $row['Type_of_Request'] . '">' . $row['Type_of_Request'] . '</option>';
+                        $temp_id++;
+                    }
+                    $datahtml .= '</select>
+            </div>
+            <div class="">
+                <textarea name="req_message" placeholder="Additional Message"></textarea>
+            </div>
+            <div class="">
+                <button class="btn-gdpr" data-zn_nonce="'. $zn_nonce.'" id="btn-submit-request">Submit</button>
+            </div>
+        </div>
+    ';
+$datahtml .= '
+<script>
+    
+</script>
+';
+ return $datahtml;

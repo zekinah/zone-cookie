@@ -107,8 +107,8 @@ class Zone_Gdpr_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-public.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-publicscript', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/script.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-cookieconsentpublicjs', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/cookieconsent.min.js', array( 'jquery' ), $this->version, false );
-		
-
+		wp_enqueue_script('zone-gdpr-ajax', plugin_dir_url(__FILE__)  . 'js/zone-gdpr-public-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
+		wp_localize_script('zone-gdpr-ajax', 'gdprsettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
 	}
 
 	/**
@@ -117,7 +117,9 @@ class Zone_Gdpr_Public {
 	public function deployPublicZone() {
 		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
 		add_shortcode('zone-gdpr-request', array(&$this, 'zoneGdprFormRequest'));
-		add_action( 'wp_head',array(&$this, 'outputGDPR')); 
+		add_action( 'wp_head',array(&$this, 'outputGDPR'));
+		add_action('wp_ajax_nopriv_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
+		add_action('wp_ajax_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
 	}
 
 	public function zoneGdprContent() {
@@ -126,8 +128,70 @@ class Zone_Gdpr_Public {
 		return require_once('view/templates/gdpr-content.php');
 	}
 
+	public function zoneGdprRequest(){
+		extract($_POST);
+		if(isset($req_nonce)) {
+			$req_fname = sanitize_text_field($req_fname);
+			$req_lname = sanitize_text_field($req_lname);
+			$req_phone = sanitize_text_field($req_phone);
+			$zn_city = '';
+			$zn_state = '';
+			$req_type = sanitize_text_field($req_type);
+			$req_message = sanitize_text_field($req_message);
+			$tbl_requester = $this->insert->setNewRequester($req_fname, $req_lname, $req_phone, $zn_email, $zn_city, $zn_state);
+			$zn_requesterID = $this->display->getLastRequester();
+			$tbl_request = $this->insert->setNewRequest($zn_requesterID, $req_type, $req_message);
+			// $submitNotif = $this->emailSendingNotification($req_fname, $req_lname, $req_type);
+			if($tbl_requester && $tbl_request) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+
+		} else {
+			wp_die(__('Invalid nonce specified', $this->plugin_name), __('Error', $this->plugin_name), array(
+				'response' 	=> 403,
+				'back_link' => 'admin.php?page=' . $this->plugin_name,
+			));
+		}
+		echo $data;
+		exit();
+	}
+	public function emailSendingNotification($zn_first_name, $zn_last_name, $req_type) {
+		$settings = $this->display->getSettings();
+		$zn_emailstats = $settings[0]['Email_Receiver'];
+		$domain = 'noreply@' . preg_replace('/www\./i', '', $_SERVER['SERVER_NAME']);
+
+		$headers = 'From:' . $domain . '' . "\r\n";
+
+		if ($zn_emailstats != '' || $zn_emailstats != null) {
+			if (!empty(esc_attr($zn_emailstats))) {
+				$to = esc_attr($zn_emailstats);
+			}
+		} else {
+			$to = 'zjlecaros@gmail.com';
+		}
+
+		$subject = 'New Information Request is submitted on the '. $_SERVER['SERVER_NAME'];
+		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.';
+		$message .= 'Request Type: ' . $req_type .'.';
+		$message .= 'You can check it now <a href="' . $_SERVER['SERVER_NAME'] . '/wp-admin/admin.php?page=zone-gdpr">HERE</a>';
+
+		add_filter('wp_mail_content_type', 'set_html_content_type');
+		$response = wp_mail($to, $subject, $message, $headers);
+		remove_filter('wp_mail_content_type', 'set_html_content_type');
+
+		if ($response) {
+			exit();
+		}
+	}
+
+	public function set_html_content_type() {
+		return 'text/html';
+	}
+
 	public function zoneGdprFormRequest() {
-		$tbl_request_type = $this->display->getRequestType();
+		$tbl_request_type = $this->display->getAvailableRequestType();
 		return require_once('view/templates/gdpr-request-form.php');
 	}
 

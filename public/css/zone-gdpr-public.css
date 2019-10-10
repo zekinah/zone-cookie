@@ -2,3 +2,66 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+#zn-request-form {
+    width: 100%;
+}
+
+#zn-request-form input[type=text], #zn-request-form select#gdpr-request {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+    height: 34px;
+}
+
+#zn-request-form textarea{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    height: 135px;
+    width: 100%;
+    padding: 5px;
+}
+
+#zn-request-form input[type=text]:focus,
+#zn-request-form select#gdpr-request:focus,
+#zn-request-form textarea:focus,
+button.btn-gdpr {
+    box-shadow: none;
+    outline: 0;
+}
+
+ button.btn-gdpr {
+    background: #5E636D;
+    border: 2px solid #5E636D;
+    color: #fff;
+    padding: 6px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    transition: color .3s ease, outline-color .3s ease, background-color .3s ease;
+ }
+
+ button.btn-gdpr:hover {
+    background: #fff;
+    border: 2px solid #5E636D;
+    color: #5E636D;
+    transition: color .3s ease, outline-color .3s ease, background-color .3s ease;
+ }
+
+.req-col-main {
+    max-width: 100%;
+    width: 100%;
+}
+
+.req-col-6 {
+    width: 49.8%;
+    display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+    .req-col-6 {
+         width: 100%;
+         display: inline-block;
+    }
+}

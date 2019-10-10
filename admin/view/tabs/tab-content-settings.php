@@ -36,8 +36,12 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
         <div class="card mb-3">
             <div class="form">
                 <div class="form-group">
-                    <label><strong>GDPR Context Shortcode</strong></label>
+                    <label><strong>GDPR Content Shortcode</strong></label>
                     <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-content]" readonly>
+                </div>
+                <div class="form-group">
+                    <label><strong>Request Form Shortcode</strong></label>
+                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-request]" readonly>
                 </div>
             </div>
             <button id="btn-save-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
@@ -75,16 +79,6 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                     ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-3">
-            <div class="form">
-                <div class="form-group">
-                    <label><strong>Request Type Shortcode</strong></label>
-                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-request]" readonly>
-                </div>
-            </div>
         </div>
     </div>
 </div>
