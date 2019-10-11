@@ -134,11 +134,12 @@ class Zone_Gdpr_Public {
 			$req_fname = sanitize_text_field($req_fname);
 			$req_lname = sanitize_text_field($req_lname);
 			$req_phone = sanitize_text_field($req_phone);
-			$zn_city = '';
-			$zn_state = '';
+			$req_email = sanitize_text_field($req_email);
+			$req_city = '';
+			$req_state = '';
 			$req_type = sanitize_text_field($req_type);
 			$req_message = sanitize_text_field($req_message);
-			$tbl_requester = $this->insert->setNewRequester($req_fname, $req_lname, $req_phone, $zn_email, $zn_city, $zn_state);
+			$tbl_requester = $this->insert->setNewRequester($req_fname, $req_lname, $req_phone, $req_email, $req_city, $req_state);
 			$zn_requesterID = $this->display->getLastRequester();
 			$tbl_request = $this->insert->setNewRequest($zn_requesterID, $req_type, $req_message);
 			// $submitNotif = $this->emailSendingNotification($req_fname, $req_lname, $req_type);
@@ -155,6 +156,7 @@ class Zone_Gdpr_Public {
 			));
 		}
 		echo $data;
+		// print_r($_POST);
 		exit();
 	}
 	public function emailSendingNotification($zn_first_name, $zn_last_name, $req_type) {

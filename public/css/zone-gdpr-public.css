@@ -59,6 +59,10 @@ button.btn-gdpr {
     display: inline-block;
 }
 
+div#zn-request-form p {
+    text-align: center;
+}
+
 @media screen and (max-width: 800px) {
     .req-col-6 {
          width: 100%;

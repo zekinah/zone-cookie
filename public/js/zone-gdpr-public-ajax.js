@@ -13,12 +13,17 @@
                     'req_phone': $('input[name=req_phone]').val(),
                     'req_email': $('input[name=req_email]').val(),
                     'req_type': $('#gdpr-request').val(),
-                    'req_message': $('input[name=req_message]').val(),
+                    'req_message': $('#req_message').val(),
                     'req_nonce': $(this).data('zn_nonce'),
                 },
                 success: function (data) {
-                    $('#zn-request-form').empty();
-                    $('#zn-request-form').append('<strong><p>Your Request is successfully submmited. We will respond a message to you soon.</p><p>Thank you!</p></strong>');
+                    // console.log(data);
+                    $('#zn-request-form').fadeOut('slow',function () {
+                        $(this).empty();
+                    });
+                    setTimeout(function () {
+                        $('#zn-request-form').fadeIn().append('<strong><p>Your Request is successfully submmited. We will respond a message to you soon.</p><p>Thank you!</p></strong>');
+                    }, 1000);
                 },
                 error: function (errorThrown) {
                     console.log(errorThrown);
