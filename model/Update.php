@@ -114,4 +114,18 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
             die("MYSQL Error : " . mysqli_error($db));
         }
     }
+
+     public function acceptRequest($zn_id){
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->gdpr_request . " SET
+                `Request` = '0'
+            WHERE `Request_ID` = '" . $zn_id . "'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
 }

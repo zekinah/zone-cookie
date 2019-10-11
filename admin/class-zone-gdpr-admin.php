@@ -130,15 +130,18 @@ class Zone_Gdpr_Admin {
 		add_action('wp_ajax_save_gdpr_content',  array(&$this, 'save_gdpr_content'));
 		add_action('wp_ajax_save_gdpr_layout',  array(&$this, 'save_gdpr_layout'));
 		add_action('wp_ajax_change_type_request',  array(&$this, 'change_type_request'));
+		add_action('wp_ajax_zoneLiveNotifGDPR',  array(&$this, 'zoneLiveNotifGDPR'));
+		add_action('wp_ajax_accept_request',  array(&$this, 'accept_request'));
 	}
 
 	/**
 	* Register Theme Options
 	*/
 	public function zoneOptions(){
+		$total = $this->display->getRequestNotif();
 		  add_menu_page(
 			  'Zone GDPR', 	//Page Title
-			  'Zone GDPR',   //Menu Title
+			   $total ? sprintf('Zone GDPR <span class="awaiting-mod">%d</span>', $total) : 'Zone GDPR',   //Menu Title
 			  'manage_options', 			//Capability
 			  'zone-gdpr', 				//Page ID
 			  array(&$this, 'zoneOptionsPage'),		//Functions
@@ -253,4 +256,44 @@ class Zone_Gdpr_Admin {
 		echo $data;
 		exit();
 	}
+
+	public function zoneLiveNotifGDPR(){
+		$total = $this->display->getRequestNotif();
+		echo $total;
+		exit();
+	}
+
+	public function accept_request(){
+		extract($_POST);
+		if (isset($zn_requester_id)) {
+			$tbl_request = $this->update->acceptRequest($zn_requester_id);
+			if ($tbl_request) {
+				$data = $this->getHTMLrequest($zn_requester_id);
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function getHTMLrequest($zn_requester_id) {
+		$tbl_request = $this->display->getLastRequest($zn_requester_id);
+		$inc = 1;
+		$dataHTML = '';
+		while ($row = $tbl_request->fetch_assoc()) {
+			$dataHTML .= '<tr>
+                <td>'. $inc .'</td>
+                <td>'. $row['FirstName'] . " " . $row['LastName'] .'</td>
+                <td>'. $row['Type_of_Request'] .'</td>
+                <td>'. date('M d, Y', strtotime($row['Date'])) .'</td>
+                <td>
+                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="'. $row['FirstName'] .'" data-zn_lname_request="'. $row['LastName'] .'" data-zn_phone_request="'. $row['Phone'] .'" data-zn_email_request="'. $row['Email'] .'" data-zn_city_request="'. $row['City'] .'" data-zn_state_request="'. $row['State'] .'" data-zn_type_request="'. $row['Type_of_Request'] .'" data-zn_message_request="'. $row['Additional_Message'] .'" class="view-request"><i class="fas fa-eye"></i></a>
+                </td>
+			</tr>';
+			$inc++;
+		}
+		return $dataHTML;
+	}
 }
+?>

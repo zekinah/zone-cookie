@@ -70,7 +70,9 @@ class Zone_Gdpr_Model_Config
 			`Request_ID` int(11) NOT NULL AUTO_INCREMENT,
 			`Requester_ID` int(11) NOT NULL,
             `TypeofRequest_ID` int(11) NOT NULL,
-            `Additioanal_Message` TEXT NOT NULL,
+            `Additional_Message` TEXT NOT NULL,
+            `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `Request` int(5) NOT NULL DEFAULT '1',
 			`Status` int(1) NOT NULL DEFAULT '0',
 			`Trash` int(1) NOT NULL DEFAULT '0',
 		   PRIMARY KEY (`Request_ID`)

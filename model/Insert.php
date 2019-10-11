@@ -52,7 +52,7 @@ class Zone_Gdpr_Model_Insert extends Zone_Gdpr_Model_Config
     public function setNewRequest($zn_requesterID,$zn_typeofrequest_ID,$zn_additional_message){
         $db = $this->db_connect();
         $query = "
-            INSERT INTO" . $this->gdpr_request . " (Requester_ID,TypeofRequest_ID,Additioanal_Message) VALUES 
+            INSERT INTO" . $this->gdpr_request . " (Requester_ID,TypeofRequest_ID,Additional_Message) VALUES 
             ('" . $zn_requesterID . "','" . $zn_typeofrequest_ID . "','" . $zn_additional_message . "')";
         $result = $db->query($query);
         if ($result) {

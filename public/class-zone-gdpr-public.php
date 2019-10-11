@@ -116,7 +116,7 @@ class Zone_Gdpr_Public {
 	 */
 	public function deployPublicZone() {
 		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
-		add_shortcode('zone-gdpr-request', array(&$this, 'zoneGdprFormRequest'));
+		add_shortcode('zone-gdpr-form', array(&$this, 'zoneGdprFormRequest'));
 		add_action( 'wp_head',array(&$this, 'outputGDPR'));
 		add_action('wp_ajax_nopriv_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
 		add_action('wp_ajax_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));

@@ -36,8 +36,58 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
 
     public function getAllRequest() {
       $db = $this->db_connect();
-      $sql="
-        SELECT * FROM ".$this->gdpr_request. " WHERE `Status` = 1 && Trash = 0
+      $sql= "
+        SELECT 
+        requester.`FirstName`,
+        requester.`LastName`,
+        requester.`Phone`,
+        requester.`Email`,
+        requester.`City`,
+        requester.`State`,
+        type_request.`Type_of_Request`,
+        request.`Request_ID`,
+        request.`Additional_Message`,
+        request.`Date`,
+        request.`Request`,
+        request.`Status`,
+        request.`Trash`
+        FROM ". $this->gdpr_request." AS request
+        INNER JOIN ". $this->requester. " AS requester
+        ON request.`Requester_ID` = requester.`RequesterID`
+        LEFT JOIN ". $this->type_request. " AS type_request
+        ON request.`TypeofRequest_ID` = type_request.`TypeofRequest_ID`
+        ";
+      $result = $db->query($sql);
+      if($result){
+        return $result;
+      }else{
+        die("MYSQL Error : ".mysqli_error($db));
+      }
+    }
+
+    public function getLastRequest($zn_ID) {
+      $db = $this->db_connect();
+      $sql= "
+        SELECT 
+        requester.`FirstName`,
+        requester.`LastName`,
+        requester.`Phone`,
+        requester.`Email`,
+        requester.`City`,
+        requester.`State`,
+        type_request.`Type_of_Request`,
+        request.`Request_ID`,
+        request.`Additional_Message`,
+        request.`Date`,
+        request.`Request`,
+        request.`Status`,
+        request.`Trash`
+        FROM ". $this->gdpr_request." AS request
+        INNER JOIN ". $this->requester. " AS requester
+        ON request.`Requester_ID` = requester.`RequesterID`
+        LEFT JOIN ". $this->type_request. " AS type_request
+        ON request.`TypeofRequest_ID` = type_request.`TypeofRequest_ID`
+        WHERE request.`Request_ID` = ". $zn_ID."
         ";
       $result = $db->query($sql);
       if($result){
@@ -148,6 +198,20 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
         die("MYSQL Error : " . mysqli_error($db));
       }
     }
+
+    public function getRequestNotif() {
+		$db = $this->db_connect();
+		$sql = "
+			SELECT COUNT(Request) as Total_Request FROM " . $this->gdpr_request . " WHERE Request = 1
+			";
+		$result = $db->query($sql);
+		if ($result) {
+			$row = $result->fetch_assoc();
+			return $row['Total_Request'];
+		} else {
+			die("MYSQL Error : " . mysqli_error($db));
+		}
+	}
 
 
 }

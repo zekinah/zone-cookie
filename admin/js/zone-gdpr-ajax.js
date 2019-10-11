@@ -2,6 +2,40 @@
     'use strict';
     $ = jQuery.noConflict();
     $(window).load(function () {
+       
+        $(".btn-send-notif").on("click", function (event) {
+            var $button = $(this);
+            if (confirm('Are you sure to accept this request and send notification to the requester?')) {
+                $.ajax({
+                    url: gdprsettingsAjax.ajax_url,
+                    type: 'POST',
+                    data: {
+                        'action': 'accept_request',
+                        'zn_requester_id': $(this).data('zn_requester_id'),
+                        'zn_fname_request': $(this).data('zn_fname_request'),
+                        'zn_email_request': $(this).data('zn_email_request')
+                    },
+                    success: function (data) {
+                        if (data != 0) {
+                            successNotif('You successfully Accepted the Request and Sent notification to the Requester');
+                             $button.closest('tr').css('background', 'tomato');
+                             $button.closest('tr').fadeOut(800, function () {
+                                $(this).remove();
+                            });
+                            $('#tbl-request tbody').prepend(data);
+                        } else {
+                            errorNotif('There is an Error occured while accepting the request')
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            } else {
+                warningrNotif('You missed to accept the request.');
+            }
+        });
+
         /** Update GDPR Content Page */
         $("#btn-save-content").on("click", function (event) {
             var zn_page_content = $('#zn_page_content').val();
@@ -48,6 +82,7 @@
             }
         });
 
+        /**Save GDOR Content */
         $("#btn-gdpr-content").on("click", function (event) {
             $.ajax({
                 url: gdprsettingsAjax.ajax_url,
@@ -75,6 +110,7 @@
             });
         });
 
+        /** Save GDPR Layout */
         $("#btn-gdpr-layout").on("click", function (event) {
             $.ajax({
                 url: gdprsettingsAjax.ajax_url,
@@ -103,6 +139,7 @@
             });
         });
 
+        /** Request Type VISIBILITY */
         $("#tbl-type-request").on("change", ".zn_on_request" ,function (event) {
             $.ajax({
                 url: gdprsettingsAjax.ajax_url,
@@ -123,7 +160,23 @@
                 }
             });
         });
-    });
+        // Live Notification in Bubble Popup Sidebar
+        setInterval(liveNotificationGDPR, 5000);
+   });
+
+   function liveNotificationGDPR() {
+       $.ajax({
+           url: settingsAjax.ajax_url,
+           type: 'POST',
+           data: {
+               'action': 'zoneLiveNotifGDPR',
+           },
+           success: function (data) {
+               $('#toplevel_page_zone-gdpr span.awaiting-mod').empty();
+               $('#toplevel_page_zone-gdpr span.awaiting-mod').append(data);
+           }
+       });
+   }
 
     function successNotif(label) {
         new PNotify({
@@ -133,9 +186,9 @@
         });
     }
 
-    function warningrNotif() {
+    function warningrNotif(label) {
         new PNotify({
-            title: 'Something Error Occured',
+            title: '' + label + '',
             type: 'warning',
             styling: 'bootstrap3'
         });

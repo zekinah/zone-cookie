@@ -24,8 +24,70 @@
         </tr>
     </thead>
     <tbody id="body_request">
-        
+        <?php
+        $inc = 1;
+        while ($row = $tbl_request->fetch_assoc()) {
+            ?>
+            <tr>
+                <td><?= $inc ?></td>
+                <td><?= $row['FirstName'] . " " . $row['LastName'] ?></td>
+                <td><?= $row['Type_of_Request'] ?></td>
+                <td><?= date('M d, Y', strtotime($row['Date'])) ?></td>
+                <td>
+                    <?php
+                        if ($row['Request']) {
+                            echo '<a href="#" title="Accept and Notify" class="btn btn-info btn-xs btn-send-notif" data-zn_requester_id="' . $row['Request_ID'] . '" data-zn_fname_request="' . $row['FirstName'] . '" data-zn_email_request="' . $row['Email'] . '"><i class="fas fa-check"></i></a>';
+                        }
+                    ?>
+                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="<?= $row['FirstName'] ?>" data-zn_lname_request="<?= $row['LastName'] ?>" data-zn_phone_request="<?= $row['Phone'] ?>" data-zn_email_request="<?= $row['Email'] ?>" data-zn_city_request="<?= $row['City'] ?>" data-zn_state_request="<?= $row['State'] ?>" data-zn_type_request="<?= $row['Type_of_Request'] ?>" data-zn_message_request="<?= $row['Additional_Message'] ?>" class="view-request"><i class="fas fa-eye"></i></a>
+                </td>
+            </tr>
+        <?php
+            $inc++;
+        }
+        ?>
     </tbody>
-
-
 </table>
+<?php add_thickbox(); ?>
+<div id="gdpr-view-request" style="display:none;">
+    <h2>Request Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><strong>FirstName</strong></label>
+                <input type="text" class="form-control" id="zn_fname_request" name="zn_fname_request" readonly />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><strong>Lastname</strong></label>
+                <input type="text" class="form-control" id="zn_lname_request" name="zn_lname_request" readonly />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><strong>Phone</strong></label>
+                <input type="text" class="form-control" id="zn_phone_request" name="zn_phone_request" readonly />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><strong>Email</strong></label>
+                <input type="text" class="form-control" id="zn_email_request" name="zn_email_request" readonly />
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label><strong>Type of Request</strong></label>
+                <input type="text" class="form-control" id="zn_type_request" name="zn_type_request" readonly />
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label><strong>Additional Message</strong></label>
+                <textarea class="form-control" id="zn_message_request" name="zn_message_request" readonly />
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>
