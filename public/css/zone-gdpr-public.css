@@ -2,6 +2,10 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+.form-required {
+    border: 1px solid #ff0000 !important;
+}
+
 #zn-request-form {
     width: 100%;
 }
