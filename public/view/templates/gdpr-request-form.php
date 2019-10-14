@@ -29,7 +29,7 @@ $datahtml .= '
                 <input type="text" name="req_phone"  placeholder="Phone" required>
                 </div>
                 <div class="req-col-6">
-                    <input type="text" name="req_email"  placeholder="Email" required>
+                    <input type="email" name="req_email"  placeholder="Email" required>
                 </div>
             </div>
             <div class="dpr-form">
@@ -45,8 +45,8 @@ $datahtml .= '
             <div class="">
                 <textarea id="req_message" placeholder="Additional Message" required></textarea>
             </div>
-            <div class="">
-                <button class="btn-gdpr" data-zn_nonce="'. $zn_nonce.'" id="btn-submit-request">Submit</button>
+            <div class="action">
+                <input class="btn-gdpr" type="submit" value="Submit" data-zn_nonce="'. $zn_nonce.'" id="btn-submit-request">
             </div>
         </div>
     ';

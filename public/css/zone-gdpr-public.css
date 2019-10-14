@@ -10,7 +10,8 @@
     width: 100%;
 }
 
-#zn-request-form input[type=text], #zn-request-form select#gdpr-request {
+#zn-request-form input[type=text],
+#zn-request-form input[type=email],#zn-request-form select#gdpr-request {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     margin-bottom: 10px;
@@ -28,14 +29,15 @@
 }
 
 #zn-request-form input[type=text]:focus,
+#zn-request-form input[type=email]:focus,
 #zn-request-form select#gdpr-request:focus,
 #zn-request-form textarea:focus,
-button.btn-gdpr {
+input[type=submit].btn-gdpr {
     box-shadow: none;
     outline: 0;
 }
 
- button.btn-gdpr {
+input[type=submit].btn-gdpr {
     background: #5E636D;
     border: 2px solid #5E636D;
     color: #fff;
@@ -46,7 +48,7 @@ button.btn-gdpr {
     transition: color .3s ease, outline-color .3s ease, background-color .3s ease;
  }
 
- button.btn-gdpr:hover {
+input[type=submit].btn-gdpr:hover {
     background: #fff;
     border: 2px solid #5E636D;
     color: #5E636D;
@@ -59,7 +61,7 @@ button.btn-gdpr {
 }
 
 .req-col-6 {
-    width: 49.8%;
+    width: 49.7%;
     display: inline-block;
 }
 
