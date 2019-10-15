@@ -108,6 +108,18 @@ class Zone_Gdpr_Model_Config
 		   PRIMARY KEY (`Gdpr_Layout_ID`)
 		   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
             ";
+
+        /** GDPR Settings*/
+        $query5 = "
+			CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "zn_gdpr_settings` (
+			`GDPR_Settings_ID` int(11) NOT NULL AUTO_INCREMENT,
+			`Email_Approved_Template` TEXT NOT NULL,
+            `Email_Dispproved_Template` TEXT NOT NULL,
+            `Email_Receiver` TEXT,
+			`Email_Status` int(5) NOT NULL DEFAULT '1',
+		   PRIMARY KEY (`GDPR_Settings_ID`)
+		   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+            ";
             
         /** Inseert Request Type*/
         $queryI1 = "
@@ -115,7 +127,7 @@ class Zone_Gdpr_Model_Config
 			('Request to Correct Data'),
 			('Complaint Form'),
 			('Request to Delete Data'),
-			('Download Personal Data')
+			('Request to Download Personal Data')
             ";
 
         $page_content = "<h2><strong>GDPR Compliance</strong></h2> 
@@ -150,24 +162,35 @@ class Zone_Gdpr_Model_Config
 			( 'default', 'default', '#0D9D96', '#FFFFFF', '#FFFFFF', '#0D9D96', 'default')
             ";
 
+        $email_approved = "<p>Hello {requester},</p><p>Your {type_of_request} has been approved. Please wait for two (2) to three (3) days to be process your request. You will receive another email after your request has been processed. Thank you.</p>";
+        $email_disapproved = "<p>Hello {requester},</p><p>Sorry but your request has been disapproved. Please contact the site support for more details.</p>";
+
+        /** Insert Default Settings */
+        $queryI4 = "
+			INSERT INTO `" . $wpdb->prefix . "zn_gdpr_settings` (`Email_Approved_Template`, `Email_Dispproved_Template`, `Email_Receiver`) VALUES
+			( '" . $email_approved . "', '" . $email_disapproved . "', '')
+            ";
+
         $sql = $db->query($query);
         $sql1 = $db->query($query1);
         $sql2 = $db->query($query2);
         $sql3 = $db->query($query3);
         $sql4 = $db->query($query4);
-        $sql5 = $db->query($queryI1);
-        $sql6 = $db->query($queryI2);
-        $sql7 = $db->query($queryI3);
+        $sql5 = $db->query($query5);
+        $sql6 = $db->query($queryI1);
+        $sql7 = $db->query($queryI2);
+        $sql8 = $db->query($queryI3);
+        $sql9 = $db->query($queryI4);
 
-        if ($sql && $sql1 && $sql2 && $sql3 && $sql4) {
-            if ($sql5 && $sql6 && $sql7) {
+        if ($sql && $sql1 && $sql2 && $sql3 && $sql4 && $sql5) {
+            if ($sql6 && $sql7 && $sql8 && $sql9) {
                 return true;
             } else {
                 die("MYSQL Error : " . mysqli_error($db));
             }
         } else {
             die("MYSQL Error : " . mysqli_error($db));
-            // DROP TABLE `wp_zn_gdpr_requester`,`wp_zn_gdpr_type_request`, `wp_zn_gdpr_request`, `wp_zn_gdpr_content`, `wp_zn_gdpr_layout`
+            // DROP TABLE `wp_zn_gdpr_requester`,`wp_zn_gdpr_type_request`, `wp_zn_gdpr_request`, `wp_zn_gdpr_content`, `wp_zn_gdpr_layout`, `wp_zn_gdpr_settings`
         }
     }
 }

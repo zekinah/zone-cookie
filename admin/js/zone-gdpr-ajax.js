@@ -3,7 +3,7 @@
     $ = jQuery.noConflict();
     $(window).load(function () {
        
-        $(".btn-send-notif").on("click", function (event) {
+        $(".btn-accept-request").on("click", function (event) {
             var $button = $(this);
             if (confirm('Are you sure to accept this request and send notification to the requester?')) {
                 $.ajax({
@@ -13,13 +13,50 @@
                         'action': 'accept_request',
                         'zn_requester_id': $(this).data('zn_requester_id'),
                         'zn_fname_request': $(this).data('zn_fname_request'),
-                        'zn_email_request': $(this).data('zn_email_request')
+                        'zn_email_request': $(this).data('zn_email_request'),
+                        'zn_request_type': $(this).data('zn_request_type'),
+                        'zn_status': 'accept'
                     },
                     success: function (data) {
                         if (data != 0) {
                             successNotif('You successfully Accepted the Request and Sent notification to the Requester');
                              $button.closest('tr').css('background', 'tomato');
                              $button.closest('tr').fadeOut(800, function () {
+                                $(this).remove();
+                            });
+                            $('#tbl-request tbody').prepend(data);
+                        } else {
+                            errorNotif('There is an Error occured while accepting the request')
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            } else {
+                warningrNotif('You missed to accept the request.');
+            }
+        });
+
+        $(".btn-decline-request").on("click", function (event) {
+            var $button = $(this);
+            if (confirm('Are you sure to decline this request and send notification to the requester?')) {
+                $.ajax({
+                    url: gdprsettingsAjax.ajax_url,
+                    type: 'POST',
+                    data: {
+                        'action': 'decline_request',
+                        'zn_requester_id': $(this).data('zn_requester_id'),
+                        'zn_fname_request': $(this).data('zn_fname_request'),
+                        'zn_email_request': $(this).data('zn_email_request'),
+                        'zn_request_type': $(this).data('zn_request_type'),
+                        'zn_status': 'decline'
+                    },
+                    success: function (data) {
+                        if (data != 0) {
+                            successNotif('You successfully Declined the Request and Sent notification to the Requester');
+                            $button.closest('tr').css('background', 'tomato');
+                            $button.closest('tr').fadeOut(800, function () {
                                 $(this).remove();
                             });
                             $('#tbl-request tbody').prepend(data);
@@ -160,6 +197,79 @@
                 }
             });
         });
+
+        /** Email Notication Status */
+        $('#zn_gdpr_on_email').on("change", function (event) {
+             $.ajax({
+                 url: gdprsettingsAjax.ajax_url,
+                 type: 'POST',
+                 data: {
+                     'action': 'email_notification',
+                     'zn_nonce': $(this).data('zn_nonce')
+                 },
+                 success: function (data) {
+                     if (data == 1) {
+                         successNotif('The Email Notification is On.');
+                     } else {
+                         successNotif('The Email Notification is Off.');
+                     }
+                 },
+                 error: function (errorThrown) {
+                     console.log(errorThrown);
+                 }
+             });
+        });
+
+        /** Save Email Settings */
+        $('#btn-save-email-settings').on("click", function (event) {
+            $.ajax({
+                url: gdprsettingsAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    'action': 'update_email_settings',
+                    'zn_email_receiver': $("input[name=zn_email_receiver]").val(),
+                    'zn_email_approved_template': $("#email_approved_template").val(),
+                    'zn_email_disapproved_template': $("#email_disapproved_template").val(),
+                    'zn_nonce': $(this).data('zn_nonce')
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        successNotif('The Email settings is Updated');
+                    } else {
+                        errorNotif('There is an Error occured while saving the data');
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
+
+
+        /** Restore Email Settings */
+        $("#btn-restore-email-settings").on("click", function (event) {
+            if (confirm('Are you sure that you want to restore the Email Settings?')) {
+                $.ajax({
+                    url: gdprsettingsAjax.ajax_url,
+                    type: 'POST',
+                    data: {
+                        'action': 'restore_email_settings',
+                        'zn_nonce': $(this).data('zn_nonce')
+                    },
+                    success: function (data) {
+                        if (data == 1) {
+                            successNotif('You successfully Restored the Email Settings');
+                        } else {
+                            errorNotif('There is an Error occured while saving the data')
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        });
+
         // Live Notification in Bubble Popup Sidebar
         setInterval(liveNotificationGDPR, 5000);
    });

@@ -25,6 +25,7 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
     protected $gdpr_request;
     protected $gdpr_content;
     protected $gdpr_layout;
+    protected $gdpr_settings;
 
     public function __construct() {
         global $wpdb;
@@ -34,6 +35,7 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
         $this->gdpr_request  = "`" . $wpdb->prefix . "zn_gdpr_request`";
         $this->gdpr_content = "`" . $wpdb->prefix . "zn_gdpr_content`";
         $this->gdpr_layout = "`" . $wpdb->prefix . "zn_gdpr_layout`";
+        $this->gdpr_settings = "`" . $wpdb->prefix . "zn_gdpr_settings`";
     }
 
     public function setPageContent($zn_page_content) {
@@ -115,12 +117,72 @@ class Zone_Gdpr_Model_Update extends Zone_Gdpr_Model_Config
         }
     }
 
-     public function acceptRequest($zn_id){
+    public function acceptRequest($zn_id){
         $db = $this->db_connect();
         $query = "
             UPDATE " . $this->gdpr_request . " SET
-                `Request` = '0'
+                `Request` = '0',
+                `Status` = '1'
             WHERE `Request_ID` = '" . $zn_id . "'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
+
+    public function declineRequest($zn_id){
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->gdpr_request . " SET
+                `Request` = '0',
+                `Status` = '2'
+            WHERE `Request_ID` = '" . $zn_id . "'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
+
+    public function offEmailNotif(){
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->gdpr_settings . " SET
+                `Email_Status` = '0'
+            WHERE `GDPR_Settings_ID` = '1'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
+
+    public function onEmailNotif(){
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->gdpr_settings . " SET
+                `Email_Status` = '1'
+            WHERE `GDPR_Settings_ID` = '1'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
+
+    public function setNewemailSettings($zn_email_receiver, $zn_email_approved_template, $zn_email_disapproved_template){
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->gdpr_settings . " SET
+                `Email_Approved_Template` = '". $zn_email_approved_template."',
+                `Email_Dispproved_Template` = '". $zn_email_disapproved_template."',
+                `Email_Receiver` = '". $zn_email_receiver."'
+            WHERE `GDPR_Settings_ID` = '1'";
         $result = $db->query($query);
         if ($result) {
             return true;

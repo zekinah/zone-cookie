@@ -23,6 +23,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
     protected $gdpr_request;
     protected $gdpr_content;
     protected $gdpr_layout;
+    protected $gdpr_settings;
 
     public function __construct() {
         global $wpdb;
@@ -32,6 +33,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
         $this->gdpr_request  = "`" . $wpdb->prefix . "zn_gdpr_request`";
         $this->gdpr_content = "`" . $wpdb->prefix . "zn_gdpr_content`";
         $this->gdpr_layout = "`" . $wpdb->prefix . "zn_gdpr_layout`";
+        $this->gdpr_settings = "`" . $wpdb->prefix . "zn_gdpr_settings`";
     }
 
     public function getAllRequest() {
@@ -211,7 +213,42 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
 		} else {
 			die("MYSQL Error : " . mysqli_error($db));
 		}
-	}
+  }
+  
+  public function getSettings() {
+    $db = $this->db_connect();
+    $sql = "
+        SELECT * FROM " . $this->gdpr_settings . "
+        ";
+    $result = $db->query($sql);
+    if ($result) {
+      $clone = array();
+      while ($row = $result->fetch_assoc()) {
+        $array['Email_Approved_Template'] = $row['Email_Approved_Template'];
+        $array['Email_Dispproved_Template'] = $row['Email_Dispproved_Template'];
+        $array['Email_Receiver'] = $row['Email_Receiver'];
+        $array['Email_Status'] = $row['Email_Status'];
+        $clone[] = $array;
+      }
+      return $clone;
+    } else {
+      die("MYSQL Error : " . mysqli_error($db));
+    }
+  }
+
+  public function changeEmailStatus(){
+    $db = $this->db_connect();
+    $sql = "
+        SELECT `Email_Status` FROM " . $this->gdpr_settings . " WHERE GDPR_Settings_ID = 1
+        ";
+    $result = $db->query($sql);
+    if ($result) {
+      $row = $result->fetch_assoc();
+      return $row['Email_Status'];
+    } else {
+      die("MYSQL Error : " . mysqli_error($db));
+    }
+  }
 
 
 }

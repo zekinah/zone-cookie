@@ -23,7 +23,8 @@
 
 require_once(plugin_dir_path(__FILE__) . '../model/model.php');
 
-class Zone_Gdpr_Admin {
+class Zone_Gdpr_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -50,7 +51,8 @@ class Zone_Gdpr_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.w
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
@@ -58,7 +60,6 @@ class Zone_Gdpr_Admin {
 		$this->display = new Zone_Gdpr_Model_Display();
 		$this->update = new Zone_Gdpr_Model_Update();
 		$this->deployZone();
-
 	}
 
 	/**
@@ -66,7 +67,8 @@ class Zone_Gdpr_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -80,10 +82,10 @@ class Zone_Gdpr_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zone-gdpr-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-gdpr-admin.css', array(), $this->version, 'all');
 		/* Bootstrap 4 CSS */
 		echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">';
-		wp_enqueue_style( $this->plugin_name.'-cookieconsentcss', plugin_dir_url( __FILE__ ) . 'css/cookieconsent/cookieconsent.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name . '-cookieconsentcss', plugin_dir_url(__FILE__) . 'css/cookieconsent/cookieconsent.min.css', array(), $this->version, 'all');
 		wp_enqueue_style('zone-datatable-css', '//cdn.datatables.net/1.10.19/css/jquery.dataTables.css', array(), $this->version);
 		wp_enqueue_style('zone-pnotify', plugin_dir_url(__FILE__) . 'css/pnotify/pnotify.css', array(), $this->version);
 	}
@@ -93,7 +95,8 @@ class Zone_Gdpr_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -106,24 +109,25 @@ class Zone_Gdpr_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-admin.js', array( 'jquery' ), $this->version, false );
+
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-gdpr-admin.js', array('jquery'), $this->version, false);
 		/* Bootstrap 4 JS */
 		echo '<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>';
-		wp_enqueue_script( $this->plugin_name.'-script', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/script.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->plugin_name.'-cookieconsentjs', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/cookieconsent.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->plugin_name . '-script', plugin_dir_url(__FILE__) . 'js/cookieconsent/script.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name . '-cookieconsentjs', plugin_dir_url(__FILE__) . 'js/cookieconsent/cookieconsent.min.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('zone-toggle', '//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', array('jquery'), $this->version);
-		wp_enqueue_script( $this->plugin_name.'-fontawesome', '//kit.fontawesome.com/38c326fd94.js', array( 'jquery' ), '5.9.0', false );
+		wp_enqueue_script($this->plugin_name . '-fontawesome', '//kit.fontawesome.com/38c326fd94.js', array('jquery'), '5.9.0', false);
 		wp_enqueue_script('zone-pnotify', plugin_dir_url(__FILE__) . 'js/pnotify/pnotify.js', array('jquery'), $this->version);
 		wp_enqueue_script('zone-datatable-js', '//cdn.datatables.net/1.10.19/js/jquery.dataTables.js', array('jquery'), $this->version);
 		wp_enqueue_script('zone-gdpr-ajax', plugin_dir_url(__FILE__)  . 'js/zone-gdpr-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
 		wp_localize_script('zone-gdpr-ajax', 'gdprsettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
 	}
-	
-	public function deployZone() {
-		add_action('admin_menu',array(&$this, 'zoneOptions'));
+
+	public function deployZone()
+	{
+		add_action('admin_menu', array(&$this, 'zoneOptions'));
 
 		add_action('wp_ajax_save_page_content',  array(&$this, 'save_page_content'));
 		add_action('wp_ajax_restore_page_content',  array(&$this, 'restore_page_content'));
@@ -132,41 +136,63 @@ class Zone_Gdpr_Admin {
 		add_action('wp_ajax_change_type_request',  array(&$this, 'change_type_request'));
 		add_action('wp_ajax_zoneLiveNotifGDPR',  array(&$this, 'zoneLiveNotifGDPR'));
 		add_action('wp_ajax_accept_request',  array(&$this, 'accept_request'));
+		add_action('wp_ajax_decline_request',  array(&$this, 'decline_request'));
+		add_action('wp_ajax_email_notification',  array(&$this, 'email_notification'));
+		add_action('wp_ajax_update_email_settings',  array(&$this, 'update_email_settings'));
+		add_action('wp_ajax_restore_email_settings',  array(&$this, 'restore_email_settings'));
 	}
 
 	/**
-	* Register Theme Options
-	*/
-	public function zoneOptions(){
+	 * Register Theme Options
+	 */
+	public function zoneOptions()
+	{
 		$total = $this->display->getRequestNotif();
-		  add_menu_page(
-			  'Zone GDPR', 	//Page Title
-			   $total ? sprintf('Zone GDPR <span class="awaiting-mod">%d</span>', $total) : 'Zone GDPR',   //Menu Title
-			  'manage_options', 			//Capability
-			  'zone-gdpr', 				//Page ID
-			  array(&$this, 'zoneOptionsPage'),		//Functions
-			  'dashicons-lock', 						//Favicon
-			  99							//Position
-		  );
+		add_menu_page(
+			'Zone GDPR', 	//Page Title
+			$total ? sprintf('Zone GDPR <span class="awaiting-mod">%d</span>', $total) : 'Zone GDPR',   //Menu Title
+			'manage_options', 			//Capability
+			'zone-gdpr', 				//Page ID
+			array(&$this, 'zoneOptionsPage'),		//Functions
+			'dashicons-lock', 						//Favicon
+			99							//Position
+		);
+		add_submenu_page(
+			'zone-gdpr',      			 		 // Parent Page ID
+			'Zone GDPR Settings',     		 		 // Page Title
+			'Settings', 						 // Navbar Title
+			'manage_options', 						 // Permission 	
+			'zone-gdpr-settings', 							 // Submenu Page ID
+			array(&$this, 'zoneSettingPage')								 // Function  call	 
+		);
 	}
 
 	/**
 	 * Theme Options Page
 	 */
-	public function zoneOptionsPage(){
+	public function zoneOptionsPage()
+	{
 		$tbl_request = $this->display->getAllRequest();
 		$tbl_request_type = $this->display->getRequestType();
 		$tbl_content = $this->display->getGDPRContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 		require_once('view/zone-main-display.php');
-		wp_enqueue_script( $this->plugin_name.'-function', plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-function.js', array( 'jquery' ), '1.0.0', false );
+		wp_enqueue_script($this->plugin_name . '-function', plugin_dir_url(__FILE__) . 'js/zone-gdpr-function.js', array('jquery'), '1.0.0', false);
 	}
 
-	public function save_page_content() {
+	public function zoneSettingPage()
+	{
+		$settings = $this->display->getSettings();
+		// print_r($settings);
+		require_once('view/zone-settings-display.php');
+	}
+
+	public function save_page_content()
+	{
 		extract($_POST);
-		if(isset($zn_page_content)) {
+		if (isset($zn_page_content)) {
 			$tbl_content = $this->update->setPageContent($zn_page_content);
-			if($tbl_content) {
+			if ($tbl_content) {
 				$data = 1;
 			} else {
 				$data = 0;
@@ -176,7 +202,8 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function restore_page_content() {
+	public function restore_page_content()
+	{
 		extract($_POST);
 		if (isset($zn_nonce)) {
 			$restore_content = "<h2><strong>GDPR Compliance</strong></h2> 
@@ -199,7 +226,7 @@ class Zone_Gdpr_Admin {
             <p><strong>How does the GDPR affect policy surrounding data breaches?</strong></p>
             <p>Proposed regulations surrounding data breaches primarily relate to the notification policies of companies that have been breached. Data breaches which may pose a risk to individuals must be notified to the DPA within 72 hours and to affected individuals without undue delay.</p>
             ";
-			
+
 			$tbl_content = $this->update->setPageContent($restore_content);
 			if ($tbl_content) {
 				$data = 1;
@@ -211,7 +238,8 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function save_gdpr_content(){
+	public function save_gdpr_content()
+	{
 		extract($_POST);
 		if (isset($zn_nonce)) {
 			$tbl_content = $this->update->setNewGDPRContent($zn_privacy_policy, $zn_cookie_policy, $zn_terms_conditions, $zn_description, $zn_allow_cookies, $zn_refuse_cookies);
@@ -225,7 +253,8 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function save_gdpr_layout(){
+	public function save_gdpr_layout()
+	{
 		extract($_POST);
 		if (isset($zn_nonce)) {
 			$tbl_layout = $this->update->setNewGDPRLayout($zn_position, $zn_layout, $zn_color_banner, $zn_color_banner_text, $zn_color_button, $zn_color_button_text, $zn_compliance);
@@ -239,7 +268,8 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function change_type_request() {
+	public function change_type_request()
+	{
 		extract($_POST);
 		if (isset($zn_reqid_stat)) {
 			$tbl_content = $this->display->checkRequestTypeStat($zn_reqid_stat);
@@ -257,17 +287,20 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function zoneLiveNotifGDPR(){
+	public function zoneLiveNotifGDPR()
+	{
 		$total = $this->display->getRequestNotif();
 		echo $total;
 		exit();
 	}
 
-	public function accept_request(){
+	public function accept_request()
+	{
 		extract($_POST);
 		if (isset($zn_requester_id)) {
 			$tbl_request = $this->update->acceptRequest($zn_requester_id);
 			if ($tbl_request) {
+				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
 				$data = $this->getHTMLrequest($zn_requester_id);
 			} else {
 				$data = 0;
@@ -277,23 +310,140 @@ class Zone_Gdpr_Admin {
 		exit();
 	}
 
-	public function getHTMLrequest($zn_requester_id) {
+	public function decline_request()
+	{
+		extract($_POST);
+		if (isset($zn_requester_id)) {
+			$tbl_request = $this->update->declineRequest($zn_requester_id);
+			if ($tbl_request) {
+				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
+				$data = $this->getHTMLrequest($zn_requester_id);
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function email_notification()
+	{
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$tbl_settings = $this->display->changeEmailStatus();
+			if ($tbl_settings) {
+				/** Off the Email Notification */
+				$tbl_settings = $this->update->offEmailNotif();
+				$data = 0;
+			} else {
+				/** On the Email Notification */
+				$tbl_settings = $this->update->onEmailNotif();
+				$data = 1;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function update_email_settings()
+	{
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$tbl_settings = $this->update->setNewemailSettings($zn_email_receiver, $zn_email_approved_template, $zn_email_disapproved_template);
+			if ($tbl_settings) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function restore_email_settings()
+	{
+		extract($_POST);
+		if (isset($zn_nonce)) {
+			$zn_email_receiver = "";
+			$zn_email_approved_template = "<p>Hello {requester},</p><p>Your {type_of_request} has been approved. Please wait for two (2) to three (3) days to be process your request. You will receive another email after your request has been processed. Thank you.</p>";
+			$zn_email_disapproved_template = "<p>Hello {requester},</p><p>Sorry but your request has been disapproved. Please contact the site support for more details.</p>";
+			$tbl_settings = $this->update->setNewemailSettings($zn_email_receiver, $zn_email_approved_template, $zn_email_disapproved_template);
+			if ($tbl_settings) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function getHTMLrequest($zn_requester_id)
+	{
 		$tbl_request = $this->display->getLastRequest($zn_requester_id);
 		$inc = 1;
 		$dataHTML = '';
 		while ($row = $tbl_request->fetch_assoc()) {
 			$dataHTML .= '<tr>
-                <td>'. $inc .'</td>
-                <td>'. $row['FirstName'] . " " . $row['LastName'] .'</td>
-                <td>'. $row['Type_of_Request'] .'</td>
-                <td>'. date('M d, Y', strtotime($row['Date'])) .'</td>
+                <td>' . $inc . '</td>
+                <td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>
+                <td>' . $row['Type_of_Request'] . '</td>
+                <td>' . date('M d, Y', strtotime($row['Date'])) . '</td>
+				<td>';
+				if ($row['Status'] == 0) {
+					$dataHTML .= '<strong class="pending">Pending</strong>';
+				} elseif ($row['Status'] == 1) {
+					$dataHTML .= '<strong class="accepted">Accepted</strong>';
+				} elseif ($row['Status'] == 2) {
+					$dataHTML .= '<strong class="declined">Declined</strong>';
+				}
+			$dataHTML .= '</td>
                 <td>
-                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="'. $row['FirstName'] .'" data-zn_lname_request="'. $row['LastName'] .'" data-zn_phone_request="'. $row['Phone'] .'" data-zn_email_request="'. $row['Email'] .'" data-zn_city_request="'. $row['City'] .'" data-zn_state_request="'. $row['State'] .'" data-zn_type_request="'. $row['Type_of_Request'] .'" data-zn_message_request="'. $row['Additional_Message'] .'" class="view-request"><i class="fas fa-eye"></i></a>
+                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="' . $row['FirstName'] . '" data-zn_lname_request="' . $row['LastName'] . '" data-zn_phone_request="' . $row['Phone'] . '" data-zn_email_request="' . $row['Email'] . '" data-zn_city_request="' . $row['City'] . '" data-zn_state_request="' . $row['State'] . '" data-zn_type_request="' . $row['Type_of_Request'] . '" data-zn_message_request="' . $row['Additional_Message'] . '" class="view-request"><i class="fas fa-eye"></i></a>
                 </td>
 			</tr>';
 			$inc++;
 		}
 		return $dataHTML;
+	}
+
+	public function sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status){
+		$tbl_settings = $this->display->getSettings();
+		$domain = 'noreply@' . preg_replace('/www\./i', '', $_SERVER['SERVER_NAME']);
+
+		$headers = 'From:' . $domain . '' . "\r\n";
+
+		if ($zn_email_request != '' || $zn_email_request != null) {
+			if (!empty(esc_attr($zn_email_request))) {
+				$to = esc_attr($zn_email_request);
+			}
+		} else {
+			$to = 'zjlecaros@gmail.com';
+		}
+
+		$subject = strtoupper($zn_request_type) . " ". $_SERVER['SERVER_NAME'];
+		if($zn_status == 'accept') {
+			$temp_message = $tbl_settings[0]['Email_Approved_Template'];
+			$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
+			$temp_message = str_replace("{type_of_request}", $zn_request_type, $temp_message);
+			$message = $temp_message;
+		}elseif($zn_status == 'decline') {
+			$temp_message = $tbl_settings[0]['Email_Dispproved_Template'];
+			$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
+			$message = $temp_message;
+		}
+
+		add_filter('wp_mail_content_type', 'set_html_content_type');
+		$response = wp_mail($to, $subject, $message, $headers);
+		remove_filter('wp_mail_content_type', 'set_html_content_type');
+
+		if ($response) {
+			exit();
+		}
+	}
+
+	public function set_html_content_type() {
+		return 'text/html';
 	}
 }
 ?>

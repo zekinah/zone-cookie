@@ -15,6 +15,18 @@
   float: left !important;
 }
 
+.pending {
+  color: #ff9900;
+}
+
+.accepted {
+  color: #4ebb0a;
+}
+
+.declined {
+  color: #ff3616;
+}
+
 .btn {
   font-size: 13px;
   line-height: 26px;
@@ -27,7 +39,8 @@
   color: #fff;
 }
 
-button#btn-restore-content:hover {
+button#btn-restore-content:hover,
+button#btn-restore-email-settings:hover {
   color: #000;
 }
 
