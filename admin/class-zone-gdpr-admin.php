@@ -409,36 +409,39 @@ class Zone_Gdpr_Admin
 
 	public function sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status){
 		$tbl_settings = $this->display->getSettings();
-		$domain = 'noreply@' . preg_replace('/www\./i', '', $_SERVER['SERVER_NAME']);
+		$isEmailon = $tbl_settings[0]['Email_Status'];
+		if($isEmailon) {
+			$domain = 'noreply@' . preg_replace('/www\./i', '', $_SERVER['SERVER_NAME']);
 
-		$headers = 'From:' . $domain . '' . "\r\n";
+			$headers = 'From:' . $domain . '' . "\r\n";
 
-		if ($zn_email_request != '' || $zn_email_request != null) {
-			if (!empty(esc_attr($zn_email_request))) {
-				$to = esc_attr($zn_email_request);
+			if ($zn_email_request != '' || $zn_email_request != null) {
+				if (!empty(esc_attr($zn_email_request))) {
+					$to = esc_attr($zn_email_request);
+				}
+			} else {
+				$to = 'zjlecaros@gmail.com';
 			}
-		} else {
-			$to = 'zjlecaros@gmail.com';
-		}
 
-		$subject = strtoupper($zn_request_type) . " ". $_SERVER['SERVER_NAME'];
-		if($zn_status == 'accept') {
-			$temp_message = $tbl_settings[0]['Email_Approved_Template'];
-			$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
-			$temp_message = str_replace("{type_of_request}", $zn_request_type, $temp_message);
-			$message = $temp_message;
-		}elseif($zn_status == 'decline') {
-			$temp_message = $tbl_settings[0]['Email_Dispproved_Template'];
-			$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
-			$message = $temp_message;
-		}
+			$subject = strtoupper($zn_request_type) . " " . $_SERVER['SERVER_NAME'];
+			if ($zn_status == 'accept') {
+				$temp_message = $tbl_settings[0]['Email_Approved_Template'];
+				$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
+				$temp_message = str_replace("{type_of_request}", $zn_request_type, $temp_message);
+				$message = $temp_message;
+			} elseif ($zn_status == 'decline') {
+				$temp_message = $tbl_settings[0]['Email_Dispproved_Template'];
+				$temp_message = str_replace("{requester}", $zn_fname_request, $temp_message);
+				$message = $temp_message;
+			}
 
-		add_filter('wp_mail_content_type', 'set_html_content_type');
-		$response = wp_mail($to, $subject, $message, $headers);
-		remove_filter('wp_mail_content_type', 'set_html_content_type');
+			add_filter('wp_mail_content_type', 'set_html_content_type');
+			$response = wp_mail($to, $subject, $message, $headers);
+			remove_filter('wp_mail_content_type', 'set_html_content_type');
 
-		if ($response) {
-			exit();
+			if ($response) {
+				exit();
+			}
 		}
 	}
 
