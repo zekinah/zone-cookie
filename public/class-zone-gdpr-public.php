@@ -142,7 +142,11 @@ class Zone_Gdpr_Public {
 			$tbl_requester = $this->insert->setNewRequester($req_fname, $req_lname, $req_phone, $req_email, $req_city, $req_state);
 			$zn_requesterID = $this->display->getLastRequester();
 			$tbl_request = $this->insert->setNewRequest($zn_requesterID, $req_type, $req_message);
-			// $submitNotif = $this->emailSendingNotification($req_fname, $req_lname, $req_type);
+			$settings = $this->display->getSettings();
+			$zn_onEmails = $settings[0]['Email_Status'];
+			if ($zn_onEmails) {
+				$submitNotif = $this->emailSendingNotification($req_fname, $req_lname, $req_type);
+			}
 			if($tbl_requester && $tbl_request) {
 				$data = 1;
 			} else {

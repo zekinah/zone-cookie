@@ -41,7 +41,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                 </div>
                 <div class="form-group">
                     <label><strong>Request Form Shortcode</strong></label>
-                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-request]" readonly>
+                    <input class="form-control txt-shortcode" type="text" value="[zone-gdpr-form]" readonly>
                 </div>
             </div>
             <button id="btn-save-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
