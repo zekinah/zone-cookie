@@ -179,16 +179,18 @@ class Zone_Gdpr_Public {
 		}
 
 		$subject = 'New Information Request is submitted on the '. $_SERVER['SERVER_NAME'];
-		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.';
-		$message .= 'Request Type: ' . $req_type .'.';
+		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.<br>';
+		$message .= 'Request Type: ' . $req_type .'.<br>';
 		$message .= 'You can check it now <a href="' . $_SERVER['SERVER_NAME'] . '/wp-admin/admin.php?page=zone-gdpr">HERE</a>';
 
-		add_filter('wp_mail_content_type', 'set_html_content_type');
+		add_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 		$response = wp_mail($to, $subject, $message, $headers);
-		remove_filter('wp_mail_content_type', 'set_html_content_type');
+		remove_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 
 		if ($response) {
-			exit();
+			return true;
+		} else {
+			return false;
 		}
 	}
 

@@ -67,6 +67,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                 <div class="form-group">
                     <label><strong>Email Request Receiver</strong></label>
                     <input class="form-control" placeholder="Email Address" type="text" id="zn_email_receiver" name="zn_email_receiver" required value="<?= $email_receiver ?>">
+                    <small>The email address that will received if their is a new request from the site.</small>
                 </div>
             </div>
             <button id="btn-save-email-settings" type="button" class="btn btn-save-settings mb-3" data-zn_nonce="<?= $zn_form_nonce ?>">Save Changes</button>

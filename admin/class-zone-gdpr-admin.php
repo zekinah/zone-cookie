@@ -435,12 +435,14 @@ class Zone_Gdpr_Admin
 				$message = $temp_message;
 			}
 
-			add_filter('wp_mail_content_type', 'set_html_content_type');
+			add_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 			$response = wp_mail($to, $subject, $message, $headers);
-			remove_filter('wp_mail_content_type', 'set_html_content_type');
+			remove_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 
 			if ($response) {
-				exit();
+				return true;
+			} else {
+				return false;
 			}
 		}
 	}
