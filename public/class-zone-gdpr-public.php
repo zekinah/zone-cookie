@@ -116,8 +116,7 @@ class Zone_Gdpr_Public {
 	 */
 	public function deployPublicZone() {
 		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
-		add_shortcode('zone-ccpa-content', array(&$this, 'zoneGdprContent'));
-		add_shortcode('zone-compliance-form', array(&$this, 'zoneGdprFormRequest'));
+		add_shortcode('zone-gdpr-form', array(&$this, 'zoneGdprFormRequest'));
 		add_action( 'wp_head',array(&$this, 'outputGDPR'));
 		add_action('wp_ajax_nopriv_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
 		add_action('wp_ajax_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
@@ -167,20 +166,22 @@ class Zone_Gdpr_Public {
 	public function emailSendingNotification($zn_first_name, $zn_last_name, $req_type) {
 		$settings = $this->display->getSettings();
 		$zn_emailstats = $settings[0]['Email_Receiver'];
-		$domain = 'noreply@' . preg_replace('/www\./i', '', get_home_url());
+		$domain = 'noreply@' . preg_replace('/www\./i', '', $_SERVER['SERVER_NAME']);
 
 		$headers = 'From:' . $domain . '' . "\r\n";
 
 		if ($zn_emailstats != '' || $zn_emailstats != null) {
-			$to = esc_attr($zn_emailstats);
+			if (!empty(esc_attr($zn_emailstats))) {
+				$to = esc_attr($zn_emailstats);
+			}
 		} else {
 			$to = 'zjlecaros@gmail.com';
 		}
 
-		$subject = 'New Information Request is submitted on the '. get_home_url();
+		$subject = 'New Information Request is submitted on the '. $_SERVER['SERVER_NAME'];
 		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.<br>';
 		$message .= 'Request Type: ' . $req_type .'.<br>';
-		$message .= 'You can check it now <a href="' . get_home_url() . '/wp-admin/admin.php?page=zone-gdpr">HERE</a>';
+		$message .= 'You can check it now <a href="' . $_SERVER['SERVER_NAME'] . '/wp-admin/admin.php?page=zone-gdpr">HERE</a>';
 
 		add_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 		$response = wp_mail($to, $subject, $message, $headers);

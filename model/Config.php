@@ -162,7 +162,7 @@ class Zone_Gdpr_Model_Config
 			( 'default', 'default', '#0D9D96', '#FFFFFF', '#FFFFFF', '#0D9D96', 'default')
             ";
 
-        $email_approved = "<p>Hello {requester},</p><p>Your {type_of_request} has been approved. Please wait for two (2) to three (3) days to process your request. You will receive another email after your request has been processed. Thank you.</p>";
+        $email_approved = "<p>Hello {requester},</p><p>Your {type_of_request} has been approved. Please wait for two (2) to three (3) days to be process your request. You will receive another email after your request has been processed. Thank you.</p>";
         $email_disapproved = "<p>Hello {requester},</p><p>Sorry but your request has been disapproved. Please contact the site support for more details.</p>";
 
         /** Insert Default Settings */
