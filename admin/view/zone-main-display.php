@@ -15,11 +15,11 @@
 ?>
 <div class="gdpr-card">
     <div class="gdpr-card-header">
-        <h2>Zone GDPR Settings</h2>
+        <h2>Zone Cookie Settings</h2>
     </div>
     <div class="container-fluid">
         <?php
-        $tab_option = array('Home', 'Requests', 'Page Content', 'GDPR Content', 'GDPR Layout');
+        $tab_option = array('Home', 'Requests', 'EU Compliance Page Content', 'CCPA Compliance Page Content', 'Cookie Content', 'Cookie Layout');
         echo '<ul class="nav nav-tabs" role="tablist">';
         foreach ($tab_option as $key => $option_setting) {
             if ($key == 0) {
@@ -42,16 +42,20 @@
             <div id="tab-1" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-request.php'); ?>
             </div>
-            <!-- CONTENT SETTING -->
+            <!-- EU COMPLIANCE CONTENT SETTING -->
             <div id="tab-2" class="container-fluid tab-pane fade"><br>
-                <?php require_once('tabs/tab-content-settings.php'); ?>
+                <?php require_once('tabs/tab-eu-content-settings.php'); ?>
+            </div>
+            <!-- CCPA COMPLIANCE CONTENT SETTING -->
+            <div id="tab-3" class="container-fluid tab-pane fade"><br>
+                <?php require_once('tabs/tab-ccpa-content-settings.php'); ?>
             </div>
             <!-- GENERAL SETTING -->
-            <div id="tab-3" class="container-fluid tab-pane fade"><br>
+            <div id="tab-4" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-gdpr-content-settings.php'); ?>
             </div>
             <!-- GDPR SETTING -->
-            <div id="tab-4" class="container-fluid tab-pane fade"><br>
+            <div id="tab-5" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-gdpr-settings.php'); ?>
             </div>
         </div>

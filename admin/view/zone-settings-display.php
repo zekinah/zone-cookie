@@ -15,7 +15,7 @@
 ?>
 <div class="gdpr-card">
     <div class="gdpr-card-header">
-        <h2>Zone GDPR Settings</h2>
+        <h2>Zone Cookie Settings</h2>
     </div>
     <div class="container-fluid">
         <?php

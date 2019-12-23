@@ -17,9 +17,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="hello-section__title">Zone GDPR</h1>
+                <h1 class="hello-section__title">Zone Cookie</h1>
                 <div class="hello-section__content">
-                    <p>This configuration wizard will help you setup your GDPR</p>
+                    <i class="fas fa-lock"></i>
+                    <p>This configuration wizard will help you setup your Compliance</p>
                 </div>
             </div>
         </div>
