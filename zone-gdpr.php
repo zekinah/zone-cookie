@@ -10,18 +10,18 @@
  *
  * @link              https://github.com/zekinah/
  * @since             1.0.0
- * @package           Zone_Gdpr
+ * @package           Zone_Cookie
  *
  * @wordpress-plugin
- * Plugin Name:       Zone - GDPR
- * Plugin URI:        https://github.com/zekinah/Zone-GDPR.git
- * Description:       Addon for GDPR Compliance.
- * Version:           2.0.0
+ * Plugin Name:       Zone - Cookie
+ * Plugin URI:        https://github.com/zekinah/zone-cookie.git
+ * Description:       Addon for GDPR Compliance and CCPA Compliance.
+ * Version:           1.0.0
  * Author:            Zekinah Lecaros
  * Author URI:        https://github.com/zekinah/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       zone-gdpr
+ * Text Domain:       zone-cookie
  * Domain Path:       /languages
  */
 
@@ -35,35 +35,35 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ZONE_GDPR_VERSION', '2.0.0' );
+define( 'Zone_Cookie_VERSION', '2.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-zone-gdpr-activator.php
+ * This action is documented in includes/class-zone-cookie-activator.php
  */
-function activate_zone_gdpr() {
+function activate_Zone_Cookie() {
 	require_once plugin_dir_path(__FILE__) . 'model/Config.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-gdpr-activator.php';
-	Zone_Gdpr_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-cookie-activator.php';
+	Zone_Cookie_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-zone-gdpr-deactivator.php
+ * This action is documented in includes/class-zone-cookie-deactivator.php
  */
-function deactivate_zone_gdpr() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-gdpr-deactivator.php';
-	Zone_Gdpr_Deactivator::deactivate();
+function deactivate_Zone_Cookie() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-cookie-deactivator.php';
+	Zone_Cookie_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_zone_gdpr' );
-register_deactivation_hook( __FILE__, 'deactivate_zone_gdpr' );
+register_activation_hook( __FILE__, 'activate_Zone_Cookie' );
+register_deactivation_hook( __FILE__, 'deactivate_Zone_Cookie' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-zone-gdpr.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-zone-cookie.php';
 
 /**
  * Begins execution of the plugin.
@@ -74,10 +74,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-zone-gdpr.php';
  *
  * @since    1.0.0
  */
-function run_zone_gdpr() {
+function run_Zone_Cookie() {
 
-	$plugin = new Zone_Gdpr();
+	$plugin = new Zone_Cookie();
 	$plugin->run();
 
 }
-run_zone_gdpr();
+run_Zone_Cookie();

@@ -6,8 +6,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
-class Zone_Gdpr_Loader {
+class Zone_Cookie_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

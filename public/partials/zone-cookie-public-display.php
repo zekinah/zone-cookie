@@ -8,8 +8,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/public/partials
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/public/partials
  */
 ?>
 

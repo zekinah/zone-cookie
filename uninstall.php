@@ -22,7 +22,7 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
+ * @package    Zone_Cookie
  */
 
 // If uninstall not called from WordPress, then exit.

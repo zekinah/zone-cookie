@@ -5,8 +5,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Zone_GDPR
- * @subpackage Zone_GDPR/admin/model
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin/model
  * @author     Zekinah Lecaros <zjlecaros@gmail.com> 
  * 
  */
@@ -17,23 +17,23 @@ This Model is the parent model class that returns database object
 
 require_once('Config.php');
 
-class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
+class Zone_Cookie_Model_Display extends Zone_Cookie_Model_Config {
     protected $requester;
     protected $type_request;
-    protected $gdpr_request;
-    protected $gdpr_content;
-    protected $gdpr_layout;
-    protected $gdpr_settings;
+    protected $cookie_request;
+    protected $cookie_content;
+    protected $cookie_layout;
+    protected $cookie_settings;
 
     public function __construct() {
         global $wpdb;
 
-        $this->requester = "`" . $wpdb->prefix . "zn_gdpr_requester`";
-        $this->type_request  = "`" . $wpdb->prefix . "zn_gdpr_type_request`";
-        $this->gdpr_request  = "`" . $wpdb->prefix . "zn_gdpr_request`";
-        $this->gdpr_content = "`" . $wpdb->prefix . "zn_gdpr_content`";
-        $this->gdpr_layout = "`" . $wpdb->prefix . "zn_gdpr_layout`";
-        $this->gdpr_settings = "`" . $wpdb->prefix . "zn_gdpr_settings`";
+        $this->requester = "`" . $wpdb->prefix . "zn_cookie_requester`";
+        $this->type_request  = "`" . $wpdb->prefix . "zn_cookie_type_request`";
+        $this->cookie_request  = "`" . $wpdb->prefix . "zn_cookie_request`";
+        $this->cookie_content = "`" . $wpdb->prefix . "zn_cookie_content`";
+        $this->cookie_layout = "`" . $wpdb->prefix . "zn_cookie_layout`";
+        $this->cookie_settings = "`" . $wpdb->prefix . "zn_cookie_settings`";
     }
 
     public function getAllRequest() {
@@ -53,7 +53,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
         request.`Request`,
         request.`Status`,
         request.`Trash`
-        FROM ". $this->gdpr_request." AS request
+        FROM ". $this->cookie_request." AS request
         INNER JOIN ". $this->requester. " AS requester
         ON request.`Requester_ID` = requester.`RequesterID`
         LEFT JOIN ". $this->type_request. " AS type_request
@@ -84,7 +84,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
         request.`Request`,
         request.`Status`,
         request.`Trash`
-        FROM ". $this->gdpr_request." AS request
+        FROM ". $this->cookie_request." AS request
         INNER JOIN ". $this->requester. " AS requester
         ON request.`Requester_ID` = requester.`RequesterID`
         LEFT JOIN ". $this->type_request. " AS type_request
@@ -99,16 +99,17 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
       }
     }
 
-    public function getGDPRContent() {
+    public function getCookieContent() {
       $db = $this->db_connect();
       $sql="
-        SELECT * FROM ".$this->gdpr_content. " WHERE `Gdpr_Content_ID` = 1
+        SELECT * FROM ".$this->cookie_content. " WHERE `Gdpr_content_ID` = 1
         ";
       $result = $db->query($sql);
       if($result){
               $clone = array();
               while ($row = $result->fetch_assoc()) {
                   $array['Gdpr_Page_Content'] = $row['Gdpr_Page_Content'];
+                  $array['Ccpa_Page_Content'] = $row['Ccpa_Page_Content'];
                   $array['Privacy_Policy_Link'] = $row['Privacy_Policy_Link'];
                   $array['Cookie_Policy_Link'] = $row['Cookie_Policy_Link'];
                   $array['Terms_and_Condition_Link'] = $row['Terms_and_Condition_Link'];
@@ -126,7 +127,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
     public function getGDPRLayout() {
       $db = $this->db_connect();
       $sql="
-        SELECT * FROM ".$this->gdpr_layout. " WHERE `Gdpr_Layout_ID` = 1
+        SELECT * FROM ".$this->cookie_layout. " WHERE `Gdpr_layout_ID` = 1
         ";
       $result = $db->query($sql);
       if($result){
@@ -204,7 +205,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
     public function getRequestNotif() {
 		$db = $this->db_connect();
 		$sql = "
-			SELECT COUNT(Request) as Total_Request FROM " . $this->gdpr_request . " WHERE Request = 1
+			SELECT COUNT(Request) as Total_Request FROM " . $this->cookie_request . " WHERE Request = 1
 			";
 		$result = $db->query($sql);
 		if ($result) {
@@ -218,7 +219,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
   public function getSettings() {
     $db = $this->db_connect();
     $sql = "
-        SELECT * FROM " . $this->gdpr_settings . "
+        SELECT * FROM " . $this->cookie_settings . "
         ";
     $result = $db->query($sql);
     if ($result) {
@@ -239,7 +240,7 @@ class Zone_Gdpr_Model_Display extends Zone_Gdpr_Model_Config {
   public function changeEmailStatus(){
     $db = $this->db_connect();
     $sql = "
-        SELECT `Email_Status` FROM " . $this->gdpr_settings . " WHERE GDPR_Settings_ID = 1
+        SELECT `Email_Status` FROM " . $this->cookie_settings . " WHERE cookie_settings_ID = 1
         ";
     $result = $db->query($sql);
     if ($result) {

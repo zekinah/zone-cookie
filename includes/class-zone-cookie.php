@@ -9,8 +9,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
-class Zone_Gdpr {
+class Zone_Cookie {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Zone_Gdpr {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Zone_Gdpr_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Zone_Cookie_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,12 +67,12 @@ class Zone_Gdpr {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ZONE_GDPR_VERSION' ) ) {
-			$this->version = ZONE_GDPR_VERSION;
+		if ( defined( 'Zone_Cookie_VERSION' ) ) {
+			$this->version = Zone_Cookie_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'zone-gdpr';
+		$this->plugin_name = 'zone-cookie';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -85,10 +85,10 @@ class Zone_Gdpr {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Zone_Gdpr_Loader. Orchestrates the hooks of the plugin.
-	 * - Zone_Gdpr_i18n. Defines internationalization functionality.
-	 * - Zone_Gdpr_Admin. Defines all hooks for the admin area.
-	 * - Zone_Gdpr_Public. Defines all hooks for the public side of the site.
+	 * - Zone_Cookie_Loader. Orchestrates the hooks of the plugin.
+	 * - Zone_Cookie_i18n. Defines internationalization functionality.
+	 * - Zone_Cookie_Admin. Defines all hooks for the admin area.
+	 * - Zone_Cookie_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -102,33 +102,33 @@ class Zone_Gdpr {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zone-gdpr-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zone-cookie-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zone-gdpr-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zone-cookie-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-zone-gdpr-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-zone-cookie-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-zone-gdpr-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-zone-cookie-public.php';
 
-		$this->loader = new Zone_Gdpr_Loader();
+		$this->loader = new Zone_Cookie_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Zone_Gdpr_i18n class in order to set the domain and to register the hook
+	 * Uses the Zone_Cookie_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -136,7 +136,7 @@ class Zone_Gdpr {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Zone_Gdpr_i18n();
+		$plugin_i18n = new Zone_Cookie_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -151,7 +151,7 @@ class Zone_Gdpr {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Zone_Gdpr_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Zone_Cookie_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -167,7 +167,7 @@ class Zone_Gdpr {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Zone_Gdpr_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Zone_Cookie_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -198,7 +198,7 @@ class Zone_Gdpr {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Zone_Gdpr_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Zone_Cookie_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

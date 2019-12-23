@@ -6,8 +6,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/admin
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin
  */
 
 /**
@@ -16,14 +16,14 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/admin
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 
 require_once(plugin_dir_path(__FILE__) . '../model/model.php');
 
-class Zone_Gdpr_Admin
+class Zone_Cookie_Admin
 {
 
 	/**
@@ -56,9 +56,9 @@ class Zone_Gdpr_Admin
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->insert = new Zone_Gdpr_Model_Insert();
-		$this->display = new Zone_Gdpr_Model_Display();
-		$this->update = new Zone_Gdpr_Model_Update();
+		$this->insert = new Zone_Cookie_Model_Insert();
+		$this->display = new Zone_Cookie_Model_Display();
+		$this->update = new Zone_Cookie_Model_Update();
 		$this->deployZone();
 	}
 
@@ -74,15 +74,15 @@ class Zone_Gdpr_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Gdpr_Loader as all of the hooks are defined
+		 * defined in Zone_Cookie_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Zone_Gdpr_Loader will then create the relationship
+		 * The Zone_Cookie_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-gdpr-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-cookie-admin.css', array(), $this->version, 'all');
 		/* Bootstrap 4 CSS */
 		echo '<link rel="stylesheet" href="'.plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css">';
 		wp_enqueue_style($this->plugin_name . '-cookieconsentcss', plugin_dir_url(__FILE__) . 'css/cookieconsent/cookieconsent.min.css', array(), $this->version, 'all');
@@ -102,15 +102,15 @@ class Zone_Gdpr_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Gdpr_Loader as all of the hooks are defined
+		 * defined in Zone_Cookie_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Zone_Gdpr_Loader will then create the relationship
+		 * The Zone_Cookie_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-gdpr-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-cookie-admin.js', array('jquery'), $this->version, false);
 		/* Bootstrap 4 JS */
 		echo '<script src="'.plugin_dir_url(__FILE__) . 'js/bootstrap/jquery-3.3.1.slim.min.js"></script>
 		<script src="'.plugin_dir_url(__FILE__) . 'js/bootstrap/popper.min.js"></script>
@@ -121,8 +121,8 @@ class Zone_Gdpr_Admin
 		wp_enqueue_script('zone-fontawesome', plugin_dir_url(__FILE__) . 'js/fontawesome/all.js', array('jquery'), '5.9.0', false);
 		wp_enqueue_script('zone-pnotify', plugin_dir_url(__FILE__) . 'js/pnotify/pnotify.js', array('jquery'), $this->version);
 		wp_enqueue_script('zone-datatable-js', plugin_dir_url(__FILE__) . 'js/datatable/jquery.dataTables.js', array('jquery'), $this->version);
-		wp_enqueue_script('zone-gdpr-ajax', plugin_dir_url(__FILE__)  . 'js/zone-gdpr-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
-		wp_localize_script('zone-gdpr-ajax', 'gdprsettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
+		wp_enqueue_script('zone-cookie-ajax', plugin_dir_url(__FILE__)  . 'js/zone-cookie-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
+		wp_localize_script('zone-cookie-ajax', 'cookiesettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
 	}
 
 	public function deployZone()
@@ -149,20 +149,20 @@ class Zone_Gdpr_Admin
 	{
 		$total = $this->display->getRequestNotif();
 		add_menu_page(
-			'Zone GDPR', 	//Page Title
-			$total ? sprintf('Zone GDPR <span class="awaiting-mod">%d</span>', $total) : 'Zone GDPR',   //Menu Title
+			'Zone Cookie', 	//Page Title
+			$total ? sprintf('Zone Cookie <span class="awaiting-mod">%d</span>', $total) : 'Zone Cookie',   //Menu Title
 			'manage_options', 			//Capability
-			'zone-gdpr', 				//Page ID
+			'zone-cookie', 				//Page ID
 			array(&$this, 'zoneOptionsPage'),		//Functions
 			'dashicons-lock', 						//Favicon
 			99							//Position
 		);
 		add_submenu_page(
-			'zone-gdpr',      			 		 // Parent Page ID
-			'Zone GDPR Settings',     		 		 // Page Title
+			'zone-cookie',      			 		 // Parent Page ID
+			'Zone Cookie Settings',     		 		 // Page Title
 			'Settings', 						 // Navbar Title
 			'manage_options', 						 // Permission 	
-			'zone-gdpr-settings', 							 // Submenu Page ID
+			'zone-cookie-settings', 							 // Submenu Page ID
 			array(&$this, 'zoneSettingPage')								 // Function  call	 
 		);
 	}
@@ -177,7 +177,7 @@ class Zone_Gdpr_Admin
 		$tbl_content = $this->display->getGDPRContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 		require_once('view/zone-main-display.php');
-		wp_enqueue_script($this->plugin_name . '-function', plugin_dir_url(__FILE__) . 'js/zone-gdpr-function.js', array('jquery'), '1.0.0', false);
+		wp_enqueue_script($this->plugin_name . '-function', plugin_dir_url(__FILE__) . 'js/zone-cookie-function.js', array('jquery'), '1.0.0', false);
 	}
 
 	public function zoneSettingPage()

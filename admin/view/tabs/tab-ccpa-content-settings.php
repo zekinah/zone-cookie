@@ -15,6 +15,7 @@
 $zn_page_content = $tbl_content[0]['Gdpr_Page_Content'];
 $zn_form_nonce = wp_create_nonce('zn_form_nonce');
 ?>
+<h2>California Compliance: California Consumer Privacy Act (CCPA)</h2>
 <div class="row">
     <div class="col-md-9">
         <div class="card mb-3">

@@ -6,8 +6,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/includes
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/includes
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
-class Zone_Gdpr_Deactivator {
+class Zone_Cookie_Deactivator {
 
 	/**
 	 * Short Description. (use period)

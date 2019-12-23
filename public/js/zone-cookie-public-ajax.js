@@ -37,7 +37,7 @@
         $("#btn-submit-request").on("click", function (event) {
             if (checkForms() == 4) {
                 $.ajax({
-                    url: gdprsettingsAjax.ajax_url,
+                    url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
                         'action': 'zoneGdprRequest',

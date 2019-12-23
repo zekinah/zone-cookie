@@ -7,7 +7,7 @@
             var $button = $(this);
             if (confirm('Are you sure to accept this request and send notification to the requester?')) {
                 $.ajax({
-                    url: gdprsettingsAjax.ajax_url,
+                    url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
                         'action': 'accept_request',
@@ -42,7 +42,7 @@
             var $button = $(this);
             if (confirm('Are you sure to decline this request and send notification to the requester?')) {
                 $.ajax({
-                    url: gdprsettingsAjax.ajax_url,
+                    url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
                         'action': 'decline_request',
@@ -77,7 +77,7 @@
         $("#btn-save-content").on("click", function (event) {
             var zn_page_content = $('#zn_page_content').val();
             $.ajax({
-                url: gdprsettingsAjax.ajax_url,
+                url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'save_page_content',
@@ -99,7 +99,7 @@
         $("#btn-restore-content").on("click", function (event) {
             if (confirm('Are you sure that you want to restore the GDPR Page Content?')) {
                 $.ajax({
-                    url: gdprsettingsAjax.ajax_url,
+                    url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
                         'action': 'restore_page_content',
@@ -122,7 +122,7 @@
         /**Save GDOR Content */
         $("#btn-gdpr-content").on("click", function (event) {
             $.ajax({
-                url: gdprsettingsAjax.ajax_url,
+                url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'save_gdpr_content',
@@ -150,7 +150,7 @@
         /** Save GDPR Layout */
         $("#btn-gdpr-layout").on("click", function (event) {
             $.ajax({
-                url: gdprsettingsAjax.ajax_url,
+                url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'save_gdpr_layout',
@@ -179,7 +179,7 @@
         /** Request Type VISIBILITY */
         $("#tbl-type-request").on("change", ".zn_on_request" ,function (event) {
             $.ajax({
-                url: gdprsettingsAjax.ajax_url,
+                url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'change_type_request',
@@ -201,7 +201,7 @@
         /** Email Notication Status */
         $('#zn_gdpr_on_email').on("change", function (event) {
              $.ajax({
-                 url: gdprsettingsAjax.ajax_url,
+                 url: cookiesettingsAjax.ajax_url,
                  type: 'POST',
                  data: {
                      'action': 'email_notification',
@@ -223,7 +223,7 @@
         /** Save Email Settings */
         $('#btn-save-email-settings').on("click", function (event) {
             $.ajax({
-                url: gdprsettingsAjax.ajax_url,
+                url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'update_email_settings',
@@ -250,7 +250,7 @@
         $("#btn-restore-email-settings").on("click", function (event) {
             if (confirm('Are you sure that you want to restore the Email Settings?')) {
                 $.ajax({
-                    url: gdprsettingsAjax.ajax_url,
+                    url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
                         'action': 'restore_email_settings',

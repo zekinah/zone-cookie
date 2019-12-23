@@ -6,8 +6,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/public
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/public
  */
 
 /**
@@ -16,14 +16,14 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/public
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/public
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 
 require_once(plugin_dir_path(__FILE__) . '../model/model.php');
 
-class Zone_Gdpr_Public {
+class Zone_Cookie_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -54,9 +54,9 @@ class Zone_Gdpr_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->insert = new Zone_Gdpr_Model_Insert();
-		$this->display = new Zone_Gdpr_Model_Display();
-		$this->update = new Zone_Gdpr_Model_Update();
+		$this->insert = new Zone_Cookie_Model_Insert();
+		$this->display = new Zone_Cookie_Model_Display();
+		$this->update = new Zone_Cookie_Model_Update();
 		$this->deployPublicZone();
 
 	}
@@ -72,15 +72,15 @@ class Zone_Gdpr_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Gdpr_Loader as all of the hooks are defined
+		 * defined in Zone_Cookie_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Zone_Gdpr_Loader will then create the relationship
+		 * The Zone_Cookie_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zone-gdpr-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zone-cookie-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name.'-cookieconsentcss', plugin_dir_url( __FILE__ ) . 'css/cookieconsent/cookieconsent.min.css', array(), $this->version, 'all' );
 
 	}
@@ -96,19 +96,19 @@ class Zone_Gdpr_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Gdpr_Loader as all of the hooks are defined
+		 * defined in Zone_Cookie_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Zone_Gdpr_Loader will then create the relationship
+		 * The Zone_Cookie_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/zone-gdpr-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/zone-cookie-public.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-publicscript', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/script.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-cookieconsentpublicjs', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/cookieconsent.min.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script('zone-gdpr-ajax', plugin_dir_url(__FILE__)  . 'js/zone-gdpr-public-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
-		wp_localize_script('zone-gdpr-ajax', 'gdprsettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
+		wp_enqueue_script('zone-cookie-ajax', plugin_dir_url(__FILE__)  . 'js/zone-cookie-public-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
+		wp_localize_script('zone-cookie-ajax', 'cookiesettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
 	}
 
 	/**
@@ -116,7 +116,7 @@ class Zone_Gdpr_Public {
 	 */
 	public function deployPublicZone() {
 		add_shortcode('zone-gdpr-content', array(&$this, 'zoneGdprContent'));
-		add_shortcode('zone-ccpa-content', array(&$this, 'zoneGdprContent'));
+		add_shortcode('zone-ccpa-content', array(&$this, 'zoneCcpaContent'));
 		add_shortcode('zone-compliance-form', array(&$this, 'zoneGdprFormRequest'));
 		add_action( 'wp_head',array(&$this, 'outputGDPR'));
 		add_action('wp_ajax_nopriv_zoneGdprRequest',  array(&$this, 'zoneGdprRequest'));
@@ -124,9 +124,13 @@ class Zone_Gdpr_Public {
 	}
 
 	public function zoneGdprContent() {
-		$tbl_content = $this->display->getGDPRContent();
-		$tbl_layout = $this->display->getGDPRLayout();
+		$tbl_content = $this->display->getCookieContent();
 		return require_once('view/templates/gdpr-content.php');
+	}
+
+	public function zoneCcpaContent() {
+		$tbl_content = $this->display->getCookieContent();
+		return require_once('view/templates/ccpa-content.php');
 	}
 
 	public function zoneGdprRequest(){
@@ -180,7 +184,7 @@ class Zone_Gdpr_Public {
 		$subject = 'New Information Request is submitted on the '. get_home_url();
 		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.<br>';
 		$message .= 'Request Type: ' . $req_type .'.<br>';
-		$message .= 'You can check it now <a href="' . get_home_url() . '/wp-admin/admin.php?page=zone-gdpr">HERE</a>';
+		$message .= 'You can check it now <a href="' . get_home_url() . '/wp-admin/admin.php?page=zone-cookie">HERE</a>';
 
 		add_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 		$response = wp_mail($to, $subject, $message, $headers);
@@ -203,7 +207,7 @@ class Zone_Gdpr_Public {
 	}
 
 	public function outputGDPR(){
-		$tbl_content = $this->display->getGDPRContent();
+		$tbl_content = $this->display->getCookieContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 
 		$zn_privacy_policy = $tbl_content[0]['Privacy_Policy_Link'];
