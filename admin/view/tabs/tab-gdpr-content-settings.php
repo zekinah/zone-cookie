@@ -39,6 +39,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                 <div class="form-group">
                     <label><strong>Message</strong></label>
                     <textarea class="form-control" type="text" id="zn_description" name="zn_description"><?= $zn_message ?></textarea>
+                    <small>Use {privacy-policy} to use Privacy Policy Link, Use {cookie-policy} to use Cookie Policy Link, Use {term-and-condition} to use Terms and Conditions Link</small>
                 </div>
                 <div class="form-group">
                     <label><strong>Accept button text</strong></label>

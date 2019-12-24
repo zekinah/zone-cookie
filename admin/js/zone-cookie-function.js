@@ -7,6 +7,10 @@
         $('.cc-window').remove();
         console.table(obj_Pop);
         console.log('onPopupOpen() called');
+        var message = obj_Pop.zn_description;
+        message = message.replace("{privacy-policy}", obj_Pop.zn_privacy_policy);
+        message = message.replace("{cookie-policy}", obj_Pop.zn_cookie_policy);
+        message = message.replace("{term-and-condition}", obj_Pop.zn_terms_conditions);
         if (obj_Pop.zn_position == 'default' || obj_Pop.zn_theme == 'default') {
             window.cookieconsent.initialise({
                 "palette": {
@@ -21,7 +25,7 @@
                 },
                 "type": obj_Pop.zn_compliance,
                 "content": {
-                    "message": obj_Pop.zn_description,
+                    "message": message,
                     "allow": obj_Pop.zn_allow_cookies,
                     "dismiss": obj_Pop.zn_allow_cookies,
                     "deny": obj_Pop.zn_refuse_cookies
@@ -47,7 +51,7 @@
                 "theme": obj_Pop.zn_theme,
                 "type": obj_Pop.zn_compliance,
                 "content": {
-                    "message": obj_Pop.zn_description,
+                    "message": message,
                     "allow": obj_Pop.zn_allow_cookies,
                     "dismiss": obj_Pop.zn_allow_cookies,
                     "deny": obj_Pop.zn_refuse_cookies
@@ -111,6 +115,9 @@
         zn_color_button = $("input[name='zn_color_button']").val();
         zn_color_button_text = $("input[name='zn_color_button_text']").val();
         zn_compliance = $("input[name='zn_compliance']:checked").val();
+        zn_privacy_policy = $("input[name='zn_privacy_policy']").val();
+        zn_cookie_policy = $("input[name='zn_cookie_policy']").val();
+        zn_terms_conditions = $("input[name='zn_terms_conditions']").val();
         zn_description = $("textarea[name='zn_description']").val();
         zn_allow_cookies = $("input[name='zn_allow_cookies']").val();
         zn_refuse_cookies = $("input[name='zn_refuse_cookies']").val();
@@ -122,6 +129,9 @@
             'zn_color_button' : zn_color_button,
             'zn_color_button_text' : zn_color_button_text,
             'zn_compliance' : zn_compliance,
+            'zn_privacy_policy' : zn_privacy_policy,
+            'zn_cookie_policy' : zn_cookie_policy,
+            'zn_terms_conditions' : zn_terms_conditions,
             'zn_description' : zn_description,
             'zn_allow_cookies' : zn_allow_cookies,
             'zn_refuse_cookies' : zn_refuse_cookies
@@ -138,6 +148,9 @@
         zn_color_button = $("input[name='zn_color_button']").val();
         zn_color_button_text = $("input[name='zn_color_button_text']").val();
         zn_compliance = $("input[name='zn_compliance']").val();
+        zn_privacy_policy = $("input[name='zn_privacy_policy']").val();
+        zn_cookie_policy = $("input[name='zn_cookie_policy']").val();
+        zn_terms_conditions = $("input[name='zn_terms_conditions']").val();
         zn_description = $("textarea[name='zn_description']").val();
         zn_allow_cookies = $("input[name='zn_allow_cookies']").val();
         zn_refuse_cookies = $("input[name='zn_refuse_cookies']").val();
@@ -149,6 +162,9 @@
             'zn_color_button' : zn_color_button,
             'zn_color_button_text' : zn_color_button_text,
             'zn_compliance' : zn_compliance,
+            'zn_privacy_policy' : zn_privacy_policy,
+            'zn_cookie_policy' : zn_cookie_policy,
+            'zn_terms_conditions' : zn_terms_conditions,
             'zn_description' : zn_description,
             'zn_allow_cookies' : zn_allow_cookies,
             'zn_refuse_cookies' : zn_refuse_cookies
@@ -164,6 +180,9 @@
         zn_color_button = $("input[name='zn_color_button']").val();
         zn_color_button_text = $("input[name='zn_color_button_text']").val();
         zn_compliance = $("input[name='zn_compliance']").val();
+        zn_privacy_policy = $("input[name='zn_privacy_policy']").val();
+        zn_cookie_policy = $("input[name='zn_cookie_policy']").val();
+        zn_terms_conditions = $("input[name='zn_terms_conditions']").val();
         zn_description = $("textarea[name='zn_description']").val();
         zn_allow_cookies = $("input[name='zn_allow_cookies']").val();
         zn_refuse_cookies = $("input[name='zn_refuse_cookies']").val();
@@ -175,6 +194,9 @@
             'zn_color_button' : zn_color_button,
             'zn_color_button_text' : zn_color_button_text,
             'zn_compliance' : zn_compliance,
+            'zn_privacy_policy' : zn_privacy_policy,
+            'zn_cookie_policy' : zn_cookie_policy,
+            'zn_terms_conditions' : zn_terms_conditions,
             'zn_description' : zn_description,
             'zn_allow_cookies' : zn_allow_cookies,
             'zn_refuse_cookies' : zn_refuse_cookies

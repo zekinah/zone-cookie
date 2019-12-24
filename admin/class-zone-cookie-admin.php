@@ -129,7 +129,8 @@ class Zone_Cookie_Admin
 	{
 		add_action('admin_menu', array(&$this, 'zoneOptions'));
 
-		add_action('wp_ajax_save_page_content',  array(&$this, 'save_page_content'));
+		add_action('wp_ajax_save_page_gdpr_content',  array(&$this, 'save_page_gdpr_content'));
+		add_action('wp_ajax_save_page_ccpa_content',  array(&$this, 'save_page_ccpa_content'));
 		add_action('wp_ajax_restore_page_content',  array(&$this, 'restore_page_content'));
 		add_action('wp_ajax_save_gdpr_content',  array(&$this, 'save_gdpr_content'));
 		add_action('wp_ajax_save_gdpr_layout',  array(&$this, 'save_gdpr_layout'));
@@ -174,7 +175,7 @@ class Zone_Cookie_Admin
 	{
 		$tbl_request = $this->display->getAllRequest();
 		$tbl_request_type = $this->display->getRequestType();
-		$tbl_content = $this->display->getGDPRContent();
+		$tbl_content = $this->display->getCookieContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 		require_once('view/zone-main-display.php');
 		wp_enqueue_script($this->plugin_name . '-function', plugin_dir_url(__FILE__) . 'js/zone-cookie-function.js', array('jquery'), '1.0.0', false);
@@ -187,11 +188,26 @@ class Zone_Cookie_Admin
 		require_once('view/zone-settings-display.php');
 	}
 
-	public function save_page_content()
+	public function save_page_gdpr_content()
 	{
 		extract($_POST);
-		if (isset($zn_page_content)) {
-			$tbl_content = $this->update->setPageContent($zn_page_content);
+		if (isset($zn_gdpr_content)) {
+			$tbl_content = $this->update->setGdprPageContent($zn_gdpr_content);
+			if ($tbl_content) {
+				$data = 1;
+			} else {
+				$data = 0;
+			}
+		}
+		echo $data;
+		exit();
+	}
+
+	public function save_page_ccpa_content()
+	{
+		extract($_POST);
+		if (isset($zn_ccpa_content)) {
+			$tbl_content = $this->update->setCcpaPageContent($zn_ccpa_content);
 			if ($tbl_content) {
 				$data = 1;
 			} else {

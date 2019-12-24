@@ -38,10 +38,22 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
         $this->cookie_settings = "`" . $wpdb->prefix . "zn_cookie_settings`";
     }
 
-    public function setPageContent($zn_page_content) {
+    public function setGdprPageContent($zn_page_content) {
         $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_content . " SET Gdpr_Page_Content = '". $zn_page_content."' WHERE Gdpr_content_ID = '1'";
+        $result = $db->query($query);
+        if ($result) {
+            return true;
+        } else {
+            die("MYSQL Error : " . mysqli_error($db));
+        }
+    }
+
+    public function setCcpaPageContent($zn_page_content) {
+        $db = $this->db_connect();
+        $query = "
+            UPDATE " . $this->cookie_content . " SET Ccpa_Page_Content = '". $zn_page_content."' WHERE Gdpr_content_ID = '1'";
         $result = $db->query($query);
         if ($result) {
             return true;

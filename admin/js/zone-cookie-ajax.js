@@ -74,18 +74,18 @@
         });
 
         /** Update GDPR Content Page */
-        $("#btn-save-content").on("click", function (event) {
-            var zn_page_content = $('#zn_page_content').val();
+        $("#btn-save-gdpr-content").on("click", function (event) {
+            var zn_gdpr_content = $('#zn_gdpr_content').val();
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
                     'action': 'save_page_content',
-                    'zn_page_content': zn_page_content
+                    'zn_gdpr_content': zn_gdpr_content
                 },
                 success: function (data) {
                     if (data == 1) {
-                        successNotif('The page content is successfully updated');
+                        successNotif('The GDPR page content is successfully updated');
                     } else {
                         errorNotif('There is an Error occured while saving the data')
                     }
@@ -119,7 +119,30 @@
             }
         });
 
-        /**Save GDOR Content */
+        /** Update CCPA Content Page */
+        $("#btn-save-ccpa-content").on("click", function (event) {
+            var zn_ccpa_content = $('#zn_ccpa_content').val();
+            $.ajax({
+                url: cookiesettingsAjax.ajax_url,
+                type: 'POST',
+                data: {
+                    'action': 'save_page_ccpa_content',
+                    'zn_ccpa_content': zn_ccpa_content
+                },
+                success: function (data) {
+                    if (data == 1) {
+                        successNotif('The CCPA page content is successfully updated');
+                    } else {
+                        errorNotif('There is an Error occured while saving the data')
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
+
+        /**Save Cookie Content */
         $("#btn-gdpr-content").on("click", function (event) {
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
@@ -147,7 +170,7 @@
             });
         });
 
-        /** Save GDPR Layout */
+        /** Save Cookie Layout */
         $("#btn-gdpr-layout").on("click", function (event) {
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
