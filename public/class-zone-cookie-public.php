@@ -223,6 +223,9 @@ class Zone_Cookie_Public {
 		$zn_compliance = $tbl_layout[0]['Compliance'];
 		$zn_allow_cookies = $tbl_content[0]['Allow_Button'];
 		$zn_refuse_cookies = $tbl_content[0]['Deny_Button'];
+		$zn_description = str_replace("{privacy-policy}", $zn_privacy_policy, $zn_description);
+		$zn_description = str_replace("{cookie-policy}", $zn_cookie_policy, $zn_description);
+		$zn_description = str_replace("{term-and-condition}", $zn_terms_conditions, $zn_description);
 
 		// echo '<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>';
 		if ($zn_position == 'default' || $zn_layout == 'default') {
