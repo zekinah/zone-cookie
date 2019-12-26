@@ -223,11 +223,14 @@ class Zone_Cookie_Public {
 		$zn_compliance = $tbl_layout[0]['Compliance'];
 		$zn_allow_cookies = $tbl_content[0]['Allow_Button'];
 		$zn_refuse_cookies = $tbl_content[0]['Deny_Button'];
-		$zn_description = str_replace("{privacy-policy}", $zn_privacy_policy, $zn_description);
-		$zn_description = str_replace("{cookie-policy}", $zn_cookie_policy, $zn_description);
-		$zn_description = str_replace("{term-and-condition}", $zn_terms_conditions, $zn_description);
 
-		// echo '<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>';
+		$tempo_privacy = "<a style='color:".$zn_color_banner_text."; text-decoration: underline;' href=".$zn_privacy_policy."> Privacy Policy</a>";
+		$tempo_cookie = "<a style='color:".$zn_color_banner_text."; text-decoration: underline;' href=".$zn_cookie_policy."> Cookie Policy</a>";
+		$tempo_terms = "<a style='color:".$zn_color_banner_text."; text-decoration: underline;' href=".$zn_terms_conditions."> Terms of Use</a>";
+		$zn_description = str_replace("{privacy-policy}", $tempo_privacy, $zn_description);
+		$zn_description = str_replace("{cookie-policy}", $tempo_cookie, $zn_description);
+		$zn_description = str_replace("{terms}", $tempo_terms, $zn_description);
+
 		if ($zn_position == 'default' || $zn_layout == 'default') {
 				$consent = '<script type="text/javascript">
 							window.addEventListener("load", function(){

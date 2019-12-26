@@ -8,9 +8,12 @@
         console.table(obj_Pop);
         console.log('onPopupOpen() called');
         var message = obj_Pop.zn_description;
-        message = message.replace("{privacy-policy}", obj_Pop.zn_privacy_policy);
-        message = message.replace("{cookie-policy}", obj_Pop.zn_cookie_policy);
-        message = message.replace("{term-and-condition}", obj_Pop.zn_terms_conditions);
+        temp_privacy = '<a style="color:'+obj_Pop.zn_color_banner_text+'; text-decoration: underline;" href="'+obj_Pop.zn_privacy_policy+'"> Privacy Policy</a>';
+        temp_cookie = '<a style="color:'+obj_Pop.zn_color_banner_text+'; text-decoration: underline;" href="'+obj_Pop.zn_cookie_policy+'"> Cookie Policy</a>';
+        temp_terms = '<a style="color:'+obj_Pop.zn_color_banner_text+'; text-decoration: underline;" href="'+obj_Pop.zn_terms_conditions+'"> Terms and Condition</a>';
+        message = message.replace("{privacy-policy}", temp_privacy);
+        message = message.replace("{cookie-policy}", temp_cookie);
+        message = message.replace("{terms}", temp_terms);
         if (obj_Pop.zn_position == 'default' || obj_Pop.zn_theme == 'default') {
             window.cookieconsent.initialise({
                 "palette": {
@@ -24,6 +27,7 @@
                     }
                 },
                 "type": obj_Pop.zn_compliance,
+                "showLink": false,
                 "content": {
                     "message": message,
                     "allow": obj_Pop.zn_allow_cookies,
@@ -50,6 +54,7 @@
                 "position": obj_Pop.zn_position,
                 "theme": obj_Pop.zn_theme,
                 "type": obj_Pop.zn_compliance,
+                "showLink": false,
                 "content": {
                     "message": message,
                     "allow": obj_Pop.zn_allow_cookies,
