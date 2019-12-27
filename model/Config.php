@@ -152,7 +152,6 @@ class Zone_Cookie_Model_Config
             <p>Proposed regulations surrounding data breaches primarily relate to the notification policies of companies that have been breached. Data breaches which may pose a risk to individuals must be notified to the DPA within 72 hours and to affected individuals without undue delay.</p>
             ";
 
-        $ccpa_contents = "<a href='/privacy-policy/'>Privacy Policy</a>";
         $ccpa_content = "<h2><strong>CCPA Compliance</strong></h2> 
             <p><strong>Effective Date: January 1, 2020</strong></p>
             <p>This Privacy Notice for California Residents supplements the information contained in WEBSITE’s Privacy Policy and applies solely to all visitors, users, and others who reside in the State of California (“consumers” or “you”). We adopt this notice to comply with the California Consumer Privacy Act of 2018 (CCPA) and any terms defined in the CCPA have the same meaning when used in this notice.</p>
