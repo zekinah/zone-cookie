@@ -46,7 +46,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                 </div>
             </div>
             <button id="btn-save-ccpa-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
-            <button id="btn-restore-content" data-zn_nonce="<?= $zn_form_nonce ?>" type="button" class="btn btn-default  mb-3">Restore Content</button>
+            <button id="btn-restore-ccpa-content" data-zn_nonce="<?= $zn_form_nonce ?>" type="button" class="btn btn-default  mb-3">Restore Content</button>
         </div>
     </div>
 </div>

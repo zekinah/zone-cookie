@@ -50,10 +50,10 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
         }
     }
 
-    public function setCcpaPageContent($zn_page_content) {
+    public function setCcpaPageContent($zn_ccpa_content) {
         $db = $this->db_connect();
         $query = "
-            UPDATE " . $this->cookie_content . " SET Ccpa_Page_Content = '". $zn_page_content."' WHERE Gdpr_content_ID = '1'";
+            UPDATE " . $this->cookie_content . " SET Ccpa_Page_Content = '". $zn_ccpa_content."' WHERE Gdpr_content_ID = '1'";
         $result = $db->query($query);
         if ($result) {
             return true;

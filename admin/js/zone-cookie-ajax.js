@@ -80,7 +80,7 @@
                 url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
                 data: {
-                    'action': 'save_page_content',
+                    'action': 'save_page_gdpr_content',
                     'zn_gdpr_content': zn_gdpr_content
                 },
                 success: function (data) {
@@ -96,13 +96,13 @@
             });
         });
         /** Restore GDPR Content Page */
-        $("#btn-restore-content").on("click", function (event) {
+        $("#btn-restore-gdpr-content").on("click", function (event) {
             if (confirm('Are you sure that you want to restore the GDPR Page Content?')) {
                 $.ajax({
                     url: cookiesettingsAjax.ajax_url,
                     type: 'POST',
                     data: {
-                        'action': 'restore_page_content',
+                        'action': 'restore_gdpr_page_content',
                         'zn_nonce': $(this).data('zn_nonce')
                     },
                     success: function (data) {
@@ -140,6 +140,29 @@
                     console.log(errorThrown);
                 }
             });
+        });
+        /** Restore CCPA Content Page */
+        $("#btn-restore-ccpa-content").on("click", function (event) {
+            if (confirm('Are you sure that you want to restore the CCPA Page Content?')) {
+                $.ajax({
+                    url: cookiesettingsAjax.ajax_url,
+                    type: 'POST',
+                    data: {
+                        'action': 'restore_ccpa_page_content',
+                        'zn_nonce': $(this).data('zn_nonce')
+                    },
+                    success: function (data) {
+                         if (data == 1) {
+                             successNotif('You successfully Restored the CCPA Page Content');
+                         } else {
+                             errorNotif('There is an Error occured while saving the data')
+                         }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
         });
 
         /**Save Cookie Content */
