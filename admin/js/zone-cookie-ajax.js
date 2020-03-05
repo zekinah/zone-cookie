@@ -1,9 +1,8 @@
 (function ($) {
     'use strict';
     $ = jQuery.noConflict();
-    $(window).load(function () {
-       
-        $(".btn-accept-request").on("click", function (event) {
+    $(window).on('load', function () {
+        $(".btn-accept-request").on('click', function (event) {
             var $button = $(this);
             if (confirm('Are you sure to accept this request and send notification to the requester?')) {
                 $.ajax({
@@ -38,7 +37,7 @@
             }
         });
 
-        $(".btn-decline-request").on("click", function (event) {
+        $(".btn-decline-request").on('click', function (event) {
             var $button = $(this);
             if (confirm('Are you sure to decline this request and send notification to the requester?')) {
                 $.ajax({
@@ -74,7 +73,7 @@
         });
 
         /** Update GDPR Content Page */
-        $("#btn-save-gdpr-content").on("click", function (event) {
+        $("#btn-save-gdpr-content").on('click', function (event) {
             var zn_gdpr_content = $('#zn_gdpr_content').val();
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
@@ -96,7 +95,7 @@
             });
         });
         /** Restore GDPR Content Page */
-        $("#btn-restore-gdpr-content").on("click", function (event) {
+        $("#btn-restore-gdpr-content").on('click', function (event) {
             if (confirm('Are you sure that you want to restore the GDPR Page Content?')) {
                 $.ajax({
                     url: cookiesettingsAjax.ajax_url,
@@ -120,7 +119,7 @@
         });
 
         /** Update CCPA Content Page */
-        $("#btn-save-ccpa-content").on("click", function (event) {
+        $("#btn-save-ccpa-content").on('click', function (event) {
             var zn_ccpa_content = $('#zn_ccpa_content').val();
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
@@ -142,7 +141,7 @@
             });
         });
         /** Restore CCPA Content Page */
-        $("#btn-restore-ccpa-content").on("click", function (event) {
+        $("#btn-restore-ccpa-content").on('click', function (event) {
             if (confirm('Are you sure that you want to restore the CCPA Page Content?')) {
                 $.ajax({
                     url: cookiesettingsAjax.ajax_url,
@@ -166,7 +165,7 @@
         });
 
         /**Save Cookie Content */
-        $("#btn-gdpr-content").on("click", function (event) {
+        $("#btn-gdpr-content").on('click', function (event) {
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
@@ -194,7 +193,7 @@
         });
 
         /** Save Cookie Layout */
-        $("#btn-gdpr-layout").on("click", function (event) {
+        $("#btn-gdpr-layout").on('click', function (event) {
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
@@ -267,7 +266,7 @@
         });
 
         /** Save Email Settings */
-        $('#btn-save-email-settings').on("click", function (event) {
+        $('#btn-save-email-settings').on('click', function (event) {
             $.ajax({
                 url: cookiesettingsAjax.ajax_url,
                 type: 'POST',
@@ -293,7 +292,7 @@
 
 
         /** Restore Email Settings */
-        $("#btn-restore-email-settings").on("click", function (event) {
+        $("#btn-restore-email-settings").on('click', function (event) {
             if (confirm('Are you sure that you want to restore the Email Settings?')) {
                 $.ajax({
                     url: cookiesettingsAjax.ajax_url,

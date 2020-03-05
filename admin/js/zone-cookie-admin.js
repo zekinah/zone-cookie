@@ -1,6 +1,6 @@
 (function( $ ) {
 	'use strict';
-	 $( window ).load(function() {
+	$(window).on('load', function () {
 		$('#tbl-request').DataTable({
 			"order": [
 				[0, "desc"]
@@ -11,7 +11,7 @@
 	 });
 
 	 function viewRequest() {
-	 	$(".zn_view_request").on("click", function () {
+	 	$(".zn_view_request").on('click', function () {
 	 		$("#zn_fname_request").val(($(this).data('zn_fname_request')));
 	 		$("#zn_lname_request").val(($(this).data('zn_lname_request')));
 	 		$("#zn_phone_request").val(($(this).data('zn_phone_request')));

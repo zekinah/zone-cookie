@@ -1,7 +1,7 @@
 (function ($) {
     'use strict';
     $ = jQuery.noConflict();
-    $( window ).load(function() {
+    $(window).on('load', function () {
         $('#zn-request-form input[type="text"]').blur(function () {
             if (!$(this).val()) {
                 $(this).addClass("form-required");
@@ -34,7 +34,7 @@
             }
         });
 
-        $("#btn-submit-request").on("click", function (event) {
+        $('#btn-submit-request').on('click', function (event) {
             if (checkForms() == 4) {
                 $.ajax({
                     url: cookiesettingsAjax.ajax_url,
