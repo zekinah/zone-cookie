@@ -11,13 +11,15 @@
 }
 
 #zn-request-form input[type=text],
-#zn-request-form input[type=email],#zn-request-form select#gdpr-request {
+#zn-request-form input[type=email],
+#zn-request-form select#gdpr-request {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     margin-bottom: 10px;
     padding: 5px;
     width: 100%;
     height: 34px;
+    border: 1px solid #5E636D;
 }
 
 #zn-request-form textarea{
@@ -46,6 +48,7 @@ input[type=submit].btn-gdpr {
     display: block;
     width: 100%;
     transition: color .3s ease, outline-color .3s ease, background-color .3s ease;
+    cursor: pointer;
  }
 
 input[type=submit].btn-gdpr:hover {
@@ -54,6 +57,25 @@ input[type=submit].btn-gdpr:hover {
     color: #5E636D;
     transition: color .3s ease, outline-color .3s ease, background-color .3s ease;
  }
+
+ #zn-request-form .message-success {
+    background: #88C175;
+    margin-top: 15px;
+    padding: 1rem 0.5rem;
+    color: #fff;
+}
+
+#zn-request-form .message-error {
+    background: #DD8275;
+    margin-top: 15px;
+    padding: 1rem 0.5rem;
+    color: #fff;
+}
+
+#zn-request-form .message-success p,
+#zn-request-form .message-error p  {
+    line-height: 15px;
+}
 
 .req-col-main {
     max-width: 100%;

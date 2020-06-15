@@ -47,19 +47,25 @@
                         'req_email': $('input[name=req_email]').val(),
                         'req_type': $('#gdpr-request').val(),
                         'req_message': $('#req_message').val(),
-                        'req_nonce': $(this).data('zn_nonce'),
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
-                        // console.log(data);
-                        $('#zn-request-form').fadeOut('slow', function () {
-                            $(this).empty();
-                        });
+                        emptyFields();
                         setTimeout(function () {
-                            $('#zn-request-form').fadeIn().append('<strong><p>Your Request is successfully submmited. We will respond a message to you soon.</p><p>Thank you!</p></strong>');
+                            $('#zn-request-form').fadeIn().append('<div class="message-success"><strong><p>Your Request is successfully submmited. We will respond a message to you soon.</p><p>Thank you!</p></strong></div>');
                         }, 1000);
+                        setTimeout(function () {
+                            $('.message-success').fadeOut();
+                        }, 10000);
                     },
                     error: function (errorThrown) {
                         console.log(errorThrown);
+                        setTimeout(function () {
+                            $('#zn-request-form').fadeIn().append('<div class="message-error"><strong><p>Oh no!, Something went wrong.</p><p>Please contact the administrator. Thank you!</p></strong></div>');
+                        }, 1000);
+                        setTimeout(function () {
+                            $('.message-success').fadeOut();
+                        }, 10000);
                     }
                 });
             }
@@ -113,6 +119,14 @@
         }
         
         return stat;
+    }
+
+    function emptyFields() {
+        $('input[name=req_fname]').val('');
+        $('input[name=req_lname]').val('');
+        $('input[name=req_phone]').val('');
+        $('input[name=req_email]').val('');
+        $("#zn-request-form textarea").val('');
     }
 
 })(jQuery);

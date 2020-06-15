@@ -192,8 +192,8 @@ class Zone_Cookie_Admin
 
 	public function save_page_gdpr_content()
 	{
-		extract($_POST);
-		if (isset($zn_gdpr_content)) {
+		$zn_gdpr_content = sanitize_text_field($_POST['zn_gdpr_content']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->update->setGdprPageContent($zn_gdpr_content);
 			if ($tbl_content) {
 				$data = 1;
@@ -207,8 +207,8 @@ class Zone_Cookie_Admin
 
 	public function save_page_ccpa_content()
 	{
-		extract($_POST);
-		if (isset($zn_ccpa_content)) {
+		$zn_ccpa_content = sanitize_text_field($_POST['zn_ccpa_content']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->update->setCcpaPageContent($zn_ccpa_content);
 			if ($tbl_content) {
 				$data = 1;
@@ -222,8 +222,7 @@ class Zone_Cookie_Admin
 
 	public function restore_gdpr_page_content()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$settings = $this->default->zonedefaultSettings(); 
 			$restore_content = '';
 			$gdprlength = count($settings['Cookie-Content']['GDPR']);
@@ -243,8 +242,7 @@ class Zone_Cookie_Admin
 
 	public function restore_ccpa_page_content()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$settings = $this->default->zonedefaultSettings(); 
 			$restore_content = '';
 			$ccpalength = count($settings['Cookie-Content']['CCPA']);
@@ -264,8 +262,13 @@ class Zone_Cookie_Admin
 
 	public function save_gdpr_content()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		$zn_privacy_policy = sanitize_text_field($_POST['zn_privacy_policy']);
+		$zn_cookie_policy = sanitize_text_field($_POST['zn_cookie_policy']);
+		$zn_terms_conditions = sanitize_text_field($_POST['zn_terms_conditions']);
+		$zn_description = sanitize_text_field($_POST['zn_description']);
+		$zn_allow_cookies = sanitize_text_field($_POST['zn_allow_cookies']);
+		$zn_refuse_cookies = sanitize_text_field($_POST['zn_refuse_cookies']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->update->setNewGDPRContent($zn_privacy_policy, $zn_cookie_policy, $zn_terms_conditions, $zn_description, $zn_allow_cookies, $zn_refuse_cookies);
 			if ($tbl_content) {
 				$data = 1;
@@ -279,8 +282,14 @@ class Zone_Cookie_Admin
 
 	public function save_gdpr_layout()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		$zn_position = sanitize_text_field($_POST['zn_position']);
+		$zn_layout = sanitize_text_field($_POST['zn_layout']);
+		$zn_color_banner = sanitize_hex_color($_POST['zn_color_banner']);
+		$zn_color_banner_text = sanitize_hex_color($_POST['zn_color_banner_text']);
+		$zn_color_button = sanitize_hex_color($_POST['zn_color_button']);
+		$zn_color_button_text = sanitize_hex_color($_POST['zn_color_button_text']);
+		$zn_compliance = sanitize_text_field($_POST['zn_compliance']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_layout = $this->update->setNewGDPRLayout($zn_position, $zn_layout, $zn_color_banner, $zn_color_banner_text, $zn_color_button, $zn_color_button_text, $zn_compliance);
 			if ($tbl_layout) {
 				$data = 1;
@@ -294,8 +303,8 @@ class Zone_Cookie_Admin
 
 	public function change_type_request()
 	{
-		extract($_POST);
-		if (isset($zn_reqid_stat)) {
+		$zn_reqid_stat = sanitize_text_field($_POST['zn_reqid_stat']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->display->checkRequestTypeStat($zn_reqid_stat);
 			if ($tbl_content) {
 				/** Off the Type of Request */
@@ -320,8 +329,8 @@ class Zone_Cookie_Admin
 
 	public function accept_request()
 	{
-		extract($_POST);
-		if (isset($zn_requester_id)) {
+		$zn_requester_id = sanitize_text_field($_POST['zn_requester_id']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_request = $this->update->acceptRequest($zn_requester_id);
 			if ($tbl_request) {
 				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
@@ -336,8 +345,8 @@ class Zone_Cookie_Admin
 
 	public function decline_request()
 	{
-		extract($_POST);
-		if (isset($zn_requester_id)) {
+		$zn_requester_id = sanitize_text_field($_POST['zn_requester_id']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_request = $this->update->declineRequest($zn_requester_id);
 			if ($tbl_request) {
 				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
@@ -352,8 +361,7 @@ class Zone_Cookie_Admin
 
 	public function email_notification()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_settings = $this->display->changeEmailStatus();
 			if ($tbl_settings) {
 				/** Off the Email Notification */
@@ -371,8 +379,10 @@ class Zone_Cookie_Admin
 
 	public function update_email_settings()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		$zn_email_receiver = sanitize_text_field($_POST['zn_email_receiver']);
+		$zn_email_approved_template = sanitize_text_field($_POST['zn_email_approved_template']);
+		$zn_email_disapproved_template = sanitize_text_field($_POST['zn_email_disapproved_template']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_settings = $this->update->setNewemailSettings($zn_email_receiver, $zn_email_approved_template, $zn_email_disapproved_template);
 			if ($tbl_settings) {
 				$data = 1;
@@ -386,8 +396,10 @@ class Zone_Cookie_Admin
 
 	public function restore_email_settings()
 	{
-		extract($_POST);
-		if (isset($zn_nonce)) {
+		$zn_email_receiver = sanitize_text_field($_POST['zn_email_receiver']);
+		$zn_email_approved_template = sanitize_text_field($_POST['zn_email_approved_template']);
+		$zn_email_disapproved_template = sanitize_text_field($_POST['zn_email_disapproved_template']);
+		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$zn_email_receiver = "";
 			$zn_email_approved_template = "<p>Hello {requester},</p><p>Your {type_of_request} has been approved. Please wait for two (2) to three (3) days to be process your request. You will receive another email after your request has been processed. Thank you.</p>";
 			$zn_email_disapproved_template = "<p>Hello {requester},</p><p>Sorry but your request has been disapproved. Please contact the site support for more details.</p>";

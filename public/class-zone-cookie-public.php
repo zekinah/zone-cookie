@@ -108,7 +108,7 @@ class Zone_Cookie_Public {
 		wp_enqueue_script( $this->plugin_name.'-publicscript', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/script.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->plugin_name.'-cookieconsentpublicjs', plugin_dir_url( __FILE__ ) . 'js/cookieconsent/cookieconsent.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script('zone-cookie-ajax', plugin_dir_url(__FILE__)  . 'js/zone-cookie-public-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
-		wp_localize_script('zone-cookie-ajax', 'cookiesettingsAjax', array('ajax_url' => admin_url('admin-ajax.php')));
+		wp_localize_script('zone-cookie-ajax', 'cookiesettingsAjax', array('ajax_url' => admin_url('admin-ajax.php'), 'ajax_nonce'=>wp_create_nonce('zn-ajax-nonce')));
 	}
 
 	/**
@@ -134,16 +134,15 @@ class Zone_Cookie_Public {
 	}
 
 	public function zoneGdprRequest(){
-		extract($_POST);
-		if(isset($req_nonce)) {
-			$req_fname = sanitize_text_field($req_fname);
-			$req_lname = sanitize_text_field($req_lname);
-			$req_phone = sanitize_text_field($req_phone);
-			$req_email = sanitize_text_field($req_email);
+		if(check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
+			$req_fname = sanitize_text_field($_POST['req_fname']);
+			$req_lname = sanitize_text_field($_POST['req_lname']);
+			$req_phone = sanitize_text_field($_POST['req_phone']);
+			$req_email = sanitize_text_field($_POST['req_email']);
 			$req_city = '';
 			$req_state = '';
-			$req_type = sanitize_text_field($req_type);
-			$req_message = sanitize_text_field($req_message);
+			$req_type = sanitize_text_field($_POST['req_type']);
+			$req_message = sanitize_text_field($_POST['req_message']);
 			$tbl_requester = $this->insert->setNewRequester($req_fname, $req_lname, $req_phone, $req_email, $req_city, $req_state);
 			$zn_requesterID = $this->display->getLastRequester();
 			$tbl_request = $this->insert->setNewRequest($zn_requesterID, $req_type, $req_message);
@@ -165,7 +164,6 @@ class Zone_Cookie_Public {
 			));
 		}
 		echo $data;
-		// print_r($_POST);
 		exit();
 	}
 	public function emailSendingNotification($zn_first_name, $zn_last_name, $req_type) {
@@ -184,7 +182,7 @@ class Zone_Cookie_Public {
 		$subject = 'New Information Request is submitted on the '. get_home_url();
 		$message = 'Requester: ' . $zn_first_name . ' ' . $zn_last_name . '.<br>';
 		$message .= 'Request Type: ' . $req_type .'.<br>';
-		$message .= 'You can check it now <a href="' . get_home_url() . '/wp-admin/admin.php?page=zone-cookie">HERE</a>';
+		$message .= 'You can check it now <a href="' . get_home_url() . '/wp-admin/admin.php?page='.$this->plugin_name.'">HERE</a>';
 
 		add_filter('wp_mail_content_type', array(&$this, 'set_html_content_type'));
 		$response = wp_mail($to, $subject, $message, $headers);
