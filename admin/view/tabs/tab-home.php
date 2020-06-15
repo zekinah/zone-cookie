@@ -17,8 +17,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="hello-section__title">Zone Cookie</h1>
-                <div class="hello-section__content">
+                <h1 class="zone-title">Zone Cookie</h1>
+                <div class="zone-home">
                     <i class="fas fa-lock"></i>
                     <p>This configuration wizard will help you setup your Compliance</p>
                 </div>

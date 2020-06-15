@@ -2,9 +2,37 @@
 *
 * Backend CSS Settings
 *
-* @By Zekinah Joy Lecaros
+* @By Zekinah Lecaros
 *
 **/
+.zone-title {
+  display: inline-block;
+}
+
+.zone-version {
+  font-size: 12px;
+  font-weight: normal;
+  color: #7a919e;
+  margin: 10px 0;
+  line-height: 1.7;
+  max-width: 840px;
+}
+.zone-title-short {
+  font-size: 18px;
+  border-bottom: 1px solid #cccccc;
+  display: table;
+  padding-right: 50px;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+.zone-title-sub {
+  font-size: 18px;
+}
+
+.zone-card {
+  font-size: 13px;
+  line-height: 1.5;
+}
 
 .hello-section__content .card {
   margin: 20px auto 0;
@@ -27,12 +55,16 @@
   color: #ff3616;
 }
 
+p .button {
+  vertical-align: baseline;
+}
+
 .btn {
   font-size: 13px;
   line-height: 26px;
   height: 28px;
   margin: 0;
-  padding: 0 10px 1px;
+  padding: 0 10px 1px !important;
 }
 
 .btn:hover {
@@ -46,25 +78,6 @@ button#btn-restore-email-settings:hover {
 
 .toggle .toggle-group label.btn:hover {
   color: #000 !important;
-}
-
-button.btn-show,
-button.btn-save-settings {
-  background: #0085ba;
-  border-color: #0073aa #006799 #006799;
-  box-shadow: 0 1px 0 #006799;
-  color: #fff;
-  text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
-}
-
-button.btn-close {
-  background: #BA0028;
-  border-color: #AA001E #99001A #99001A;
-  box-shadow: 0 1px 0 #99001A;
-  color: #fff;
-  text-decoration: none;
-  text-shadow: 0 -1px 1px #99001A, 1px 0 1px #99001A, 0 1px 1px #99001A, -1px 0 1px #99001A;
 }
 
 /* Style the tab */

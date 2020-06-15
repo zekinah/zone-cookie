@@ -153,8 +153,10 @@ class Zone_Cookie {
 
 		$plugin_admin = new Zone_Cookie_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		if ($_GET['page'] == $this->plugin_name || $_GET['page'] == 'zone-cookie-settings') {
+			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		}
 
 	}
 

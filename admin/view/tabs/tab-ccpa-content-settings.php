@@ -13,13 +13,12 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 $zn_ccpa_content = $tbl_content[0]['Ccpa_Page_Content'];
-$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 ?>
-<h2>California Compliance: California Consumer Privacy Act (CCPA)</h2>
+<h3 class="zone-title-short">California Compliance: California Consumer Privacy Act (CCPA)</h3>
 <div class="row">
     <div class="col-md-9">
         <div class="card mb-3">
-            <h2>Page Content</h2>
+            <h3 class="zone-title-short">Page Content</h3>
             <div class="card-body">
                 <?php
                 $settings_ccpa = array(
@@ -45,8 +44,8 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                     <input class="form-control txt-shortcode" type="text" value="[zone-compliance-form]" readonly>
                 </div>
             </div>
-            <button id="btn-save-ccpa-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
-            <button id="btn-restore-ccpa-content" data-zn_nonce="<?= $zn_form_nonce ?>" type="button" class="btn btn-default  mb-3">Restore Content</button>
+            <button id="btn-save-ccpa-content" type="button" class="btn button-primary btn-save-settings  mb-3">Save Changes</button>
+            <button id="btn-restore-ccpa-content" type="button" class="btn button-secondary btn-default  mb-3">Restore Content</button>
         </div>
     </div>
 </div>

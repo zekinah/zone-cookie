@@ -13,19 +13,21 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
-<div class="gdpr-card">
-    <div class="gdpr-card-header">
-        <h2>Zone Cookie Settings</h2>
+<div class="zone-card">
+    <div class="wrap">
+        <h1 class="zone-title">Zone Cookie</h1>
+        <span class="zone-version">v1.0.1</span>
     </div>
+    <hr class="wp-header-end">
     <div class="container-fluid">
         <?php
         $tab_option = array('Home', 'Requests', 'EU Compliance Page Content', 'CCPA Compliance Page Content', 'Cookie Content', 'Cookie Layout');
-        echo '<ul class="nav nav-tabs" role="tablist">';
+        echo '<ul class="nav nav-tabs nav-tab-wrapper" role="tablist">';
         foreach ($tab_option as $key => $option_setting) {
             if ($key == 0) {
-                $class = "nav-link active";
+                $class = "nav-tab nav-tab-active active";
             } else {
-                $class = "nav-link";
+                $class = "nav-tab";
             }
             echo '<li class="nav-item">';
             echo '<a class="' . $class . '" data-toggle="tab" href="#tab-' . $key . '">' . $option_setting . '</a>';
@@ -34,7 +36,7 @@
         echo ' </ul>';
         ?>
         <div class="tab-content">
-            <div id="tab-0" class="container-fluid tab-pane active">
+            <div id="tab-0" class="container-fluid tab-pane nav-tab-active active">
                 <!-- Home -->
                 <?php require_once('tabs/tab-home.php'); ?>
             </div>

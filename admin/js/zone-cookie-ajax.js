@@ -14,7 +14,8 @@
                         'zn_fname_request': $(this).data('zn_fname_request'),
                         'zn_email_request': $(this).data('zn_email_request'),
                         'zn_request_type': $(this).data('zn_request_type'),
-                        'zn_status': 'accept'
+                        'zn_status': 'accept',
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
                         if (data != 0) {
@@ -49,7 +50,8 @@
                         'zn_fname_request': $(this).data('zn_fname_request'),
                         'zn_email_request': $(this).data('zn_email_request'),
                         'zn_request_type': $(this).data('zn_request_type'),
-                        'zn_status': 'decline'
+                        'zn_status': 'decline',
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
                         if (data != 0) {
@@ -80,7 +82,8 @@
                 type: 'POST',
                 data: {
                     'action': 'save_page_gdpr_content',
-                    'zn_gdpr_content': zn_gdpr_content
+                    'zn_gdpr_content': zn_gdpr_content,
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -102,7 +105,7 @@
                     type: 'POST',
                     data: {
                         'action': 'restore_gdpr_page_content',
-                        'zn_nonce': $(this).data('zn_nonce')
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
                          if (data == 1) {
@@ -126,7 +129,8 @@
                 type: 'POST',
                 data: {
                     'action': 'save_page_ccpa_content',
-                    'zn_ccpa_content': zn_ccpa_content
+                    'zn_ccpa_content': zn_ccpa_content,
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -148,7 +152,7 @@
                     type: 'POST',
                     data: {
                         'action': 'restore_ccpa_page_content',
-                        'zn_nonce': $(this).data('zn_nonce')
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
                          if (data == 1) {
@@ -177,7 +181,7 @@
                     'zn_description': $("#zn_description").val(),
                     'zn_allow_cookies': $("input[name='zn_allow_cookies']").val(),
                     'zn_refuse_cookies': $("input[name='zn_refuse_cookies']").val(),
-                    'zn_nonce': $(this).data('zn_nonce')
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -206,7 +210,7 @@
                     'zn_color_button': $("input[name='zn_color_button']").val(),
                     'zn_color_button_text': $("input[name='zn_color_button_text']").val(),
                     'zn_compliance': $("input[name='zn_compliance']:checked").val(),
-                    'zn_nonce': $(this).data('zn_nonce')
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -228,7 +232,8 @@
                 type: 'POST',
                 data: {
                     'action': 'change_type_request',
-                    'zn_reqid_stat': $(this).data('zn_reqid_stat')
+                    'zn_reqid_stat': $(this).data('zn_reqid_stat'),
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -250,7 +255,7 @@
                  type: 'POST',
                  data: {
                      'action': 'email_notification',
-                     'zn_nonce': $(this).data('zn_nonce')
+                     '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                  },
                  success: function (data) {
                      if (data == 1) {
@@ -275,7 +280,7 @@
                     'zn_email_receiver': $("input[name=zn_email_receiver]").val(),
                     'zn_email_approved_template': $("#email_approved_template").val(),
                     'zn_email_disapproved_template': $("#email_disapproved_template").val(),
-                    'zn_nonce': $(this).data('zn_nonce')
+                    '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                 },
                 success: function (data) {
                     if (data == 1) {
@@ -299,7 +304,7 @@
                     type: 'POST',
                     data: {
                         'action': 'restore_email_settings',
-                        'zn_nonce': $(this).data('zn_nonce')
+                        '_ajax_nonce': cookiesettingsAjax.ajax_nonce
                     },
                     success: function (data) {
                         if (data == 1) {

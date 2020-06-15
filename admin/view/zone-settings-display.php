@@ -20,12 +20,12 @@
     <div class="container-fluid">
         <?php
         $tab_option = array('Email Settings');
-        echo '<ul class="nav nav-tabs" role="tablist">';
+        echo '<ul class="nav nav-tabs nav-tab-wrapper" role="tablist">';
         foreach ($tab_option as $key => $option_setting) {
             if ($key == 0) {
-                $class = "nav-link active";
+                $class = "nav-tab nav-tab-active active";
             } else {
-                $class = "nav-link";
+                $class = "nav-tab";
             }
             echo '<li class="nav-item">';
             echo '<a class="' . $class . '" data-toggle="tab" href="#tab-' . $key . '">' . $option_setting . '</a>';
@@ -34,7 +34,7 @@
         echo ' </ul>';
         ?>
         <div class="tab-content">
-            <div id="tab-0" class="container-fluid tab-pane active">
+            <div id="tab-0" class="container-fluid tab-pane nav-tab-active active">
                 <!-- Home -->
                 <?php require_once('tabs/tab-email-settings.php'); ?>
             </div>

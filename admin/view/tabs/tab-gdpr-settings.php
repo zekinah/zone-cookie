@@ -19,19 +19,18 @@ $zn_banner_text = $tbl_layout[0]['Color_Banner_Text'];
 $zn_color_button = $tbl_layout[0]['Color_Button'];
 $zn_button_text = $tbl_layout[0]['Color_Button_Text'];
 $zn_compliance = $tbl_layout[0]['Compliance'];
-$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 
 ?>
 <div id="actionbutton">
-    <button id="btn-gdpr-layout" data-zn_nonce="zn_form_nonce" type="button" class="btn btn-save-settings">Save Changes</button>
-    <button id="openpopup" type="button" class="btn btn-show">Show</button>
-    <button id="closepopup" type="button" class="btn btn-close">Close</button>
+    <button id="btn-gdpr-layout" type="button" class="btn button-primary btn-save-settings">Save Changes</button>
+    <button id="openpopup" type="button" class="btn button-secondary btn-show">Show</button>
+    <button id="closepopup" type="button" class="btn button-secondary btn-close">Close</button>
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="card mb-3">
             <!-- POSITION -->
-            <h2><i class="fas fa-arrows-alt"></i> Position</h2>
+            <h3 class="zone-title-short"><i class="fas fa-arrows-alt"></i> Position</h3>
             <div class="card-body">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" id="zn_position_default" name="zn_position" type="radio" value="default" <?php echo ($zn_position == 'default' ? 'checked' : ''); ?> />
@@ -53,7 +52,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
         </div>
         <!-- LAYOUT -->
         <div class="card mb-3">
-            <h2><i class="fas fa-eye"></i> Layout</h2>
+            <h3 class="zone-title-short"><i class="fas fa-eye"></i> Layout</h3>
             <div class="card-body">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" id="zn_layout_block" name="zn_layout" type="radio" value="default" <?php echo ($zn_layout == 'default' ? 'checked' : ''); ?> />
@@ -75,10 +74,10 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
         </div>
         <!-- PALETTE -->
         <div class="card mb-3">
-            <h2><i class="fas fa-palette"></i> Palette</h2>
+            <h3 class="zone-title-short"><i class="fas fa-palette"></i> Palette</h3>
             <div class="card-body">
-                <button id="default_palette" type="button" class="btn btn-show">Use Dafault</button>
-                <button id="reset_palette" type="button" class="btn btn-close">Reset</button>
+                <button id="default_palette" type="button" class="btn button-primary btn-show">Use Dafault</button>
+                <button id="reset_palette" type="button" class="btn button-secondary btn-close">Reset</button>
                 <p class="card-text">Create your own</p>
                 <div class="form-group">
                     <label class="form-check-label">Banner</label>
@@ -101,7 +100,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
     </div>
     <div class="col-md-6">
         <div class="card mb-3">
-            <h2><i class="fas fa-user-lock"></i> Compliance Type</h2>
+            <h3 class="zone-title-short"><i class="fas fa-user-lock"></i> Compliance Type</h3>
             <div class="card-body">
                 <div class="form-check">
                     <input id="zn_compliance_def" name="zn_compliance" type="radio" value="default" <?php echo ($zn_compliance == 'default' ? 'checked' : ''); ?> />

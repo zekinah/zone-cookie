@@ -13,13 +13,12 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 $zn_gdpr_content = $tbl_content[0]['Gdpr_Page_Content'];
-$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 ?>
-<h2>EU Compliance: General Data Protection Regulation (GDPR)</h2>
+<h3 class="zone-title-short">EU Compliance: General Data Protection Regulation (GDPR)</h3>
 <div class="row">
     <div class="col-md-9">
         <div class="card mb-3">
-            <h2>Page Content</h2>
+            <h3 class="zone-title-short">Page Content</h3>
             <div class="card-body">
                 <?php
                 $settings_gdpr = array(
@@ -45,15 +44,15 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                     <input class="form-control txt-shortcode" type="text" value="[zone-compliance-form]" readonly>
                 </div>
             </div>
-            <button id="btn-save-gdpr-content" type="button" class="btn btn-save-settings  mb-3">Save Changes</button>
-            <button id="btn-restore-gdpr-content" data-zn_nonce="<?= $zn_form_nonce ?>" type="button" class="btn btn-default  mb-3">Restore Content</button>
+            <button id="btn-save-gdpr-content" type="button" class="btn button-primary btn-save-settings  mb-3">Save Changes</button>
+            <button id="btn-restore-gdpr-content" type="button" class="btn button-secondary btn-default  mb-3">Restore Content</button>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-9">
         <div class="card">
-            <h2>Request Types</h2>
+            <h3 class="zone-title-short">Request Types</h3>
             <table id="tbl-type-request" class="display">
                 <thead>
                     <tr>

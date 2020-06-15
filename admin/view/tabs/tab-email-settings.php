@@ -17,14 +17,13 @@ $email_approved_template = $settings[0]['Email_Approved_Template'];
 $email_disapproved_template = $settings[0]['Email_Dispproved_Template'];
 $email_receiver = $settings[0]['Email_Receiver'];
 $email_status = $settings[0]['Email_Status'];
-$zn_form_nonce = wp_create_nonce('zn_form_nonce');
 ?>
 <div class="row">
     <div class="col-md-9">
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
-                    <h2>Email Approved Request Template</h2>
+                    <h3 class="zone-title-short">Email Approved Request Template</h3>
                     <div class="col-md-12 mt-2">
                         <?php
                         $settings = array(
@@ -42,7 +41,7 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
         <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
-                    <h2>Email Disapproved Request Template</h2>
+                    <h3 class="zone-title-short">Email Disapproved Request Template</h3>
                     <div class="col-md-12 mt-2">
                         <?php
                         $settings = array(
@@ -60,8 +59,8 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
     </div>
     <div class="col-md-3">
         <div class="card mb-3">
-            <h2>Email Notification</h2>
-            <input id="zn_gdpr_on_email" class="form-check-input" data-zn_nonce="<?= $zn_form_nonce ?>" type="checkbox" name="zn_gdpr_on_email" <?php echo ($email_status == '1' ? 'checked' : ''); ?> data-toggle="toggle">
+            <h3 class="zone-title-short">Email Notification</h3>
+            <input id="zn_gdpr_on_email" class="form-check-input" type="checkbox" name="zn_gdpr_on_email" <?php echo ($email_status == '1' ? 'checked' : ''); ?> data-toggle="toggle">
             <br>
             <div class="form">
                 <div class="form-group">
@@ -70,8 +69,8 @@ $zn_form_nonce = wp_create_nonce('zn_form_nonce');
                     <small>The email address that will received if their is a new request from the site.</small>
                 </div>
             </div>
-            <button id="btn-save-email-settings" type="button" class="btn btn-save-settings mb-3" data-zn_nonce="<?= $zn_form_nonce ?>">Save Changes</button>
-            <button id="btn-restore-email-settings" data-zn_nonce="<? $zn_form_nonce ?>" type="button" class="btn btn-default  mb-3">Restore Content</button>
+            <button id="btn-save-email-settings" type="button" class="btn button-primary btn-save-settings mb-3">Save Changes</button>
+            <button id="btn-restore-email-settings" type="button" class="btn button-secondary btn-default  mb-3">Restore Content</button>
 
         </div>
     </div>

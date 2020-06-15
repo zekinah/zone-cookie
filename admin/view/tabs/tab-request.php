@@ -67,7 +67,7 @@
 </table>
 <?php add_thickbox(); ?>
 <div id="gdpr-view-request" style="display:none;">
-    <h2>Request Details</h2>
+    <h3 class="zone-title-short">Request Details</h3>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
