@@ -52,6 +52,7 @@ function activate_Zone_Cookie() {
  * This action is documented in includes/class-zone-cookie-deactivator.php
  */
 function deactivate_Zone_Cookie() {
+	require_once plugin_dir_path( __FILE__ ) . 'model/Config.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-zone-cookie-deactivator.php';
 	Zone_Cookie_Deactivator::deactivate();
 }

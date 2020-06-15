@@ -30,7 +30,8 @@ class Zone_Cookie_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		$db = new Zone_Cookie_Model_Config();
+		$db->dropTable();
 	}
 
 }

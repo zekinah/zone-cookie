@@ -16,9 +16,7 @@
 This Model is the parent model class that returns database object
  *******************************************************************/
 
-require_once('Config.php');
-
-class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
+class Zone_Cookie_Model_Update
 {
     protected $requester;
     protected $type_request;
@@ -26,6 +24,7 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
     protected $cookie_content;
     protected $cookie_layout;
     protected $cookie_settings;
+    protected $wpdb;
 
     public function __construct() {
         global $wpdb;
@@ -36,34 +35,32 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
         $this->cookie_content = "`" . $wpdb->prefix . "zn_cookie_content`";
         $this->cookie_layout = "`" . $wpdb->prefix . "zn_cookie_layout`";
         $this->cookie_settings = "`" . $wpdb->prefix . "zn_cookie_settings`";
+        $this->wpdb = $wpdb;
     }
 
     public function setGdprPageContent($zn_page_content) {
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_content . " SET Gdpr_Page_Content = '". $zn_page_content."' WHERE Gdpr_content_ID = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function setCcpaPageContent($zn_ccpa_content) {
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_content . " SET Ccpa_Page_Content = '". $zn_ccpa_content."' WHERE Gdpr_content_ID = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function setNewGDPRContent($zn_policy,$zn_cookie,$zn_terms,$zn_message,$zn_accept,$zn_deny) {
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_content . " SET
                 `Privacy_Policy_Link` = '". $zn_policy. "',
@@ -73,16 +70,15 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
                 `Allow_Button` = '" . $zn_accept . "',
                 `Deny_Button` = '" . $zn_deny . "'
             WHERE `Gdpr_content_ID` = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function setNewGDPRLayout($zn_position, $zn_layout, $zn_color_banner, $zn_color_banner_text, $zn_color_button, $zn_color_button_text, $zn_compliance) {
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_layout . " SET
                 `Position` = '". $zn_position. "',
@@ -93,113 +89,106 @@ class Zone_Cookie_Model_Update extends Zone_Cookie_Model_Config
                 `Color_Button_Text` = '" . $zn_color_button_text . "',
                 `Compliance` = '" . $zn_compliance . "'
             WHERE `Gdpr_layout_ID` = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function offTypeRequest($zn_id){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->type_request . " SET
                 `Status` = '0'
             WHERE `TypeofRequest_ID` = '". $zn_id."'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function onTypeRequest($zn_id){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->type_request . " SET
                 `Status` = '1'
             WHERE `TypeofRequest_ID` = '" . $zn_id . "'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function acceptRequest($zn_id){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_request . " SET
                 `Request` = '0',
                 `Status` = '1'
             WHERE `Request_ID` = '" . $zn_id . "'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function declineRequest($zn_id){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_request . " SET
                 `Request` = '0',
                 `Status` = '2'
             WHERE `Request_ID` = '" . $zn_id . "'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function offEmailNotif(){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_settings . " SET
                 `Email_Status` = '0'
             WHERE `GDPR_Settings_ID` = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function onEmailNotif(){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_settings . " SET
                 `Email_Status` = '1'
             WHERE `GDPR_Settings_ID` = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 
     public function setNewemailSettings($zn_email_receiver, $zn_email_approved_template, $zn_email_disapproved_template){
-        $db = $this->db_connect();
         $query = "
             UPDATE " . $this->cookie_settings . " SET
                 `Email_Approved_Template` = '". $zn_email_approved_template."',
                 `Email_Dispproved_Template` = '". $zn_email_disapproved_template."',
                 `Email_Receiver` = '". $zn_email_receiver."'
             WHERE `GDPR_Settings_ID` = '1'";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }
     }
 }

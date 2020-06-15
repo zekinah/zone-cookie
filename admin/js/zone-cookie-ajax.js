@@ -326,7 +326,7 @@
 
    function liveNotificationGDPR() {
        $.ajax({
-           url: settingsAjax.ajax_url,
+           url: cookiesettingsAjax.ajax_url,
            type: 'POST',
            data: {
                'action': 'zoneLiveNotifGDPR',

@@ -11,7 +11,6 @@
  * @package    Zone_GDPR
  * @subpackage Zone_GDPR/public/view/templates
  */
-$zn_nonce = wp_create_nonce('zn_nonce');
 $datahtml = '';
 $datahtml .= '
         <div id="zn-request-form">
@@ -36,8 +35,8 @@ $datahtml .= '
                 <select class="custom-select" id="gdpr-request" required>
                     <option selected disabled>--CHOOSE ACTION--</option>';
                     $temp_id = 1;
-                    while ($row = $tbl_request_type->fetch_assoc()) {
-                        $datahtml .= '<option value="' . $row['TypeofRequest_ID'] . '">' . $row['Type_of_Request'] . '</option>';
+                    foreach($tbl_request_type as $res => $row){
+                        $datahtml .= '<option value="' . $row->TypeofRequest_ID . '">' . $row->Type_of_Request . '</option>';
                         $temp_id++;
                     }
                     $datahtml .= '</select>
@@ -46,7 +45,7 @@ $datahtml .= '
                 <textarea id="req_message" placeholder="Additional Message" required></textarea>
             </div>
             <div class="action">
-                <input class="btn-gdpr" type="submit" value="Submit" data-zn_nonce="'. $zn_nonce.'" id="btn-submit-request">
+                <input class="btn-gdpr" type="submit" value="Submit" id="btn-submit-request">
             </div>
         </div>
     ';

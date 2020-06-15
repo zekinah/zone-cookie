@@ -419,23 +419,23 @@ class Zone_Cookie_Admin
 		$tbl_request = $this->display->getLastRequest($zn_requester_id);
 		$inc = 1;
 		$dataHTML = '';
-		while ($row = $tbl_request->fetch_assoc()) {
+		foreach($tbl_request as $res => $row){
 			$dataHTML .= '<tr>
-                <td>' . $inc . '</td>
-                <td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>
-                <td>' . $row['Type_of_Request'] . '</td>
-                <td>' . date('M d, Y', strtotime($row['Date'])) . '</td>
+                <td>' . $zn_requester_id . '</td>
+                <td>' . $row->FirstName . " " . $row->LastName  . '</td>
+                <td>' . $row->Type_of_Request . '</td>
+                <td>' . date('M d, Y', strtotime($row->Date)) . '</td>
 				<td>';
-				if ($row['Status'] == 0) {
+				if ($row->Status == 0) {
 					$dataHTML .= '<strong class="pending">Pending</strong>';
-				} elseif ($row['Status'] == 1) {
+				} elseif ($row->Status == 1) {
 					$dataHTML .= '<strong class="accepted">Accepted</strong>';
-				} elseif ($row['Status'] == 2) {
+				} elseif ($row->Status == 2) {
 					$dataHTML .= '<strong class="declined">Declined</strong>';
 				}
 			$dataHTML .= '</td>
                 <td>
-                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="' . $row['FirstName'] . '" data-zn_lname_request="' . $row['LastName'] . '" data-zn_phone_request="' . $row['Phone'] . '" data-zn_email_request="' . $row['Email'] . '" data-zn_city_request="' . $row['City'] . '" data-zn_state_request="' . $row['State'] . '" data-zn_type_request="' . $row['Type_of_Request'] . '" data-zn_message_request="' . $row['Additional_Message'] . '" class="view-request"><i class="fas fa-eye"></i></a>
+                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="' . $row->FirstName . '" data-zn_lname_request="' . $row->LastName . '" data-zn_phone_request="' . $row->Phone . '" data-zn_email_request="' . $row->Email . '" data-zn_city_request="' . $row->City . '" data-zn_state_request="' . $row->State . '" data-zn_type_request="' . $row->Type_of_Request . '" data-zn_message_request="' . $row->Additional_Message . '" class="view-request"><i class="fas fa-eye"></i></a>
                 </td>
 			</tr>';
 			$inc++;

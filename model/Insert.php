@@ -16,9 +16,7 @@
 This Model is the parent model class that returns database object
  *******************************************************************/
 
-require_once('Config.php');
-
-class Zone_Cookie_Model_Insert extends Zone_Cookie_Model_Config
+class Zone_Cookie_Model_Insert
 {
     protected $requester;
     protected $type_request;
@@ -26,6 +24,7 @@ class Zone_Cookie_Model_Insert extends Zone_Cookie_Model_Config
     protected $cookie_content;
     protected $cookie_layout;
     protected $cookie_settings;
+    protected $wpdb;
 
     public function __construct() {
         global $wpdb;
@@ -36,31 +35,30 @@ class Zone_Cookie_Model_Insert extends Zone_Cookie_Model_Config
         $this->cookie_content = "`" . $wpdb->prefix . "zn_cookie_content`";
         $this->cookie_layout = "`" . $wpdb->prefix . "zn_cookie_layout`";
         $this->cookie_settings = "`" . $wpdb->prefix . "zn_cookie_settings`";
+        $this->wpdb = $wpdb;
     }
 
     public function setNewRequester($zn_fname,$zn_lname,$zn_phone,$zn_email,$zn_city,$zn_state){
-		$db = $this->db_connect();
 		$query="
             INSERT INTO".$this->requester." (FirstName,LastName,Phone,Email,City,State) VALUES 
             ('". $zn_fname. "','" . $zn_lname . "','" . $zn_phone . "','" . $zn_email . "','" . $zn_city . "','" . $zn_state . "')";
-		$result = $db->query($query);
+		$result = $this->wpdb->query($query);
 		if($result){
 			return true;
 		}else{
-			die("MYSQL Error : ".mysqli_error($db));
+			$this->wpdb->show_errors();
 		}	
     }
     
     public function setNewRequest($zn_requesterID,$zn_typeofrequest_ID,$zn_additional_message){
-        $db = $this->db_connect();
         $query = "
             INSERT INTO" . $this->cookie_request . " (Requester_ID,TypeofRequest_ID,Additional_Message) VALUES 
             ('" . $zn_requesterID . "','" . $zn_typeofrequest_ID . "','" . $zn_additional_message . "')";
-        $result = $db->query($query);
+        $result = $this->wpdb->query($query);
         if ($result) {
             return true;
         } else {
-            die("MYSQL Error : " . mysqli_error($db));
+            $this->wpdb->show_errors();
         }	
     }
 	
