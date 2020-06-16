@@ -70,7 +70,7 @@ $zn_gdpr_content = $tbl_content[0]['Gdpr_Page_Content'];
                             <td><?= $inc ?></td>
                             <td><?= $row->Type_of_Request ?></td>
                             <td>
-                                <input class="form-check-input zn_on_request" data-zn_reqid_stat="<?= $row->TypeofRequest_ID ?>" type="checkbox" name="zn_on_request" <?php echo ($row->Status == '1' ? 'checked' : ''); ?> data-toggle="toggle">
+                                <input class="form-check-input zn_on_request" type="checkbox" name="zn_on_request" data-zn_reqid_stat="<?= $row->TypeofRequest_ID ?>" <?php echo ($row->Status == '1' ? 'checked' : ''); ?> data-toggle="toggle">
                             </td>
                         </tr>
                     <?php

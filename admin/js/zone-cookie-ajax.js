@@ -332,8 +332,8 @@
                'action': 'zoneLiveNotifGDPR',
            },
            success: function (data) {
-               $('#toplevel_page_zone-gdpr span.awaiting-mod').empty();
-               $('#toplevel_page_zone-gdpr span.awaiting-mod').append(data);
+               $('#toplevel_page_zone-cookie span.awaiting-mod').empty();
+               $('#toplevel_page_zone-cookie span.awaiting-mod').append(data);
            }
        });
    }

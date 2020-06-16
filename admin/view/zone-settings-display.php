@@ -13,10 +13,12 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
-<div class="gdpr-card">
-    <div class="gdpr-card-header">
-        <h2>Zone Cookie Settings</h2>
+<div class="zone-card">
+    <div class="wrap">
+        <h1 class="zone-title">Zone Cookie</h1>
+        <span class="zone-version">v1.0.1</span>
     </div>
+    <hr class="wp-header-end">
     <div class="container-fluid">
         <?php
         $tab_option = array('Email Settings');

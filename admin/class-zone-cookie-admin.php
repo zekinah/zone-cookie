@@ -85,11 +85,11 @@ class Zone_Cookie_Admin
 
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-cookie-admin.css', array(), $this->version, 'all');
 		/* Bootstrap 4 CSS */
-		// echo '<link rel="stylesheet" href="'.plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css">';
-		wp_enqueue_style('zone-redirect-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css', array(), $this->version);
+		wp_enqueue_style('zone-cookie-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css', array(), $this->version);
+		wp_enqueue_style('zone-redirect-bootstrap-toggle', plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap-toggle.min.css', array(), $this->version);
 		wp_enqueue_style($this->plugin_name . '-cookieconsentcss', plugin_dir_url(__FILE__) . 'css/cookieconsent/cookieconsent.min.css', array(), $this->version, 'all');
-		wp_enqueue_style('zone-datatable-css', plugin_dir_url(__FILE__) . 'css/datatable/jquery.dataTables.css', array(), $this->version);
-		wp_enqueue_style('zone-pnotify', plugin_dir_url(__FILE__) . 'css/pnotify/pnotify.css', array(), $this->version);
+		wp_enqueue_style('zone-cookie-datatable-css', plugin_dir_url(__FILE__) . 'css/datatable/jquery.dataTables.css', array(), $this->version);
+		wp_enqueue_style('zone-cookie-pnotify', plugin_dir_url(__FILE__) . 'css/pnotify/pnotify.css', array(), $this->version);
 	}
 
 	/**
@@ -115,13 +115,13 @@ class Zone_Cookie_Admin
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-cookie-admin.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('jquery');
 		/* Bootstrap 4 JS */
-		wp_enqueue_script('zone-redirect-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap.min.js', array('jquery'), $this->version);
+		wp_enqueue_script('zone-cookie-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script('zone-cookie-toggle', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap-toggle.min.js', array('jquery'), $this->version);
 		wp_enqueue_script($this->plugin_name . '-script', plugin_dir_url(__FILE__) . 'js/cookieconsent/script.js', array('jquery'), $this->version, false);
 		wp_enqueue_script($this->plugin_name . '-cookieconsentjs', plugin_dir_url(__FILE__) . 'js/cookieconsent/cookieconsent.min.js', array('jquery'), $this->version, false);
-		wp_enqueue_script('zone-toggle', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap-toggle.min.js', array('jquery'), $this->version);
-		wp_enqueue_script('zone-fontawesome', plugin_dir_url(__FILE__) . 'js/fontawesome/all.js', array('jquery'), '5.9.0', false);
-		wp_enqueue_script('zone-pnotify', plugin_dir_url(__FILE__) . 'js/pnotify/pnotify.js', array('jquery'), $this->version);
-		wp_enqueue_script('zone-datatable-js', plugin_dir_url(__FILE__) . 'js/datatable/jquery.dataTables.js', array('jquery'), $this->version);
+		wp_enqueue_script('zone-cookie-fontawesome', plugin_dir_url(__FILE__) . 'js/fontawesome/all.js', array('jquery'), '5.9.0', false);
+		wp_enqueue_script('zone-cookie-pnotify', plugin_dir_url(__FILE__) . 'js/pnotify/pnotify.js', array('jquery'), $this->version);
+		wp_enqueue_script('zone-cookie-datatable-js', plugin_dir_url(__FILE__) . 'js/datatable/jquery.dataTables.js', array('jquery'), $this->version);
 		wp_enqueue_script('zone-cookie-ajax', plugin_dir_url(__FILE__)  . 'js/zone-cookie-ajax.js', array('jquery', $this->plugin_name), $this->version, false);
 		wp_localize_script('zone-cookie-ajax', 'cookiesettingsAjax', array('ajax_url' => admin_url('admin-ajax.php'),'ajax_nonce'=>wp_create_nonce('zn-ajax-nonce')));
 	}
