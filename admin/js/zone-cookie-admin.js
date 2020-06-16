@@ -6,6 +6,7 @@
 				[0, "desc"]
 			]
 		});
+		$('.zn-color-field').wpColorPicker();
 		$('#tbl-type-request').DataTable();
 		viewRequest();
 	 });

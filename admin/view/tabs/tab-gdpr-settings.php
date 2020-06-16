@@ -80,20 +80,20 @@ $zn_compliance = $tbl_layout[0]['Compliance'];
                 <button id="reset_palette" type="button" class="btn button-secondary btn-close">Reset</button>
                 <p class="card-text">Create your own</p>
                 <div class="form-group">
-                    <label class="form-check-label">Banner</label>
-                    <input class="form-control" id="zn_color_banner" name="zn_color_banner" type="color" data-default-color="#effeff" value="<?= $zn_color_banner ?>" />
+                    <label class="form-check-label mr-5">Banner</label>
+                    <input class="form-control zn-color-field" id="zn_color_banner" name="zn_color_banner" type="text" data-default-color="#effeff" value="<?= $zn_color_banner ?>" />
                 </div>
                 <div class="form-group">
-                    <label class="form-check-label">Banner Text</label>
-                    <input class="form-control" id="zn_color_banner_text" name="zn_color_banner_text" type="color" data-default-color="#effeff" value="<?= $zn_banner_text ?>" />
+                    <label class="form-check-label mr-4">Banner Text</label>
+                    <input class="form-control zn-color-field" id="zn_color_banner_text" name="zn_color_banner_text" type="text" data-default-color="#effeff" value="<?= $zn_banner_text ?>" />
                 </div>
                 <div class="form-group">
-                    <label class="form-check-label">Button</label>
-                    <input class="form-control" id="zn_color_button" name="zn_color_button" type="color" data-default-color="#effeff" value="<?= $zn_color_button ?>" />
+                    <label class="form-check-label mr-5">Button</label>
+                    <input class="form-control zn-color-field" id="zn_color_button" name="zn_color_button" type="text" data-default-color="#effeff" value="<?= $zn_color_button ?>" />
                 </div>
                 <div class="form-group">
-                    <label class="form-check-label">Button Text</label>
-                    <input class="form-control" id="zn_color_button_text" name="zn_color_button_text" type="color" data-default-color="#effeff" value="<?= $zn_button_text ?>" />
+                    <label class="form-check-label mr-4">Button Text</label>
+                    <input class="form-control zn-color-field" id="zn_color_button_text" name="zn_color_button_text" type="text" data-default-color="#effeff" value="<?= $zn_button_text ?>" />
                 </div>
             </div>
         </div>
