@@ -41,6 +41,10 @@ $zn_compliance = $tbl_layout[0]['Compliance'];
                     <label class="form-check-label" for="zn_position_top">Banner top</label>
                 </div>
                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" id="zn_position_top_static" name="zn_position" type="radio" value="top-static" <?php echo ($zn_position == 'top' ? 'checked' : ''); ?> />
+                    <label class="form-check-label" for="zn_position_top_static">Banner top (pushdown)</label>
+                </div>
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" id="zn_position_left" name="zn_position" type="radio" value="bottom-left" <?php echo ($zn_position == 'bottom-left' ? 'checked' : ''); ?> />
                     <label class="form-check-label" for="zn_position_left">Floating left</label>
                 </div>
@@ -67,7 +71,7 @@ $zn_compliance = $tbl_layout[0]['Compliance'];
                     <label class="form-check-label" for="zn_layout_edgeless">Edgeless</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" id="zn_layout_wire" name="zn_layout" type="radio" value="" <?php echo ($zn_layout == '' ? 'checked' : ''); ?> />
+                    <input class="form-check-input" id="zn_layout_wire" name="zn_layout" type="radio" value="wire" <?php echo ($zn_layout == '' ? 'checked' : ''); ?> />
                     <label class="form-check-label" for="zn_layout_wire">Wire</label>
                 </div>
             </div>

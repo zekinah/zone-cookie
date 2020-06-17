@@ -40,6 +40,21 @@
                 console.error(err);
             })
         } else {
+             // Position Top Staic
+            var static;
+            if (obj_Pop.zn_position == 'top-static') {
+                obj_Pop.zn_position = 'top';
+                static = true;
+            } else {
+                static = false;
+            }
+            // Layout Wire
+            var border = '';
+            if (obj_Pop.zn_theme == 'wire') {
+                obj_Pop.zn_color_button_text = obj_Pop.zn_color_button;
+                border = obj_Pop.zn_color_button;
+                obj_Pop.zn_color_button = 'transparent';
+            }
             window.cookieconsent.initialise({
                 "palette": {
                     "popup": {
@@ -48,10 +63,12 @@
                     },
                     "button": {
                         "background": obj_Pop.zn_color_button,
-                        "text": obj_Pop.zn_color_button_text
+                        "text": obj_Pop.zn_color_button_text,
+                        "border": border,
                     }
                 },
                 "position": obj_Pop.zn_position,
+                "static": static,
                 "theme": obj_Pop.zn_theme,
                 "type": obj_Pop.zn_compliance,
                 "showLink": false,

@@ -333,7 +333,7 @@ class Zone_Cookie_Admin
 		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_request = $this->update->acceptRequest($zn_requester_id);
 			if ($tbl_request) {
-				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
+				$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
 				$data = $this->getHTMLrequest($zn_requester_id);
 			} else {
 				$data = 0;
@@ -349,7 +349,7 @@ class Zone_Cookie_Admin
 		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_request = $this->update->declineRequest($zn_requester_id);
 			if ($tbl_request) {
-				//$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
+				$notify = $this->sentEmailNotif($zn_fname_request, $zn_email_request, $zn_request_type, $zn_status);
 				$data = $this->getHTMLrequest($zn_requester_id);
 			} else {
 				$data = 0;
@@ -456,7 +456,7 @@ class Zone_Cookie_Admin
 					$to = esc_attr($zn_email_request);
 				}
 			} else {
-				$to = 'zjlecaros@gmail.com';
+				$to = get_option('admin_email');
 			}
 
 			$subject = strtoupper($zn_request_type) . " " . $_SERVER['SERVER_NAME'];

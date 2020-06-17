@@ -176,7 +176,7 @@ class Zone_Cookie_Public {
 		if ($zn_emailstats != '' || $zn_emailstats != null) {
 			$to = esc_attr($zn_emailstats);
 		} else {
-			$to = 'zjlecaros@gmail.com';
+			$to = get_option('admin_email');
 		}
 
 		$subject = 'New Information Request is submitted on the '. get_home_url();
@@ -260,6 +260,20 @@ class Zone_Cookie_Public {
 						</script>';
 
 			} else {
+				// Position Top Staic
+				if ($zn_position == 'top-static') {
+					$zn_position = 'top';
+					$static = true;
+				} else {
+					$static = false;
+				}
+				 // Layout Wire
+				$border = '';
+				if ($zn_layout == 'wire') {
+					$zn_color_button_text = $zn_color_button;
+					$border = $zn_color_button;
+					$zn_color_button= 'transparent';
+				}
 				$consent = '<script type="text/javascript">
 					window.addEventListener("load", function(){
 						window.cookieconsent.initialise({
@@ -270,10 +284,12 @@ class Zone_Cookie_Public {
 								},
 								"button": {
 									"background": "'.$zn_color_button.'",
-									"text": "'.$zn_color_button_text.'"
+									"text": "'.$zn_color_button_text.'",
+									"border": "'.$border.'"
 								}
 							},
 							"position": "'.$zn_position.'",
+							"static": "'.$static.'",
 							"theme": "'.$zn_layout.'",
 							"type": "'.$zn_compliance.'",
 							"showLink": false,
