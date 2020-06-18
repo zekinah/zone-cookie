@@ -1,5 +1,6 @@
-(function( $ ) {
+(function($) {
 	'use strict';
+	$ = jQuery.noConflict();
 	$(window).on('load', function () {
 		$('#tbl-request').DataTable({
 			"order": [

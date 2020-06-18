@@ -22,4 +22,4 @@ padding: 15px;
 
 $zn_description .= $tbl_content[0]['Ccpa_Page_Content'];
 
-return $zn_description;
+return wp_kses_post($zn_description);

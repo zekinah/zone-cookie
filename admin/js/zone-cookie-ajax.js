@@ -89,7 +89,7 @@
                     if (data == 1) {
                         successNotif('The GDPR page content is successfully updated');
                     } else {
-                        errorNotif('There is an Error occured while saving the data')
+                        errorNotif('There is an Error occured while saving the data');
                     }
                 },
                 error: function (errorThrown) {
@@ -111,7 +111,7 @@
                          if (data == 1) {
                              successNotif('You successfully Restored the GDPR Page Content');
                          } else {
-                             errorNotif('There is an Error occured while saving the data')
+                             errorNotif('There is an Error occured while saving the data');
                          }
                     },
                     error: function (errorThrown) {

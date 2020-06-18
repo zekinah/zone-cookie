@@ -14,4 +14,4 @@
 
 $zn_description = $tbl_content[0]['Gdpr_Page_Content'];
 
-return $zn_description;
+return wp_kses_post($zn_description);

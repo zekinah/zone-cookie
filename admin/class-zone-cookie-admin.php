@@ -192,7 +192,7 @@ class Zone_Cookie_Admin
 
 	public function save_page_gdpr_content()
 	{
-		$zn_gdpr_content = sanitize_text_field($_POST['zn_gdpr_content']);
+		$zn_gdpr_content = wp_kses_post($_POST['zn_gdpr_content']);
 		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->update->setGdprPageContent($zn_gdpr_content);
 			if ($tbl_content) {
@@ -207,7 +207,7 @@ class Zone_Cookie_Admin
 
 	public function save_page_ccpa_content()
 	{
-		$zn_ccpa_content = sanitize_text_field($_POST['zn_ccpa_content']);
+		$zn_ccpa_content = wp_kses_post($_POST['zn_ccpa_content']);
 		if (check_ajax_referer( 'zn-ajax-nonce', '_ajax_nonce' )) {
 			$tbl_content = $this->update->setCcpaPageContent($zn_ccpa_content);
 			if ($tbl_content) {
