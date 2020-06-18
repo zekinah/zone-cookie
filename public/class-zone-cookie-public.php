@@ -228,8 +228,21 @@ class Zone_Cookie_Public {
 		$zn_description = str_replace("{privacy-policy}", $tempo_privacy, $zn_description);
 		$zn_description = str_replace("{cookie-policy}", $tempo_cookie, $zn_description);
 		$zn_description = str_replace("{terms}", $tempo_terms, $zn_description);
-
-		if ($zn_position == 'default' || $zn_layout == 'default') {
+		// Position Top Staic
+		if ($zn_position == 'top-static') {
+			$zn_position = 'top';
+			$static = true;
+		} else {
+			$static = false;
+		}
+		// Layout Wire
+		$border = '';
+		if ($zn_layout == 'wire') {
+			$zn_color_button_text = $zn_color_button;
+			$border = $zn_color_button;
+			$zn_color_button= 'transparent';
+		}
+		if ($zn_position == 'default') {
 				$consent = '<script type="text/javascript">
 							window.addEventListener("load", function(){
 								window.cookieconsent.initialise({
@@ -240,9 +253,11 @@ class Zone_Cookie_Public {
 										},
 										"button": {
 											"background": "'.$zn_color_button.'",
-											"text": "'.$zn_color_button_text.'"
+											"text": "'.$zn_color_button_text.'",
+											"border": "'.$border.'"
 										}
 									},
+									theme": "'.$zn_layout.'",
 									"type": "'.$zn_compliance.'",
 									"showLink": false,
 									"content": {
@@ -260,20 +275,6 @@ class Zone_Cookie_Public {
 						</script>';
 
 			} else {
-				// Position Top Staic
-				if ($zn_position == 'top-static') {
-					$zn_position = 'top';
-					$static = true;
-				} else {
-					$static = false;
-				}
-				 // Layout Wire
-				$border = '';
-				if ($zn_layout == 'wire') {
-					$zn_color_button_text = $zn_color_button;
-					$border = $zn_color_button;
-					$zn_color_button= 'transparent';
-				}
 				$consent = '<script type="text/javascript">
 					window.addEventListener("load", function(){
 						window.cookieconsent.initialise({

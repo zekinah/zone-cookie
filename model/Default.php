@@ -246,7 +246,7 @@ class Zone_Cookie_Model_Default
                 "Privacy_Policy_Link" => "",
                 "Cookie_Policy_Link" => "",
                 "Terms_and_Condition_Link" => "",
-                "Message" => "This website uses cookies to ensure you get the best experience on our website.",
+                "Message" => "This website uses cookies to ensure you get the best experience on our website. {cookie-policy}",
                 "Allow_Button" => "Allow cookies",
                 "Deny_Button" => "Decline"
             ),
