@@ -16,7 +16,7 @@
  * Plugin Name:       Zone - Cookie
  * Plugin URI:        https://github.com/zekinah/zone-cookie.git
  * Description:       Addon for GDPR Compliance and CCPA Compliance.
- * Version:           1.0.0
+ * Version:           1.0.3
  * Author:            Zekinah Lecaros
  * Author URI:        https://github.com/zekinah/
  * License:           GPL-2.0+
@@ -26,16 +26,15 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('ABSPATH')) {
+	exit;
 }
-
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'Zone_Cookie_VERSION', '2.0.0' );
+define( 'Zone_Cookie_VERSION', '1.0.3' );
 
 /**
  * The code that runs during plugin activation.

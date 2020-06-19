@@ -15,6 +15,11 @@
 /******************************************************************
 This Model is the parent model class that returns database object
  *******************************************************************/
+// If this file is called directly, abort.
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 
 class Zone_Cookie_Model_Update
 {

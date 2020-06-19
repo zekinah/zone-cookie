@@ -10,6 +10,11 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com> 
  * 
  */
+// If this file is called directly, abort.
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 
 class Zone_Cookie_Model_Default
 {

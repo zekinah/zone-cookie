@@ -14,6 +14,12 @@
 /******************************************************************
 This Model is the parent model class that returns database object
  *******************************************************************/
+// If this file is called directly, abort.
+if (!defined('ABSPATH')) {
+	exit;
+}
+
+
 include_once('Default.php');
 
 class Zone_Cookie_Model_Config
@@ -55,7 +61,7 @@ class Zone_Cookie_Model_Config
 		if ( defined( 'ZONE_REDIRECT_VERSION' ) ) {
 			$this->version = ZONE_REDIRECT_VERSION;
 		} else {
-			$this->version = '1.0.2';
+			$this->version = '1.0.3';
 		}
         $this->plugin_name = 'zone-redirect';
         $this->wpdb = $wpdb;

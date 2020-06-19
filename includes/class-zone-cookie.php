@@ -27,6 +27,10 @@
  * @subpackage Zone_Cookie/includes
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
+if (!defined('ABSPATH')) {
+	exit;
+}
+
 class Zone_Cookie {
 
 	/**
@@ -70,7 +74,7 @@ class Zone_Cookie {
 		if ( defined( 'Zone_Cookie_VERSION' ) ) {
 			$this->version = Zone_Cookie_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.0.3';
 		}
 		$this->plugin_name = 'zone-cookie';
 
