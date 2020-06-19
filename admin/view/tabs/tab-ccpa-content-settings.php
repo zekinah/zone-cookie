@@ -25,9 +25,10 @@ $zn_ccpa_content = $tbl_content[0]['Ccpa_Page_Content'];
                     'teeny' => true,
                     'textarea_rows' => 14,
                     'tabindex' => 1,
-                    'editor_height' => 500
+                    'editor_height' => 500,
+                    'wpautop' => false
                 );
-                wp_editor($zn_ccpa_content, 'zn_ccpa_content', $settings_ccpa);
+                wp_editor( wpautop($zn_ccpa_content), 'zn_ccpa_content', $settings_ccpa);
                 ?>
             </div>
         </div>

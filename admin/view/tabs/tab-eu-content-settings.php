@@ -25,9 +25,10 @@ $zn_gdpr_content = $tbl_content[0]['Gdpr_Page_Content'];
                     'teeny' => true,
                     'textarea_rows' => 14,
                     'tabindex' => 1,
-                    'editor_height' => 500
+                    'editor_height' => 500,
+                    'wpautop' => false
                 );
-                wp_editor($zn_gdpr_content, 'zn_gdpr_content', $settings_gdpr);
+                wp_editor( wpautop($zn_gdpr_content), 'zn_gdpr_content', $settings_gdpr);
                 ?>
             </div>
         </div>
