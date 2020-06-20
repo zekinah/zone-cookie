@@ -257,7 +257,7 @@ class Zone_Cookie_Public {
 											"border": "'.$border.'"
 										}
 									},
-									theme": "'.$zn_layout.'",
+									"theme": "'.$zn_layout.'",
 									"type": "'.$zn_compliance.'",
 									"showLink": false,
 									"content": {

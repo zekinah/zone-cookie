@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mt-5 mb-5">
                 <h1 class="zone-title">Zone Cookie</h1>
                 <div class="zone-home">
                     <i class="fas fa-lock"></i>

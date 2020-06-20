@@ -1,6 +1,6 @@
 # Zone Cookies for Wordpress
 Requires at least: 3.0.1
-Tags: review,ratings
+Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 3.0.1
 Tested up to: 5.4
 Requires PHP: 5.6 or higher
@@ -33,17 +33,20 @@ The following are among the major new data protections CCPA introduces:
 
 ## Description
 
-This plugin is user friendly and very simple to used. It provides a control to your client data request and protection, messages and layout.
+This plugin supports GDPR and CCPA consent that requires on your website. It is mainly allows you to manage all related cookie consent. It is user friendly and very simple to used. 
 
 ## Features
 
-* Cookie Layout Modification
-* Cookie Content Modification
+* Cookie popup Layout Modification
+* Cookie popup Content Modification
 * GDPR Information Content Modification
 * CCPA Information Content Modification
 * Data Request Form
 * Email Notification for both Admin and Requester
 * Requester List
+
+### IMPORTANT!
+Zone Cookie Consent can help you meet compliance requirements, but the user must ensure that all requirements are met.
 
 ## Installation
 
@@ -64,4 +67,8 @@ Shorcode for Request Data Form - [zone-compliance-form]
 
 ## Contributor
 
+Feel free to contribute, subtmit bugs, issues or features to be added.
+
 * **Zekinah Joy Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
+
+<a href="https://www.buymeacoffee.com/zekinah" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
