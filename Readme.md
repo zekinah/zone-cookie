@@ -1,5 +1,14 @@
+<img src="https://ps.w.org/zone-cookie/assets/banner-772x250.jpg" alt="Banner" width="100%">
+
 # Zone Cookies for Wordpress
-Requires at least: 3.0.1
+
+![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/zone-cookie)
+![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/zone-cookie)
+![GitHub issues](https://img.shields.io/github/issues/zekinah/zone-cookie)
+![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/zone-cookie)
+![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dm/zone-cookie)
+![GitHub](https://img.shields.io/github/license/zekinah/zone-cookie)
+
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 3.0.1
 Tested up to: 5.4
@@ -45,7 +54,7 @@ This plugin supports GDPR and CCPA consent that requires on your website. It is 
 * Email Notification for both Admin and Requester
 * Requester List
 
-### IMPORTANT!
+## IMPORTANT!
 Zone Cookie Consent can help you meet compliance requirements, but the user must ensure that all requirements are met.
 
 ## Installation
@@ -69,6 +78,6 @@ Shorcode for Request Data Form - [zone-compliance-form]
 
 Feel free to contribute, subtmit bugs, issues or features to be added.
 
-* **Zekinah Joy Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
+* **Zekinah Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
 
 <a href="https://www.buymeacoffee.com/zekinah" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
