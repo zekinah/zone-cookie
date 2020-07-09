@@ -26,6 +26,8 @@ At its core, GDPR is a new set of rules designed to give EU citizens more contro
 The reforms are designed to reflect the world we're living in now, and brings laws and obligations - including those around personal data, privacy and consent - across Europe up to speed for the internet-connected age.
 
 Fundamentally, almost every aspect of our lives revolves around data. From social media companies, to banks, retailers, and governments - almost every service we use involves the collection and analysis of our personal data. Your name, address, credit card number and more all collected, analysed and, perhaps most importantly, stored by organisations.
+[Article Source here](https://www.zdnet.com/article/gdpr-an-executive-guide-to-what-you-need-to-know/)
+
 
 __What is CCPA?__
 
@@ -39,6 +41,7 @@ The following are among the major new data protections CCPA introduces:
     * Why it was collected
 * __Right to deletion__ – Consumers in California will be able to request that a company delete the personal information it has collected about them.
 * __Right to opt out__ – Consumers in California will be able to direct a company to not sell their personal information to third parties (although the definition of “sell” in the bill is broader than simply monetary exchange).
+[Article Source here](https://liveramp.com/blog/ccpa-california-consumer-privacy-act/)
 
 ## Description
 
@@ -74,9 +77,11 @@ Shorcode for Request Data Form - [zone-compliance-form]
 ## Third Party
 * Cookie Consent by Osano - https://cookieconsent.osano.com/
 
-## Contributor
+## Acknowlegdment
+* Thank you for the third party, libraries and article that is used on this plugin.
 
-Feel free to contribute, subtmit bugs, issues or features to be added.
+## Contributor
+* Feel free to contribute, subtmit bugs, issues or features to be added.
 
 * **Zekinah Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
 
