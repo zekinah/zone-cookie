@@ -125,13 +125,18 @@ class Zone_Cookie_Public {
 	}
 
 	public function zoneGdprContent() {
+
 		$tbl_content = $this->display->getCookieContent();
-		return require_once('view/templates/gdpr-content.php');
+		ob_start();
+		require_once('view/templates/gdpr-content.php');
+		return ob_get_clean();
 	}
 
 	public function zoneCcpaContent() {
 		$tbl_content = $this->display->getCookieContent();
-		return require_once('view/templates/ccpa-content.php');
+		ob_start();
+		require_once('view/templates/ccpa-content.php');
+		return ob_get_clean();
 	}
 
 	public function zoneGdprRequest(){
@@ -202,7 +207,9 @@ class Zone_Cookie_Public {
 
 	public function zoneGdprFormRequest() {
 		$tbl_request_type = $this->display->getAvailableRequestType();
-		return require_once('view/templates/gdpr-request-form.php');
+		ob_start();
+		require_once('view/templates/gdpr-request-form.php');
+		return ob_get_clean();
 	}
 
 	public function outputGDPR(){

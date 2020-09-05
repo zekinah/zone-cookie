@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Provide a admin area view for the plugin
+ * Provide a public area view for the plugin
  *
- * This file is used to markup the admin-facing aspects of the plugin.
+ * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_GDPR
- * @subpackage Zone_GDPR/public/view/templates
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/public/view/templates
  */
-$zn_description = '';
-$zn_description .= '<style>
+?>
+<style async>
 table, th, td {
 border: 1px solid black;
 padding: 15px;
 }
-</style>';
+</style>
+<?php
 
+$zn_description = $tbl_content[0]['Ccpa_Page_Content'];
 
-$zn_description .= $tbl_content[0]['Ccpa_Page_Content'];
-
-return wp_kses_post($zn_description);
+echo wp_kses_post($zn_description);
