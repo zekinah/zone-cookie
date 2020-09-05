@@ -71,6 +71,7 @@ class Zone_Cookie_Admin
 	 */
 	public function enqueue_styles()
 	{
+		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-cookie-admin.css', array(), $this->version, 'all');
 		/* Bootstrap 4 CSS */
 		wp_enqueue_style('zone-cookie-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css', array(), $this->version);
@@ -87,8 +88,8 @@ class Zone_Cookie_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-cookie-admin.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('jquery');
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-cookie-admin.js', array('jquery','wp-color-picker'), $this->version, false);
 		/* Bootstrap 4 JS */
 		wp_enqueue_script('zone-cookie-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap.min.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('zone-cookie-toggle', plugin_dir_url(__FILE__) . 'js/bootstrap/bootstrap-toggle.min.js', array('jquery'), $this->version);

@@ -5,7 +5,7 @@
     /** Generate Popup */
     function generatePopup(obj_Pop) {
         $('.cc-window').remove();
-        console.table(obj_Pop);
+        // console.table(obj_Pop);
         console.log('onPopupOpen() called');
         var message = obj_Pop.zn_description;
         temp_privacy = '<a style="color:'+obj_Pop.zn_color_banner_text+'; text-decoration: underline;" href="'+obj_Pop.zn_privacy_policy+'"> Privacy Policy</a>';
