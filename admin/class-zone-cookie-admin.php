@@ -24,8 +24,6 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-require_once(plugin_dir_path(__FILE__) . '../model/model.php');
-
 class Zone_Cookie_Admin
 {
 
@@ -73,19 +71,6 @@ class Zone_Cookie_Admin
 	 */
 	public function enqueue_styles()
 	{
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Cookie_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Zone_Cookie_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/zone-cookie-admin.css', array(), $this->version, 'all');
 		/* Bootstrap 4 CSS */
 		wp_enqueue_style('zone-cookie-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap/bootstrap.min.css', array(), $this->version);
@@ -102,19 +87,6 @@ class Zone_Cookie_Admin
 	 */
 	public function enqueue_scripts()
 	{
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Zone_Cookie_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Zone_Cookie_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/zone-cookie-admin.js', array('jquery'), $this->version, false);
 		wp_enqueue_script('jquery');
 		/* Bootstrap 4 JS */
@@ -189,7 +161,6 @@ class Zone_Cookie_Admin
 	public function zoneSettingPage()
 	{
 		$settings = $this->display->getSettings();
-		// print_r($settings);
 		require_once('view/zone-settings-display.php');
 	}
 

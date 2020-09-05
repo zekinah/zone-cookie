@@ -8,8 +8,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/admin
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 $zn_position = $tbl_layout[0]['Position'];
@@ -82,7 +82,9 @@ $zn_compliance = $tbl_layout[0]['Compliance'];
             <div class="card-body">
                 <button id="default_palette" type="button" class="btn button-primary btn-show">Use Dafault</button>
                 <button id="reset_palette" type="button" class="btn button-secondary btn-close">Reset</button>
-                <p class="card-text">Create your own</p>
+                <br><br>
+                <strong class="card-text">Create your own</strong>
+                <br><br>
                 <div class="form-group">
                     <label class="form-check-label mr-5">Banner</label>
                     <input class="form-control zn-color-field" id="zn_color_banner" name="zn_color_banner" type="text" data-default-color="#effeff" value="<?= $zn_color_banner ?>" />

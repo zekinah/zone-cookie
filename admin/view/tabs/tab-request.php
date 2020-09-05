@@ -8,8 +8,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/admin
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
@@ -26,41 +26,43 @@
     </thead>
     <tbody id="body_request">
         <?php
-        $inc = 1;
-        foreach($tbl_request as $res => $row){
-            ?>
-            <tr>
-                <td><?= $inc ?></td>
-                <td><?= $row->FirstName . " " . $row->LastName ?></td>
-                <td><?= $row->Type_of_Request ?></td>
-                <td><?= date('M d, Y', strtotime($row->Date)) ?></td>
-                <td>
-                    <?php 
-                        if($row->Status == 0) {
-                            echo '<strong class="pending">Pending</strong>';
-                        } elseif ($row->Status == 1) {
-                            echo '<strong class="accepted">Accepted</strong>';
-                        }   elseif ($row->Status == 2) {
-                            echo '<strong class="declined">Declined</strong>';
-                        } 
-                    ?>
-                </td>
-                <td>
-                    <?php
-                        if ($row->Request) {
-                            echo '<a href="#" title="Accept and Notify" class="btn btn-info btn-xs btn-accept-request" data-zn_requester_id="' . $row->Request_ID . '" data-zn_fname_request="' . $row->FirstName . '" data-zn_email_request="' . $row->Email . '" data-zn_request_type="'. $row->Type_of_Request .'"><i class="fas fa-check"></i></a>';
-                        }
+        if (is_array($tbl_request) || is_object($tbl_reviews)) {
+            $inc = 1;
+            foreach($tbl_request as $res => $row){
+                ?>
+                <tr>
+                    <td><?= $inc ?></td>
+                    <td><?= $row->FirstName . " " . $row->LastName ?></td>
+                    <td><?= $row->Type_of_Request ?></td>
+                    <td><?= date('M d, Y', strtotime($row->Date)) ?></td>
+                    <td>
+                        <?php 
+                            if($row->Status == 0) {
+                                echo '<strong class="pending">Pending</strong>';
+                            } elseif ($row->Status == 1) {
+                                echo '<strong class="accepted">Accepted</strong>';
+                            }   elseif ($row->Status == 2) {
+                                echo '<strong class="declined">Declined</strong>';
+                            } 
                         ?>
-                    <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="<?= $row->FirstName ?>" data-zn_lname_request="<?= $row->LastName ?>" data-zn_phone_request="<?= $row->Phone ?>" data-zn_email_request="<?= $row->Email ?>" data-zn_city_request="<?= $row->City ?>" data-zn_state_request="<?= $row->State ?>" data-zn_type_request="<?= $row->Type_of_Request ?>" data-zn_message_request="<?= $row->Additional_Message ?>" class="view-request"><i class="fas fa-eye"></i></a>
-                    <?php
-                        if ($row->Request) {
-                            echo '<a href="#" title="Decline and Notify" class="btn btn-danger btn-xs btn-decline-request" data-zn_requester_id="' . $row->Request_ID . '" data-zn_fname_request="' . $row->FirstName . '" data-zn_email_request="' . $row->Email . '" data-zn_request_type="' . $row->Type_of_Request . '"><i class="fas fa-times"></i></a>';
-                        }
-                        ?>
-                </td>
-            </tr>
-        <?php
-            $inc++;
+                    </td>
+                    <td>
+                        <?php
+                            if ($row->Request) {
+                                echo '<a href="#" title="Accept and Notify" class="btn btn-info btn-xs btn-accept-request" data-zn_requester_id="' . $row->Request_ID . '" data-zn_fname_request="' . $row->FirstName . '" data-zn_email_request="' . $row->Email . '" data-zn_request_type="'. $row->Type_of_Request .'"><i class="fas fa-check"></i></a>';
+                            }
+                            ?>
+                        <a href="#TB_inline?width=600&height=545&inlineId=gdpr-view-request" title="View Request Details" class="thickbox btn btn-primary btn-xs zn_view_request" data-zn_fname_request="<?= $row->FirstName ?>" data-zn_lname_request="<?= $row->LastName ?>" data-zn_phone_request="<?= $row->Phone ?>" data-zn_email_request="<?= $row->Email ?>" data-zn_city_request="<?= $row->City ?>" data-zn_state_request="<?= $row->State ?>" data-zn_type_request="<?= $row->Type_of_Request ?>" data-zn_message_request="<?= $row->Additional_Message ?>" class="view-request"><i class="fas fa-eye"></i></a>
+                        <?php
+                            if ($row->Request) {
+                                echo '<a href="#" title="Decline and Notify" class="btn btn-danger btn-xs btn-decline-request" data-zn_requester_id="' . $row->Request_ID . '" data-zn_fname_request="' . $row->FirstName . '" data-zn_email_request="' . $row->Email . '" data-zn_request_type="' . $row->Type_of_Request . '"><i class="fas fa-times"></i></a>';
+                            }
+                            ?>
+                    </td>
+                </tr>
+            <?php
+                $inc++;
+            }
         }
         ?>
     </tbody>

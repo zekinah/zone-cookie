@@ -8,8 +8,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Ratings
- * @subpackage Zone_Ratings/admin/view/tabs
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin/view/tabs
  */
 
 ?>

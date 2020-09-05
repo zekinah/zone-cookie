@@ -20,8 +20,9 @@
  * @subpackage Zone_Cookie/public
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
-
-require_once(plugin_dir_path(__FILE__) . '../model/model.php');
+if (!defined('ABSPATH')) {
+	exit;
+}
 
 class Zone_Cookie_Public {
 

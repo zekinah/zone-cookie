@@ -8,8 +8,8 @@
  * @link       https://github.com/zekinah/
  * @since      1.0.0
  *
- * @package    Zone_Gdpr
- * @subpackage Zone_Gdpr/admin
+ * @package    Zone_Cookie
+ * @subpackage Zone_Cookie/admin
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 $zn_privacy = $tbl_content[0]['Privacy_Policy_Link'];

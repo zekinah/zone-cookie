@@ -115,6 +115,11 @@ class Zone_Cookie {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zone-cookie-i18n.php';
 
 		/**
+		 * The class responsible for defining all data from the storage.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'model/model.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-zone-cookie-admin.php';

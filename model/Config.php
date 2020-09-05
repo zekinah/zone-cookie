@@ -19,7 +19,6 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-
 include_once('Default.php');
 
 class Zone_Cookie_Model_Config
@@ -58,12 +57,12 @@ class Zone_Cookie_Model_Config
         $this->default = new Zone_Cookie_Model_Default();
         global $wpdb;
 
-		if ( defined( 'ZONE_REDIRECT_VERSION' ) ) {
+		if ( defined( 'Zone_Cookie_VERSION' ) ) {
 			$this->version = ZONE_REDIRECT_VERSION;
 		} else {
 			$this->version = '1.0.4';
 		}
-        $this->plugin_name = 'zone-redirect';
+        $this->plugin_name = 'zone-cookie';
         $this->wpdb = $wpdb;
 	}
 
