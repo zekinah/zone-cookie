@@ -11,9 +11,9 @@
 
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 3.0.1
-Tested up to: 5.4
+Tested up to: 5.5.1
 Requires PHP: 5.6 or higher
-Stable tag: 4.3
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,8 +63,8 @@ This plugin supports GDPR and CCPA consent that requires on your website. It is 
 * Email Notification for both Admin and Requester
 * Requester List
 
-## IMPORTANT!
-Zone Cookie Consent can help you meet compliance requirements, but the user must ensure that all requirements are met.
+### Note!
+This plugin provides a sample text for GDPR and CCPA section, you can check it and replace it anytime you want. It is also can help you to meet compliance requirements, but the user must ensure that all requirements are met.
 
 ## Installation
 

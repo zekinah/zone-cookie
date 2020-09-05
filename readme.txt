@@ -3,15 +3,15 @@ Contributors: zekinah
 Donate link: http://paypal.me/zekinahlecaros
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 3.0.1
-Tested up to: 5.4
+Tested up to: 5.5.1
 Requires PHP: 5.6 or higher
-Stable tag: 4.3
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Zone Cookie is a cookie consent that supports GDPR and CCPA, requires on your website. It is mainly allows you to manage all related cookie consent. It is user friendly and very simple to used. 
 
-## Features
+== Features ==
 
 * Cookie popup Position Modification
     - Banner bottom (default)
@@ -35,12 +35,12 @@ Feel free to help with development or issue reporting to
 
 [Github Repository](https://github.com/zekinah/zone-cookie/)
 
-## Installation
+== Installation ==
 
 1. Upload `zone-cookie` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-## Shorcodes 
+== Shorcodes ==
 
 Shorcode for GDPR Content - `[zone-gdpr-content]`
 
@@ -69,19 +69,20 @@ The following are among the major new data protections CCPA introduces:
 * __Right to opt out__ – Consumers in California will be able to direct a company to not sell their personal information to third parties (although the definition of “sell” in the bill is broader than simply monetary exchange).
 
 == Screenshots ==
-1. Home
+1. Administrator Options
 
-2. Requests
+2. Banner Popup Button (Default)
 
-3. EU Compliance Page Content
+3. Banner Popup Floating Right
 
-4. CCPA Compliance Page Content
+4. Banner Popup Top
 
-5. Cookie Consent
-
-6. Cookie Layout
+5. Banner Popup Floating Left
 
 == Changelog ==
+
+= 1.0.6 =
+* Small Fixes.
 
 = 1.0.5 =
 * Bug Fixes and Optimized.
@@ -93,6 +94,4 @@ The following are among the major new data protections CCPA introduces:
 
 Feel free to contribute, subtmit bugs, issues or features to be added.
 
-* **Zekinah Joy Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
-
-<a href="https://www.buymeacoffee.com/zekinah" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+* **Zekinah Lecaros** - *Initial work*
