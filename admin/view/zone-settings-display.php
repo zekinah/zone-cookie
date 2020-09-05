@@ -16,7 +16,7 @@
 <div class="zone-card">
     <div class="wrap">
         <h1 class="zone-title">Zone Cookie</h1>
-        <span class="zone-version">v1.0.1</span>
+        <span class="zone-version">v<?= $this->version; ?></span>
     </div>
     <hr class="wp-header-end">
     <div class="container-fluid">
