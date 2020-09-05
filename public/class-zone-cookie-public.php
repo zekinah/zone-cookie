@@ -208,7 +208,7 @@ class Zone_Cookie_Public {
 	public function zoneGdprFormRequest() {
 		$tbl_request_type = $this->display->getAvailableRequestType();
 		ob_start();
-		require_once('view/templates/gdpr-request-form.php');
+		require_once('view/templates/request-form.php');
 		return ob_get_clean();
 	}
 
