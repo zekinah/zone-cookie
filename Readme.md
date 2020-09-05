@@ -49,6 +49,12 @@ This plugin supports GDPR and CCPA consent that requires on your website. It is 
 
 ## Features
 
+* Cookie popup Position Modification
+    - Banner bottom (default)
+    - Banner top
+    - Banner top (pushdown)
+    - Floating Left
+    - Floating Right
 * Cookie popup Layout Modification
 * Cookie popup Content Modification
 * GDPR Information Content Modification

@@ -13,6 +13,12 @@ Zone Cookie is a cookie consent that supports GDPR and CCPA, requires on your we
 
 ## Features
 
+* Cookie popup Position Modification
+    - Banner bottom (default)
+    - Banner top
+    - Banner top (pushdown)
+    - Floating Left
+    - Floating Right
 * Cookie Popup Layout Modification
 * Cookie Popup Content Modification
 * GDPR Information Content Modification
@@ -27,7 +33,7 @@ This plugin provides a sample text for GDPR and CCPA section, you can check it a
 Support
 Feel free to help with development or issue reporting to
 
-https://github.com/zekinah/zone-cookie/
+[Github Repository](https://github.com/zekinah/zone-cookie/)
 
 ## Installation
 
@@ -35,13 +41,13 @@ https://github.com/zekinah/zone-cookie/
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 ## Shorcodes 
-```
-Shorcode for GDPR Content - [zone-gdpr-content]
 
-Shorcode for CCPA Content - [zone-ccpa-content]
+Shorcode for GDPR Content - `[zone-gdpr-content]`
 
-Shorcode for Request Data Form - [zone-compliance-form]
-```
+Shorcode for CCPA Content - `[zone-ccpa-content]`
+
+Shorcode for Request Data Form - `[zone-compliance-form]`
+
 
 == Frequently Asked Questions ==
 
@@ -77,7 +83,10 @@ The following are among the major new data protections CCPA introduces:
 
 == Changelog ==
 
-= v1.0.4=
+= 1.0.5 =
+* Bug Fixes and Optimized.
+
+= 1.0.4 =
 * Initial Release
 
 ## Contributor
