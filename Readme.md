@@ -2,12 +2,12 @@
 
 # Zone Cookies for Wordpress
 
-![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/zone-cookie)
-![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/zone-cookie)
-![GitHub issues](https://img.shields.io/github/issues/zekinah/zone-cookie)
-![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/zone-cookie)
-![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dm/zone-cookie)
-![GitHub](https://img.shields.io/github/license/zekinah/zone-cookie)
+![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/zone-cookie?style=flat-square)
+![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/zone-cookie?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/zekinah/zone-cookie?style=flat-square)
+![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/zone-cookie?style=flat-square)
+![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/zone-cookie?style=flat-square)
+![GitHub](https://img.shields.io/github/license/zekinah/zone-cookie?style=flat-square)
 
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 3.0.1
