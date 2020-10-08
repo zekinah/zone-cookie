@@ -21,7 +21,7 @@
     <hr class="wp-header-end">
     <div class="container-fluid">
         <?php
-        $tab_option = array('Home', 'Requests', 'EU Compliance Page Content', 'CCPA Compliance Page Content', 'Cookie Content', 'Cookie Layout');
+        $tab_option = array('Requests', 'EU Compliance Page Content', 'CCPA Compliance Page Content', 'Cookie Content', 'Cookie Layout');
         echo '<ul class="nav nav-tabs nav-tab-wrapper" role="tablist">';
         foreach ($tab_option as $key => $option_setting) {
             if ($key == 0) {
@@ -36,28 +36,24 @@
         echo ' </ul>';
         ?>
         <div class="tab-content">
-            <div id="tab-0" class="container-fluid tab-pane nav-tab-active active">
-                <!-- Home -->
-                <?php require_once('tabs/tab-home.php'); ?>
-            </div>
             <!-- REQUEST -->
-            <div id="tab-1" class="container-fluid tab-pane fade"><br>
+            <div id="tab-0" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-request.php'); ?>
             </div>
             <!-- EU COMPLIANCE CONTENT SETTING -->
-            <div id="tab-2" class="container-fluid tab-pane fade"><br>
+            <div id="tab-1" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-eu-content-settings.php'); ?>
             </div>
             <!-- CCPA COMPLIANCE CONTENT SETTING -->
-            <div id="tab-3" class="container-fluid tab-pane fade"><br>
+            <div id="tab-2" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-ccpa-content-settings.php'); ?>
             </div>
             <!-- GENERAL SETTING -->
-            <div id="tab-4" class="container-fluid tab-pane fade"><br>
+            <div id="tab-3" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-gdpr-content-settings.php'); ?>
             </div>
             <!-- GDPR SETTING -->
-            <div id="tab-5" class="container-fluid tab-pane fade"><br>
+            <div id="tab-4" class="container-fluid tab-pane fade"><br>
                 <?php require_once('tabs/tab-gdpr-settings.php'); ?>
             </div>
         </div>

@@ -13,6 +13,18 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mt-5 mb-5">
+            <h1 class="zone-title">Zone Cookie</h1>
+            <div class="zone-home">
+                <i class="fas fa-lock"></i>
+                <p>This configuration wizard will help you setup your Compliance</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <table id="tbl-request" class="display nowrap" style="width:100%">
     <thead>
         <tr>
