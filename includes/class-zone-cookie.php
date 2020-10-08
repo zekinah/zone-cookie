@@ -161,10 +161,13 @@ class Zone_Cookie {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Zone_Cookie_Admin( $this->get_plugin_name(), $this->get_version() );
-
-		if ($_GET['page'] == $this->plugin_name || $_GET['page'] == 'zone-cookie-settings') {
-			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
+		$pages = [$this->plugin_name, 'zone-cookie-settings'];
+		if(isset($_GET['page'])) {
+			if (in_array($_GET['page'],$pages)) {
+				$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+				$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+			}
 		}
 
 	}
