@@ -13,13 +13,34 @@
  * @author     Zekinah Lecaros <zjlecaros@gmail.com>
  */
 ?>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12 text-center mt-5 mb-5">
-            <h1 class="zone-title">Zone Cookie</h1>
+        <div class="col-md-12 text-center">
+            <h1 class="hello-section__title">Zone Cookie</h1>
             <div class="zone-home">
                 <i class="fas fa-lock"></i>
                 <p>This configuration wizard will help you setup your Compliance</p>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb-5">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label><strong>GDPR Content Shortcode</strong></label>
+                        <input class="form-control text-center txt-shortcode" type="text" value='[zone-gdpr-content]' readonly>
+                        <small class="pull-left">Show the GDPR Content</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label><strong>CCPA Content Shortcode</strong></label>
+                        <input class="form-control text-center txt-shortcode" type="text" value='[zone-ccpa-content]' readonly>
+                        <small class="pull-left">Show the CCPA Content</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label><strong>Request Form Shortcode</strong></label>
+                        <input class="form-control text-center txt-shortcode" type="text" value='[zone-compliance-form]' readonly>
+                        <small class="pull-left">Show Form</small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
