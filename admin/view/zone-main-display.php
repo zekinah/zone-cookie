@@ -37,7 +37,7 @@
         ?>
         <div class="tab-content">
             <!-- REQUEST -->
-            <div id="tab-0" class="container-fluid tab-pane fade"><br>
+            <div id="tab-0" class="container-fluid tab-pane nav-tab-active active"><br>
                 <?php require_once('tabs/tab-request.php'); ?>
             </div>
             <!-- EU COMPLIANCE CONTENT SETTING -->
