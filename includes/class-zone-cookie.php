@@ -74,7 +74,7 @@ class Zone_Cookie {
 		if ( defined( 'Zone_Cookie_VERSION' ) ) {
 			$this->version = Zone_Cookie_VERSION;
 		} else {
-			$this->version = '1.0.6';
+			$this->version = '1.0.7';
 		}
 		$this->plugin_name = 'zone-cookie';
 
