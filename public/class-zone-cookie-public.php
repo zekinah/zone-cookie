@@ -216,6 +216,7 @@ class Zone_Cookie_Public {
 		$tbl_content = $this->display->getCookieContent();
 		$tbl_layout = $this->display->getGDPRLayout();
 
+		$zn_consent = "";
 		$zn_privacy_policy = $tbl_content[0]['Privacy_Policy_Link'];
 		$zn_cookie_policy = $tbl_content[0]['Cookie_Policy_Link'];
 		$zn_terms_conditions = $tbl_content[0]['Terms_and_Condition_Link'];	
@@ -236,7 +237,7 @@ class Zone_Cookie_Public {
 		$zn_description = str_replace("{privacy-policy}", $tempo_privacy, $zn_description);
 		$zn_description = str_replace("{cookie-policy}", $tempo_cookie, $zn_description);
 		$zn_description = str_replace("{terms}", $tempo_terms, $zn_description);
-		// Position Top Staic
+		// Position Top Static
 		if ($zn_position == 'top-static') {
 			$zn_position = 'top';
 			$static = true;
@@ -250,8 +251,44 @@ class Zone_Cookie_Public {
 			$border = $zn_color_button;
 			$zn_color_button= 'transparent';
 		}
+		// Allow orDismissal is x or X
+		if($zn_allow_cookies == 'x' || $zn_allow_cookies == 'X') {
+			$zn_consent .= "
+				<style>
+					/*Responsive*/
+					@media screen and (max-width: 414px) and (min-width: 320px) {
+						.cc-window.cc-banner {
+							padding: 1em 1.8em!important;
+						}
+						
+						.cc-window .cc-message {
+							margin-bottom: 0 !important;
+						}
+						.cc-window.cc-floating {
+							padding: 1em 1.8em!important;
+						}
+						.cc-window .cc-compliance {
+							width: 35px;
+							float: right;
+							position: absolute;
+							right: 0;
+							margin-right: 1px;
+						}
+						.cc-window.cc-banner, .cc-window.cc-bottom {
+							bottom: 0px;
+							max-width: 100%!important;
+							left: 0px;
+							-webkit-transform: none;
+							-ms-transform: translate(-50%,50%);
+							transform: none;
+						}
+					}
+				</style>
+			";
+		}
+		//Position
 		if ($zn_position == 'default') {
-				$consent = '<script type="text/javascript">
+			$zn_consent .= '<script type="text/javascript">
 							window.addEventListener("load", function(){
 								window.cookieconsent.initialise({
 									"palette": {
@@ -280,10 +317,10 @@ class Zone_Cookie_Public {
 									console.error(err);
 								})
 							});
-						</script>';
-
+						</script>
+				';
 			} else {
-				$consent = '<script type="text/javascript">
+				$zn_consent .= '<script type="text/javascript">
 					window.addEventListener("load", function(){
 						window.cookieconsent.initialise({
 							"palette": {
@@ -314,8 +351,9 @@ class Zone_Cookie_Public {
 							console.error(err);
 						})
 					});
-				</script>';
+				</script>
+				';
 		}
-		echo $consent;	
+		echo $zn_consent;	
 	}
 }
