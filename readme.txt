@@ -2,10 +2,10 @@
 Contributors: zekinah
 Donate link: http://paypal.me/zekinahlecaros
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
-Requires at least: 3.0.1
-Tested up to: 5.5.1
-Requires PHP: 5.6 or higher
-Stable tag: 1.0.6
+Requires at least: 5
+Tested up to: 5.6
+Requires PHP: 7 or higher
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,9 @@ The following are among the major new data protections CCPA introduces:
 5. Banner Popup Floating Left
 
 == Changelog ==
+= 1.0.9 =
+* Compatibility for WP5.6
+* Improved Layout
 
 = 1.0.6 =
 * Small Fixes.

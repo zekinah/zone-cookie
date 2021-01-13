@@ -10,10 +10,10 @@
 ![GitHub](https://img.shields.io/github/license/zekinah/zone-cookie?style=flat-square)
 
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
-Requires at least: 3.0.1
-Tested up to: 5.5.1
-Requires PHP: 5.6 or higher
-Stable tag: 1.0.6
+Requires at least: 5
+Tested up to: 5.6
+Requires PHP: 7 or higher
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,8 +87,8 @@ Shorcode for Request Data Form - [zone-compliance-form]
 * Thank you for the third party, libraries and article that is used on this plugin.
 
 ## Contributor
-* Feel free to contribute, subtmit bugs, issues or features to be added.
+Feel free to contribute, subtmit bugs, issues or features to be added.
 
-* **Zekinah Lecaros** - *Initial work* - [Zekinah Lecaros](https://github.com/zekinah)
+* **[Zekinah Lecaros](https://github.com/zekinah)** - *Initial work* - 
 
 <a href="https://www.buymeacoffee.com/zekinah" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
