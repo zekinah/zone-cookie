@@ -9,13 +9,13 @@
 ![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/zone-cookie?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/zekinah/zone-cookie?style=flat-square)
 
-Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
-Requires at least: 5
-Tested up to: 5.6
-Requires PHP: 7 or higher
-Stable tag: 1.0.8
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA <br>
+Requires at least: 5 <br>
+Tested up to: 5.6 <br>
+Requires PHP: 7 or higher <br>
+Stable tag: 1.0.8 <br>
+License: GPLv2 or later <br>
+License URI: http://www.gnu.org/licenses/gpl-2.0.html <br>
 
 ## GDPR and CCPA Privacy Laws
 
