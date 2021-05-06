@@ -3,9 +3,9 @@ Contributors: zekinah
 Donate link: http://paypal.me/zekinahlecaros
 Tags: cookie-consent, cookie law, eu cookie law, ccpa cookie law, GDPR, CCPA
 Requires at least: 5
-Tested up to: 5.6
+Tested up to: 5.7.1
 Requires PHP: 7 or higher
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
